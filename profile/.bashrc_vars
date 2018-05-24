@@ -1,0 +1,8 @@
+
+# eval `ssh-agent -s`
+
+# export HTTP_PROXY=http://
+# export HTTPS_PROXY=http://
+
+# export JAVA_HOME=/c/dev/tools/jdk1.8.0_102_x64
+# export PATH=/c/dev/tools/apache-maven-3.5.0/bin:$JAVA_HOME/bin:$PATH
