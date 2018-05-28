@@ -29,6 +29,11 @@ if [ -f ~/.bash_custom/.git-completion.bash ]; then
     source ~/.bash_custom/.git-completion.bash
 fi
 
+if [ -f ~/.bash_custom/.bashrc_ssh-agent ]; then
+    source ~/.bash_custom/.bashrc_ssh-agent
+fi
+
+
 # Set config variables first
 GIT_PROMPT_ONLY_IN_REPO=1
 
