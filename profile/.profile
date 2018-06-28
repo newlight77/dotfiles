@@ -1,5 +1,5 @@
 #############################################
-# github.com/newlight77/ubuntu [customization
+# github.com/newlight77/bash_custom
 
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
@@ -55,5 +55,5 @@ fi
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# github.com/newlight77/ubuntu customization]
+# github.com/newlight77/bash_custom
 #############################################
