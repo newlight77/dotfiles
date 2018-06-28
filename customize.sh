@@ -43,3 +43,7 @@ fi
 if [ ! -f ${DIR}/ssh-copy-id.sh ]; then
   sh ${DIR}/ssh-copy-id.sh
 fi
+
+if [ ! -f ${DIR}/prepare-workspace.sh ]; then
+  sh ${DIR}/prepare-workspace.sh
+fi
