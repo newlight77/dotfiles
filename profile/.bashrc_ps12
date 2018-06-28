@@ -1,5 +1,5 @@
 #############################################
-# github.com/newlight77/ubuntu [customization
+# github.com/newlight77/bash_custom
 
 export COLOR_NC='\e[0m' # No Color
 export COLOR_WHITE='\e[1;37m'
@@ -30,5 +30,5 @@ CMD_LINE=' \['${COLOR_LIGHT_RED}'\]→ \['${USER_COLOR}'\]'
 PS1=$TIME$HOST$LOCATION'\n '$CMD_LINE
 PS2='\['${COLOR_LIGHT_CYAN}'\]>'
 
-# github.com/newlight77/ubuntu customization]
+# github.com/newlight77/bash_custom
 #############################################

@@ -1,5 +1,5 @@
 #############################################
-# github.com/newlight77/ubuntu [customization
+# github.com/newlight77/bash_custom
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -43,5 +43,5 @@ alias docker-clean=' \
   docker images --no-trunc -aqf "dangling=true" | xargs docker rmi ; \
   docker volume ls -qf "dangling=true" | xargs docker volume rm'
 
-# github.com/newlight77/ubuntu customization]
+# github.com/newlight77/bash_custom
 #############################################
