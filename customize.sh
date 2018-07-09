@@ -35,15 +35,15 @@ cp  ${DIR}/profile/.bashrc_vars       ~/.bash_custom/.bashrc_vars
 cat ${DIR}/profile/.bashrc_profile    >> ~/.bashrc
 cat ${DIR}/profile/.gitconfig         >> ~/.gitconfig
 
-if [ ! -f ${DIR}/profile/.ssh-config ]; then
+if [ -f ${DIR}/profile/.ssh-config ]; then
   user=$(echo $HOME | cut -d"/"  -f4)
   cat ${DIR}/profile/.ssh-config | sed -e "s/KT5D4F1N/$user/g"  >> ~/.ssh/config
 fi
 
-if [ ! -f ${DIR}/ssh-copy-id.sh ]; then
+if [ -f ${DIR}/ssh-copy-id.sh ]; then
   sh ${DIR}/ssh-copy-id.sh
 fi
 
-if [ ! -f ${DIR}/prepare-workspace.sh ]; then
+if [ -f ${DIR}/prepare-workspace.sh ]; then
   sh ${DIR}/prepare-workspace.sh
 fi
