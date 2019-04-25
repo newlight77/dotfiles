@@ -9,6 +9,7 @@ Use this to customize your bash profile. This will add :
 
 - set colorfull shell
 - a set of shell alias
+- ssh config
 - git config
 - git alias
 
