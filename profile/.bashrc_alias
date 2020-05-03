@@ -27,6 +27,8 @@ alias greset='git reset'
 alias gpush='git push'
 alias gpull='git pull'
 
+alias clean-docker-all='cleanAllContainers cleanAllImages cleanAllVolumes'
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'

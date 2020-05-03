@@ -31,6 +31,7 @@ cp  ${DIR}/profile/.bashrc_ps12       ~/.bash_custom/.bashrc_ps12
 cp  ${DIR}/profile/.gitconfig_alias   ~/.bash_custom/.gitconfig_alias
 cp  ${DIR}/profile/.bashrc            ~/.bash_custom/.bashrc
 cp  ${DIR}/profile/.bashrc_vars       ~/.bash_custom/.bashrc_vars
+cp  ${DIR}/util/.docker_cleanup.sh       ~/.bash_custom/.docker_cleanup.sh
 
 cat ${DIR}/profile/.bashrc_profile    >> ~/.bashrc
 cat ${DIR}/profile/.gitconfig         >> ~/.gitconfig
