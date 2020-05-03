@@ -29,6 +29,10 @@ if [ -f ~/.bash_custom/.bashrc_vars-* ]; then
     source ~/.bash_custom/.bashrc_vars-*
 fi
 
+if [ -f ~/.bash_custom/.docker_cleanup.sh ]; then
+    source ~/.bash_custom/.docker_cleanup.sh
+fi
+
 # if [ -f ~/.bash_custom/.bash-git-prompt/gitprompt.sh ]; then
 #     source ~/.bash_custom/.bash-git-prompt/gitprompt.sh
 # fi
