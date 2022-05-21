@@ -1,8 +1,8 @@
 #############################################
 # github.com/newlight77/bash_custom
 
-if [ -f ~/.bash_custom/.bashrc ]; then
-    source ~/.bash_custom/.bashrc
+if [ -f ~/.bash_custom/profile/.bashrc ]; then
+    source ~/.bash_custom/profile/.bashrc
 fi
 
 # github.com/newlight77/bash_custom
