@@ -13,4 +13,10 @@ Use this to customize your bash profile. This will add :
 - git config
 - git alias
 
-You can also add environment specific variables in ~/.bash_custom/.bashrc_vars
+You can also add environment specific variables in $HOME/.bash_custom/.bashrc_vars
+
+## Setup
+
+```bash
+curl https://raw.githubusercontent.com/newlight77/bash_custom/master/customize.sh | bash
+```
