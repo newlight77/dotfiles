@@ -13,18 +13,6 @@ if [ -f $HOME/.bash_custom/profile/.bashrc_ps12 ]; then
     source $HOME/.bash_custom/profile/.bashrc_ps12
 fi
 
-if [ -f $HOME/.bash_custom/profile/.profile ]; then
-    source $HOME/.bash_custom/profile/.profile
-fi
-
-if [ -f $HOME/.bash_custom/profile/.docker_cleanup.sh ]; then
-    source $HOME/.bash_custom/profile/.docker_cleanup.sh
-fi
-
-if [ -f $HOME/.bash_custom/profile/.poetry.env ]; then
-    source $HOME/.bash_custom/profile/.poetry.env
-fi
-
 if [ -f $HOME/.bash_custom/profile/.bashrc_vars ]; then
     source $HOME/.bash_custom/profile/.bashrc_vars
 fi
@@ -33,9 +21,17 @@ fi
 #     source $HOME/.bash_custom/profile/.bashrc_vars-*
 # fi
 
-# if [ -f $HOME/.bash_custom/profile/.bashrc_ssh-agent ]; then
-#     source $HOME/.bash_custom/profile/.bashrc_ssh-agent
-# fi
+if [ -f $HOME/.bash_custom/profile/bashrc_docker_cleanup ]; then
+    source $HOME/.bash_custom/profile/.bashrc_docker_cleanup
+fi
+
+if [ -f $HOME/.bash_custom/profile/.poetry.env ]; then
+    source $HOME/.bash_custom/profile/.poetry.env
+fi
+
+if [ -f $HOME/.bash_custom/profile/.profile ]; then
+    source $HOME/.bash_custom/profile/.profile
+fi
 
 # github.com/newlight77/bash_custom
 #############################################

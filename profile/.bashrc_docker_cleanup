@@ -1,32 +1,8 @@
 #!/usr/bin/env bash
 
-
-#############################################
-## Global variables
-#############################################
-BASE_DIR=$(dirname $0)
-ROOT_DIR="$(cd $BASE_DIR/../.. && pwd -P)"
-echo "${green} ROOT_DIR: $ROOT_DIR ${reset}"
-
-
-FULL_CLEANUP=false
-
-
 #############################################
 ## Functions
 #############################################
-
-
-usage() {
-  echo "Usage: $0 [options]"
-  echo ""
-  echo "${blue}Options:    ${reset}"
-  echo "${blue}          -f, --full-cleanup         full cleanup including containers, images and volumes ${reset}"
-  echo "${blue}          -h,  --help                help ${reset}"
-  echo "${blue}                                          ${reset}"
-  echo "${blue}By default, this will clean stop all containers and destroy them, remove all untagged and stagging images and all stagging volumes ${reset}"
-  exit 1
-}
 
 cleanContainers() {
     containers=$(docker ps -q)
@@ -87,28 +63,3 @@ cleanAllVolumes() {
         echo "there is no volume to be remove"
     fi
 }
-
-
-#############################################
-## Check arguments
-#############################################
-for i in "$@"
-  do
-    case $i in
-      -f|--full-cleanup)       FULL_CLEANUP="true"       ;;
-      -h|--help)                   usage               ;;
-      *)                           usage               ;;
-    esac
-done
-
-
-#############################################
-## Run
-#############################################
-
-#cleanContainers
-#cleanAllContainers
-#cleanImages
-#cleanAllImages
-#cleanVolumes
-#cleanAllVolumes
