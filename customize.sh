@@ -12,11 +12,11 @@ git clone https://github.com/newlight77/bash_custom.git /tmp/bash_custom && cd /
 
 DIR=/tmp/bash_custom
 
-mkdir -p $HOME/.bash_custom/profile
+mkdir -p $HOME/.bash_custom/profile/util
 
 cp  ${DIR}/profile/.bashrc                     $HOME/.bash_custom/profile/.bashrc
 cp  ${DIR}/profile/.bashrc_alias               $HOME/.bash_custom/profile/.bashrc_alias
-cp  ${DIR}/profile/.bashrc_docker_cleanup.sh   $HOME/.bash_custom/profile/.bashrc_docker_cleanup.sh
+cp  ${DIR}/profile/.bashrc_docker_cleanup      $HOME/.bash_custom/profile/.bashrc_docker_cleanup
 cp  ${DIR}/profile/.bashrc_natelandau          $HOME/.bash_custom/profile/.bashrc_natelandau
 cp  ${DIR}/profile/.bashrc_profile             $HOME/.bash_custom/profile/.bashrc_profile
 cat ${DIR}/profile/.bashrc_profile          >> $HOME/.bashrc
