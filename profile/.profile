@@ -8,7 +8,7 @@ export CLICOLOR=true
 # Get color support for 'less'
 export LESS="--RAW-CONTROL-CHARS"
 # Use colors for less, man, etc.
-[[ -f ~/.LESS_TERMCAP ]] && . ~/.LESS_TERMCAP
+[[ -f $HOME/.LESS_TERMCAP ]] && . $HOME/.LESS_TERMCAP
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
