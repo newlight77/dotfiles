@@ -20,6 +20,7 @@ cp  ${DIR}/profile/.bashrc_docker_cleanup      $HOME/.bash_custom/profile/.bashr
 cp  ${DIR}/profile/.bashrc_natelandau          $HOME/.bash_custom/profile/.bashrc_natelandau
 cp  ${DIR}/profile/.bashrc_profile             $HOME/.bash_custom/profile/.bashrc_profile
 cat ${DIR}/profile/.bashrc_profile          >> $HOME/.bashrc
+cat ${DIR}/profile/.bashrc_profile          >> $HOME/.zprofile
 cp  ${DIR}/profile/.bashrc_ps12                $HOME/.bash_custom/profile/.bashrc_ps12
 cp  ${DIR}/profile/.bashrc_vars                $HOME/.bash_custom/profile/.bashrc_vars
 
