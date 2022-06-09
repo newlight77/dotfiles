@@ -3,66 +3,77 @@
 
 call plug#begin('~/.vim/plugged')
 
+    Plug 'airblade/vim-gitgutter'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'bling/vim-airline'
+    Plug 'ervandew/supertab'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'honza/vim-snippets'
+    Plug 'janko-m/vim-test'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/vim-easy-align'
+    Plug 'kien/ctrlp.vim'
+    Plug 'mattn/emmet-vim'
+    Plug 'majutsushi/tagbar'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-surround'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/nerdtree'
     Plug 'scrooloose/syntastic'
-    Plug 'airblade/vim-gitgutter'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-dispatch'
     Plug 'vim-airline/vim-airline'
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'majutsushi/tagbar'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'valloric/youcompleteme'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'kien/ctrlp.vim'
-    Plug 'bling/vim-airline'
-    Plug 'mattn/emmet-vim'
-    Plug 'honza/vim-snippets'
     Plug 'w0rp/ale'
-    Plug 'ervandew/supertab'
-    Plug 'junegunn/fzf'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'janko-m/vim-test'
-    Plug 'tpope/vim-dispatch'
 
-    Plug 'mxw/vim-jsx'
-    Plug 'elzr/vim-json'
-    Plug 'othree/html5.vim'
-    Plug 'hail2u/vim-css3-syntax'
-    Plug 'pangloss/vim-javascript'
-    Plug 'leafgarland/typescript-vim'
-    Plug 'udalov/kotlin-vim'
-    Plug 'fatih/vim-go'
-    Plug 'hdima/python-syntax'
-    Plug 'rust-lang/rust.vim'
- 
+    " themes
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'ghifarit53/tokyonight-vim'
     Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'luochen1990/rainbow'
 
-    " marslo ---------------
-    " Plug 'kevinw/pyflakes-vim'
+    " For python
+    Plug 'hdima/python-syntax'
     Plug 'pyflakes/pyflakes'
     Plug 'tarmack/vim-python-ftplugin'
+    " Plug 'kevinw/pyflakes-vim'
 
-    " For Javascript
-    Plug 'pangloss/vim-javascript'
-    Plug 'jelera/vim-javascript-syntax'
+    " For javascript
+    "Plug 'pangloss/vim-javascript'
+    "Plug 'jelera/vim-javascript-syntax'
 
     " For web design
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-repeat'
-
-    " Colors and themes and syntax
-    Plug 'luochen1990/rainbow'
+    Plug 'elzr/vim-json'
+    Plug 'othree/html5.vim'
     Plug 'hail2u/vim-css3-syntax'
-    Plug 'Marslo/vim-coloresque'
-    Plug 'Marslo/marslo.vim'
-    Plug 'Marslo/MarsloVimOthers'
+    Plug 'mxw/vim-jsx'
+    Plug 'yuezk/vim-js'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'mattn/emmet-vim'
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'jparise/vim-graphql'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+    " other languages
+    Plug 'udalov/kotlin-vim'
+    Plug 'fatih/vim-go'
+    Plug 'rust-lang/rust.vim'
+
+    " Commenting
+    "Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-commentary'
+    Plug 'suy/vim-context-commentstring'
+ 
 call plug#end()
 
 
@@ -96,13 +107,11 @@ let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_backgr
 " INTERFACE --------------------------------------------------------------
 if 'xterm-256color' == $TERM
   set t_Co=256
-  colorscheme marslo
   let psc_style='cool'
 else
   set t_Co=8
   set t_Sb=^[[4%dm
   set t_Sf=^[[3%dm
-  colorscheme marslo16
 endif
 
 
@@ -122,19 +131,19 @@ filetype plugin on
 filetype indent on
 
 " Turn syntax highlighting on.
-syntax on
+syntax enable on
 
 " Add numbers to the file.
 set number
 
 " Highlight cursor line underneath the cursor horizontally.
-"set cursorline
+"set cursorline                                                             " Highlight the current line
 
 " Highlight cursor line underneath the cursor vertically.
 "set cursorcolumn
 
 " Set shift width to 4 spaces.
-set shiftwidth=4
+set shiftwidth=4                                                            " the tab width by using >> & <<
 
 " Set tab width to 4 columns.
 set tabstop=4
@@ -142,11 +151,17 @@ set tabstop=4
 " Use space characters instead of tabs.
 set expandtab
 
+set autoindent
+
 " Do not save backup files.
 set nobackup
+set noswapfile
+set nowritebackup
 
 " Do not let cursor scroll below or above N number of lines when scrolling.
 set scrolloff=10
+set sidescroll=1
+set sidescrolloff=5
 
 " Do not wrap lines. Allow long lines to extend as far as the line goes.
 set nowrap
@@ -155,7 +170,7 @@ set nowrap
 set incsearch
 
 " Ignore capital letters during search.
-set ignorecase
+set incsearch hlsearch ignorecase smartcase                         " Search
 
 " Override the ignorecase option if searching for capital letters.
 " This will allow you to search specifically for capital letters.
@@ -167,8 +182,8 @@ set showcmd
 " Show the mode you are on the last line.
 set showmode
 
-" Show matching words during a search.
-set showmatch
+set showmatch                                                       " Show matching words during a search.
+set showmatch                                                       " Show matching bracets (shortly jump to the other bracets)
 
 " Use highlighting when doing a search.
 set hlsearch
@@ -181,39 +196,88 @@ set wildmenu
 
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest
+set wildmode=longest,list,full                                      " Completion mode that is used for the character
 
 " There are certain files that we would never want to edit with Vim.
 " Wildmenu will ignore files with these extensions.
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx,*/tmp/*,*.so,*.swp,*.zip
 
+set diffopt=filler,context:3
+set wrap                                                            " Wrap lines
+set fileformat=unix
+
+set iskeyword-=.
+set autochdir
+set fileencodings=utf-8,ucs-bom,gbk,cp936,gb2312,gb18030            " Code Format
+set termencoding=utf-8
+set encoding=utf-8                                                  " Input Chinese (=cp936)
+set fileencoding=utf-8
+let &termencoding=&encoding
+set report=0
+set autoread                                                        " Set auto read when a file is changed by outside
+set matchtime=1                                                     " The shortly time
+set softtabstop=2                                                   " Width for backspace
+set smartindent
+set smarttab						                                            " smarttab: the width of <Tab> in first line would refer to 'Shiftwidth' parameter
+set linebreak
+set tw=0
+set modifiable
+set write
+set magic                                                           " Regular Expression
+set linespace=0
+set wildmode=longest,list,full                                      " Completion mode that is used for the character
+set noerrorbells novisualbell                                       " turn off error beep/flash
+set t_vb=
+set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«,nbsp:·
+set imcmdline                                                       " Fix context menu messing
+set completeopt=longest,menuone                                     " Supper Tab
+set foldenable                                                      " Enable Fold
+set foldcolumn=1
+set foldexpr=1                                                      " Shown line number after fold
+set foldlevel=100                                                   " Not fold while VIM set up
+set viewoptions=folds
+set backspace=indent,eol,start                                      " make backspace h, l, etc wrap to
+set whichwrap+=<,>,h,l
+set go+=a                                                           " Visual selection automatically copied to the clipboard
+set hidden                                                          " Switch between buffers with unsaved change
+set equalalways
+set formatoptions=tcrqn
+set formatoptions+=B                                                " Remove the backspace for combine lines (Only for chinese)
+set matchpairs+=<:>
+set noendofline
+if has('cmdline_info')
+  set ruler                                                         " ruler: Show Line and colum number
+  set showcmd                                                       " Show (partial) command in status line
+endif
+" set synmaxcol=128
+" set binary
+" set cryptmethod=blowfish
+
+if has('persistent_undo')
+  set noundofile
+endif
 
 " STATUS LINE ------------------------------------------------------------
 
-" Clear status line when vimrc is reloaded.
-set statusline=
+if has('statusline')
+  set laststatus=2                                                  " Show the status bar on the second to last line.
+  set statusline=%#User2#%m%r%*\ %F\ %y,%{&fileformat}
+  "set statusline+=\ %F\ %M\ %Y\ %R
+  set statusline+=%=                                                " Use a divider to separate the left side from the right side.
+  "set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+  set statusline+=\ %-{strftime(\"%H:%M\ %d/%m/%Y\")}\ %b[A],0x%B\ %c%V,%l/%L\ %1*--%n%%--%*\ %p%%\ |
+endif
 
-" Status line left side.
-set statusline+=\ %F\ %M\ %Y\ %R
-
-" Use a divider to separate the left side from the right side.
-set statusline+=%=
-
-" Status line right side.
-"set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
-" Show the status on the second to last line.
-set laststatus=2
-
-"
 
 
 " MAPPINGS ---------------------------------------------------------------
 
 " Set the backslash as the leader key.
-let mapleader = '\'
+let mapleader = ','
+let g:mapleader=","
 
-" Press \\ to jump back to the last cursor position.
-nnoremap <leader>\ ``
+" Press ,, to jump back to the last cursor position.
+nnoremap <leader>, ``
 
 " Press \p to print the current file to the default printer from a Linux operating system.
 " View available printers:   lpstat -v
@@ -269,89 +333,20 @@ nnoremap <F3> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 
 
+" Allow moving one or multiple lines
+function! MoveLines(offset) range
+    let l:col = virtcol('.')
+    let l:offset = str2nr(a:offset)
+    exe 'silent! :' . a:firstline . ',' . a:lastline . 'm'
+        \ . (l:offset > 0 ? a:lastline + l:offset : a:firstline + l:offset)
+    exe 'normal ' . l:col . '|'
+endf
 
-" Marslo -----------------------------------------------------------------
-set nocompatible
-syntax enable on
-filetype plugin indent on
-set history=500
-set diffopt=filler,context:3
-set wrap                                                            " Wrap lines
-set fileformat=unix
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let mapleader=","
-let g:mapleader=","
+nmap <silent> <S-up> :call MoveLines('-2')<CR>
+nmap <silent> <S-down> :call MoveLines('+1')<CR>
+vmap <silent> <S-up> :call MoveLines('-2')<CR>gv
+vmap <silent> <S-down> :call MoveLines('+1')<CR>gv
 
-set fileformat=unix
-set history=500
-set diffopt=filler,context:3
-set iskeyword-=.
-set autochdir
-set fileencodings=utf-8,ucs-bom,gbk,cp936,gb2312,gb18030            " Code Format
-set termencoding=utf-8
-set encoding=utf-8                                                  " Input Chinese (=cp936)
-set fileencoding=utf-8
-let &termencoding=&encoding
-set nobackup noswapfile nowritebackup
-set number                                                          " number: line number
-set report=0
-set autoread                                                        " Set auto read when a file is changed by outside
-set showmatch                                                       " Show matching bracets (shortly jump to the other bracets)
-set matchtime=1                                                     " The shortly time
-set tabstop=2                                                       " Tab width
-set softtabstop=2                                                   " Width for backspace
-set shiftwidth=2                                                    " the tab width by using >> & <<
-set autoindent expandtab
-set smartindent
-set smarttab						                                            " smarttab: the width of <Tab> in first line would refer to 'Shiftwidth' parameter
-set linebreak
-set tw=0
-set modifiable
-set write
-set incsearch hlsearch ignorecase smartcase                         " Search
-set magic                                                           " Regular Expression
-set linespace=0
-set wildmenu
-set wildmode=longest,list,full                                      " Completion mode that is used for the character
-set noerrorbells novisualbell                                       " turn off error beep/flash
-set t_vb=
-set list listchars=tab:\ \ ,trail:·,extends:»,precedes:«,nbsp:·
-set cursorline                                                      " Highlight the current line
-set scrolloff=3                                                     " Scroll settings
-set sidescroll=1
-set sidescrolloff=5
-set imcmdline                                                       " Fix context menu messing
-set completeopt=longest,menuone                                     " Supper Tab
-set foldenable                                                      " Enable Fold
-set foldcolumn=1
-set foldexpr=1                                                      " Shown line number after fold
-set foldlevel=100                                                   " Not fold while VIM set up
-set viewoptions=folds
-set backspace=indent,eol,start                                      " make backspace h, l, etc wrap to
-set whichwrap+=<,>,h,l
-set go+=a                                                           " Visual selection automatically copied to the clipboard
-set hidden                                                          " Switch between buffers with unsaved change
-set equalalways
-set formatoptions=tcrqn
-set formatoptions+=B                                                " Remove the backspace for combine lines (Only for chinese)
-set matchpairs+=<:>
-set noendofline
-if has('cmdline_info')
-  set ruler                                                         " ruler: Show Line and colum number
-  set showcmd                                                       " Show (partial) command in status line
-endif
-if has('statusline')
-  set laststatus=2                                                  " Set status bar
-  set statusline=%#User2#%m%r%*\ %F\ %y,%{&fileformat}
-  set statusline+=%=\ %-{strftime(\"%H:%M\ %d/%m/%Y\")}\ %b[A],0x%B\ %c%V,%l/%L\ %1*--%n%%--%*\ %p%%\ |
-endif
-" set synmaxcol=128
-" set binary
-" set cryptmethod=blowfish
-
-if has('persistent_undo')
-  set noundofile
-endif
 
 noremap <F1> <ESC>
 imap <F1> <ESC>a
@@ -396,6 +391,8 @@ nnoremap zws :g/^\s*$/d<CR>
 nnoremap zdm :%s/<C-v><CR>//ge<CR>
 nnoremap zng :%s///gn<CR>
 
+
+
 " Marslo For Function ---------------------------------------------
 
 let g:ctrlp_map = '<c-p>'                                           " CtrlP
@@ -411,12 +408,6 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll|rpm|tar|gz|bz2|zip|ctags|tags)|tags|ctags$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
-
-nmap <leader>tv :ConqueTermSplit bash <CR>
-
-let g:winManagerWidth = 20
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap <leader>mm :WMToggle<cr>
 
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -438,23 +429,12 @@ let g:tagbar_iconchars=['+', '-']
 let g:tagbar_autoshowtag=1
 let g:tagbar_show_linenumbers=0
 
-let g:EnhCommentifyAlignRight='Yes'
-let g:EnhCommentifyRespectIndent='yes'
-let g:EnhCommentifyPretty='Yes'
-let g:EnhCommentifyMultiPartBlocks='Yes'
-let g:EnhCommentifyUseSyntax='Yes'
 
 map <leader>aid :AuthorInfoDetect<CR>
-let g:vimrc_author='Marslo'
-let g:vimrc_email='marslo.jiao@gmail.com'
+let g:vimrc_author='Kong To'
+let g:vimrc_email='newlight77@gmail.com'
 au BufWritePre, FileWritePre * :AuthorInfoDetect<CR>
 
-let MRU_Auto_Close = 1                                              " Most Recently Used(MRU)
-let MRU_Max_Entries = 10
-let MRU_Exclude_Files='^/tmp/.*\|^/temp/.*\|^/media/.*\|^/mnt/.*'
-map <leader>re :MRU<CR>
-
-noremap <Leader>u :GundoToggle<CR>
 
 augroup vimrc
   au BufReadPre * setlocal foldmethod=indent
@@ -520,3 +500,99 @@ autocmd BufRead,BufNewFile *.t set ft=perl
 autocmd FileType javascript syntax clear jsFuncBlock
 
 " vim: tabstop=2:softtabstop=2:shiftwidth=2:expandtab
+
+" https://techinscribed.com/how-to-set-up-vim-as-an-ide-for-react-and-typescript-in-2020/ =====================
+set signcolumn=yes
+
+nmap ]h <Plug>(GitGutterNextHunk) "same as default
+nmap [h <Plug>(GitGutterPrevHunk) "same as default
+
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '✹'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_modified_removed = '-'
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+let g:airline_powerline_fonts = 1
+
+
+" https://getaround.tech/setting-up-vim-for-react/ ===================================
+
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+  \      'extends' : 'jsx',
+  \  },
+\}
+
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+let g:ale_linters = {
+    \ 'javascript': ['eslint'],
+    \ 'typescript': ['eslint']
+    \ }
+let g:ale_javascript_eslint_executable='npx eslint'
+
+"autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime yarn lint:fix %
+
+
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim ==============================
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+
+nnoremap <silent> K :call CocAction('doHover')<CR>
+
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+\ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+  
+
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+
+function! s:show_hover_doc()
+  call timer_start(500, 'ShowDocIfNoDiagnostic')
+endfunction
+
+autocmd CursorHoldI * :call <SID>show_hover_doc()
+autocmd CursorHold * :call <SID>show_hover_doc()
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>do <Plug>(coc-codeaction)
+nmap <leader>rn <Plug>(coc-rename)
