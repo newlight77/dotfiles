@@ -29,6 +29,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'valloric/youcompleteme'
     Plug 'w0rp/ale'
+    Plug 'Yggdroot/indentLine'
 
     " themes
     Plug 'NLKNguyen/papercolor-theme'
@@ -78,8 +79,8 @@ call plug#end()
 
 
 
-" COLOR SCHEME ------------------------------------------------------------
 
+" COLOR SCHEME ------------------------------------------------------------
 
 set background=dark
 "set background=light
@@ -103,6 +104,28 @@ let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_backgr
 "colorscheme papercolor
 "=====colorscheme papercolor=======
 
+" ======rainbow===================
+let g:rainbow_active = 1
+let g:rainbow_operators = 1
+let g:rainbow_conf = {
+\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
+\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
+\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\   'separately': {
+\     'css': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'scss': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'html': {
+\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\     },
+\   }
+\}
+" ======rainbow===================
+
+
 
 " INTERFACE --------------------------------------------------------------
 if 'xterm-256color' == $TERM
@@ -113,6 +136,8 @@ else
   set t_Sb=^[[4%dm
   set t_Sf=^[[3%dm
 endif
+
+
 
 
 " GENERAL ----------------------------------------------------------------
@@ -245,6 +270,7 @@ set formatoptions=tcrqn
 set formatoptions+=B                                                " Remove the backspace for combine lines (Only for chinese)
 set matchpairs+=<:>
 set noendofline
+
 if has('cmdline_info')
   set ruler                                                         " ruler: Show Line and colum number
   set showcmd                                                       " Show (partial) command in status line
@@ -257,6 +283,8 @@ if has('persistent_undo')
   set noundofile
 endif
 
+
+
 " STATUS LINE ------------------------------------------------------------
 
 if has('statusline')
@@ -268,132 +296,11 @@ if has('statusline')
   set statusline+=\ %-{strftime(\"%H:%M\ %d/%m/%Y\")}\ %b[A],0x%B\ %c%V,%l/%L\ %1*--%n%%--%*\ %p%%\ |
 endif
 
-
-
-" MAPPINGS ---------------------------------------------------------------
-
-" Set the backslash as the leader key.
-let mapleader = ','
-let g:mapleader=","
-
-" Press ,, to jump back to the last cursor position.
-nnoremap <leader>, ``
-
-" Press \p to print the current file to the default printer from a Linux operating system.
-" View available printers:   lpstat -v
-" Set default printer:       lpoptions -d <printer_name>
-" <silent> means do not display output.
-nnoremap <silent> <leader>p :%w !lp<CR>
-
-" Type jj to exit insert mode quickly.
-inoremap jj <Esc>
-
-" Press the space bar to type the : character in command mode.
-nnoremap <space> :
-
-" Pressing the letter o will open a new line below the current one.
-" Exit insert mode after creating a new line above or below the current line.
-nnoremap o o<esc>
-nnoremap O O<esc>
-
-" Center the cursor vertically when moving to the next word during a search.
-nnoremap n nzz
-nnoremap N Nzz
-
-" Yank from cursor to the end of line.
-nnoremap Y y$
-
-" Map the F5 key to run a Python script inside Vim.
-" We map F5 to a chain of commands here.
-" :w saves the file.
-" <CR> (carriage return) is like pressing the enter key.
-" !clear runs the external clear screen command.
-" !python3 % executes the current file with Python.
-nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
-
-" You can split the window in Vim by typing :split or :vsplit.
-" Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-
-" Resize split windows using arrow keys by pressing:
-" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
-noremap <c-up> <c-w>+
-noremap <c-down> <c-w>-
-noremap <c-left> <c-w>>
-noremap <c-right> <c-w><
-
-" NERDTree specific mappings.
-" Map the F3 key to toggle NERDTree open and close.
-nnoremap <F3> :NERDTreeToggle<cr>
-
-" Have nerdtree ignore certain files and directories.
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
-
-
-" Allow moving one or multiple lines
-function! MoveLines(offset) range
-    let l:col = virtcol('.')
-    let l:offset = str2nr(a:offset)
-    exe 'silent! :' . a:firstline . ',' . a:lastline . 'm'
-        \ . (l:offset > 0 ? a:lastline + l:offset : a:firstline + l:offset)
-    exe 'normal ' . l:col . '|'
-endf
-
-nmap <silent> <S-up> :call MoveLines('-2')<CR>
-nmap <silent> <S-down> :call MoveLines('+1')<CR>
-vmap <silent> <S-up> :call MoveLines('-2')<CR>gv
-vmap <silent> <S-down> :call MoveLines('+1')<CR>gv
-
-
-noremap <F1> <ESC>
-imap <F1> <ESC>a
-nnoremap j gj
-nnoremap gj j
-nnoremap k gk
-nnoremap gk k
-nnoremap n nzzzv
-nnoremap N Nzzzv
-map ,bd :bd<CR>
-map <C-k> <C-w>k
-map <C-j> <C-w>j
-map <C-a> <ESC>^
-imap <C-a> <ESC>I
-cnoremap <C-a> <Home>
-map <C-e> <ESC>$
-imap <C-e> <ESC>A
-cnoremap <C-e> <End>
-inoremap <A-f> <ESC><Space>Wi
-cnoremap <A-f> <S-Right>
-inoremap <A-b> <ESC>Bi
-cnoremap <A-b> <S-Left>
-inoremap <A-d> <ESC>lcW
-inoremap <C-d> <Del>
-nnoremap Y y$
-nnoremap <Del> "_x
-xnoremap <Del> "_d
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap <space> za
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
-vmap s <Plug>VSurround
-inoremap <leader>tt <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
-inoremap <leader>fn <C-R>=expand("%:t:r")<CR>
-inoremap <leader>fe <C-R>=expand("%:t")<CR>
-inoremap <leader>w <C-O>:w<CR>
-
-nnoremap zdb :%s/\s\+$//<CR>
-nnoremap zhh :%s/^\s\+//<CR>
-nnoremap zmm :g/^/ s//\=line('.').' '/<CR>
-nnoremap zws :g/^\s*$/d<CR>
-nnoremap zdm :%s/<C-v><CR>//ge<CR>
-nnoremap zng :%s///gn<CR>
+" STATUS LINE ------------------------------------------------------------
 
 
 
-" Marslo For Function ---------------------------------------------
+" CtrlP ---------------------------------------------
 
 let g:ctrlp_map = '<c-p>'                                           " CtrlP
 let g:ctrlp_working_path_mode = 'ra'                                " Search parents as well (stop searching sartly)
@@ -409,6 +316,12 @@ let g:ctrlp_custom_ignore = {
     \ 'link': 'some_bad_symbolic_links',
     \ }
 
+" CtrlP ---------------------------------------------
+
+
+
+" Tlist ---------------------------------------------
+
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Use_SingleClick=1
@@ -418,6 +331,12 @@ let Tlist_show_Menu=1
 let Tlist_sql_settings = 'sql;P:package;t:table'
 let Tlist_Process_File_Always=0
 nmap <leader>tl :TlistToggle<CR>
+
+" Tlist ---------------------------------------------
+
+
+
+" Tagbar ---------------------------------------------
 
 map <leader>ta :TagbarToggle<CR>
 let g:tagbar_left=1
@@ -429,36 +348,10 @@ let g:tagbar_iconchars=['+', '-']
 let g:tagbar_autoshowtag=1
 let g:tagbar_show_linenumbers=0
 
-
-map <leader>aid :AuthorInfoDetect<CR>
-let g:vimrc_author='Kong To'
-let g:vimrc_email='newlight77@gmail.com'
-au BufWritePre, FileWritePre * :AuthorInfoDetect<CR>
+" Tagbar ---------------------------------------------
 
 
-augroup vimrc
-  au BufReadPre * setlocal foldmethod=indent
-  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup END
-
-let g:rainbow_active = 1
-let g:rainbow_operators = 1
-let g:rainbow_conf = {
-\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
-\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
-\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\   'separately': {
-\     'css': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'scss': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'html': {
-\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\     },
-\   }
-\}
+" IndentLine ---------------------------------------------
 
 let g:indentLine_color_gui = "#282828"
 let g:indentLine_color_term = 239
@@ -476,32 +369,63 @@ else
   let g:indentLine_char = '¦'
 endif
 
+" IndentLine ---------------------------------------------
+
+
+" SuperTab ---------------------------------------------
+
 let SuperTabDefaultCompletionType = '<c-p>'
 let SuperTabMappingForward = '<c-p>'
 let SuperTabMappingTabLiteral = '<Tab>'
 let SuperTabClosePreviewOnPopupClose = 1
+
+" SuperTab ---------------------------------------------
+
+
+" AutoPairs ---------------------------------------------
 
 let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"', '`':'`'}
 let g:AutoPairsParens = {'(':')', '[':']', '{':'}', '<':'>'}
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 
-match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/            " For css3
+" AutoPairs ---------------------------------------------
 
-" if isdirectory(bud . '\accelerated-jk')
-  " nmap j <Plug>(accelerated_jk_gj)
-  " nmap k <Plug>(accelerated_jk_gk)
-" endif
 
-autocmd BufWinLeave * silent! mkview
-autocmd BufWinEnter * silent! loadview
-autocmd BufRead,BufNewFile *.txt setfiletype txt
-autocmd BufRead,BufNewFile *.t set ft=perl
-autocmd FileType javascript syntax clear jsFuncBlock
+" airline ---------------------------------------------
 
-" vim: tabstop=2:softtabstop=2:shiftwidth=2:expandtab
+let g:airline_powerline_fonts = 1
 
-" https://techinscribed.com/how-to-set-up-vim-as-an-ide-for-react-and-typescript-in-2020/ =====================
+" airline ---------------------------------------------
+
+
+" NERDTree ---------------------------------------------
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" NERDTree specific mappings.
+" Map the F3 key to toggle NERDTree open and close.
+nnoremap <F3> :NERDTreeToggle<cr>
+
+" Have nerdtree ignore certain files and directories.
+let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+
+" NERDTree ---------------------------------------------
+
+
+" GitGutter ---------------------------------------------
+
 set signcolumn=yes
 
 nmap ]h <Plug>(GitGutterNextHunk) "same as default
@@ -516,30 +440,10 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_modified_removed = '-'
 
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
-
-let g:airline_powerline_fonts = 1
+" GitGutter ---------------------------------------------
 
 
-" https://getaround.tech/setting-up-vim-for-react/ ===================================
-
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-  \      'extends' : 'jsx',
-  \  },
-\}
+" Ale ---------------------------------------------
 
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
@@ -550,15 +454,10 @@ let g:ale_linters = {
     \ }
 let g:ale_javascript_eslint_executable='npx eslint'
 
-"autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
-autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime yarn lint:fix %
+" Ale ---------------------------------------------
 
 
-" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim ==============================
-
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
+" Conquer of completion ---------------------------------------------
 
 nnoremap <silent> K :call CocAction('doHover')<CR>
 
@@ -589,10 +488,195 @@ endfunction
 autocmd CursorHoldI * :call <SID>show_hover_doc()
 autocmd CursorHold * :call <SID>show_hover_doc()
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gr <Plug>(coc-references)
+nmap <silent>[g <Plug>(coc-diagnostic-prev)
+nmap <silent>]g <Plug>(coc-diagnostic-next)
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
+
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
+
+" Conquer of completion ---------------------------------------------
+
+
+
+" emmet-vim ---------------------------------------------
+
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+  \      'extends' : 'jsx',
+  \  },
+\}
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+
+" emmet-vim ---------------------------------------------
+
+
+
+
+" MAPPINGS ---------------------------------------------------------------
+
+" Set the backslash as the leader key.
+let mapleader = ','
+let g:mapleader=","
+
+" Press ,, to jump back to the last cursor position.
+nnoremap <leader>, ``
+
+inoremap <leader>w <C-O>:w<CR>                                                  " save
+
+" Press \p to print the current file to the default printer from a Linux operating system.
+" View available printers:   lpstat -v
+" Set default printer:       lpoptions -d <printer_name>
+" <silent> means do not display output.
+nnoremap <silent> <leader>p :%w !lp<CR>
+
+" Type jj to exit insert mode quickly.
+inoremap jj <Esc>
+
+" Press the space bar to type the : character in command mode.
+nnoremap <space> :
+
+" Pressing the letter o will open a new line below the current one.
+" Exit insert mode after creating a new line above or below the current line.
+nnoremap o o<esc>
+nnoremap O O<esc>
+
+" Center the cursor vertically when moving to the next word during a search.
+nnoremap N Nzz
+nnoremap n nzz
+
+" Yank from cursor to the end of line.
+
+nnoremap Y y$
+
+" You can split the window in Vim by typing :split or :vsplit.
+" Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+" Resize split windows using arrow keys by pressing:
+" CTRL+UP, CTRL+DOWN, CTRL+LEFT, or CTRL+RIGHT.
+noremap <c-up> <c-w>+
+noremap <c-down> <c-w>-
+noremap <c-left> <c-w>>
+noremap <c-right> <c-w><
+
+
+
+
+
+" Allow moving one or multiple lines ===============
+
+function! MoveLines(offset) range
+    let l:col = virtcol('.')
+    let l:offset = str2nr(a:offset)
+    exe 'silent! :' . a:firstline . ',' . a:lastline . 'm'
+        \ . (l:offset > 0 ? a:lastline + l:offset : a:firstline + l:offset)
+    exe 'normal ' . l:col . '|'
+endf
+nmap <silent> <S-up> :call MoveLines('-2')<CR>
+nmap <silent> <S-down> :call MoveLines('+1')<CR>
+vmap <silent> <S-up> :call MoveLines('-2')<CR>gv
+vmap <silent> <S-down> :call MoveLines('+1')<CR>gv
+
+
+
+" Python =====================
+
+" Map the F5 key to run a Python script inside Vim.
+" We map F5 to a chain of commands here.
+" :w saves the file.
+" <CR> (carriage return) is like pressing the enter key.
+" !clear runs the external clear screen command.
+" !python3 % executes the current file with Python.
+nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
+
+
+
+
+"noremap <F1> <ESC>
+"imap <F1> <ESC>a
+"nnoremap j gj
+"nnoremap gj j
+"nnoremap k gk
+"nnoremap gk k
+"nnoremap n nzzzv
+"nnoremap N Nzzzv
+"map ,bd :bd<CR>
+"map <C-k> <C-w>k
+"map <C-j> <C-w>j
+"map <C-a> <ESC>^
+"imap <C-a> <ESC>I
+"cnoremap <C-a> <Home>
+"map <C-e> <ESC>$
+"imap <C-e> <ESC>A
+"cnoremap <C-e> <End>
+"inoremap <A-f> <ESC><Space>Wi
+"cnoremap <A-f> <S-Right>
+"inoremap <A-b> <ESC>Bi
+"cnoremap <A-b> <S-Left>
+"inoremap <A-d> <ESC>lcW
+"inoremap <C-d> <Del>
+"nnoremap Y y$
+"nnoremap <Del> "_x
+"xnoremap <Del> "_d
+"nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+"nnoremap <space> za
+"nnoremap & :&&<CR>
+"xnoremap & :&&<CR>
+"vmap s <Plug>VSurround
+"inoremap <leader>tt <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
+"inoremap <leader>fn <C-R>=expand("%:t:r")<CR>
+"inoremap <leader>fe <C-R>=expand("%:t")<CR>
+
+"nnoremap zdb :%s/\s\+$//<CR>
+"nnoremap zhh :%s/^\s\+//<CR>
+"nnoremap zmm :g/^/ s//\=line('.').' '/<CR>
+"nnoremap zws :g/^\s*$/d<CR>
+"nnoremap zdm :%s/<C-v><CR>//ge<CR>
+"nnoremap zng :%s///gn<CR>
+
+
+
+
+
+" https://techinscribed.com/how-to-set-up-vim-as-an-ide-for-react-and-typescript-in-2020/ =====================
+
+" https://getaround.tech/setting-up-vim-for-react/ ===================================
+
+
+"autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+autocmd BufWritePost *.js,*.ts,*.jsx,*.tsx,css,scss,json AsyncRun -post=checktime yarn lint:fix %
+
+" https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim ==============================
+
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+
+match VendorPrefix /-\(moz\|webkit\|o\|ms\)-[a-zA-Z-]\+/            " For css3
+
+" if isdirectory(bud . '\accelerated-jk')
+  " nmap j <Plug>(accelerated_jk_gj)
+  " nmap k <Plug>(accelerated_jk_gk)
+" endif
+
+autocmd BufWinLeave * silent! mkview
+autocmd BufWinEnter * silent! loadview
+autocmd BufRead,BufNewFile *.txt setfiletype txt
+autocmd BufRead,BufNewFile *.t set ft=perl
+autocmd FileType javascript syntax clear jsFuncBlock
+
+" vim: tabstop=2:softtabstop=2:shiftwidth=2:expandtab

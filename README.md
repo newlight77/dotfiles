@@ -90,3 +90,15 @@ for YouCompleteMe:
 cd .vim/plugged/youcompleteme
 ./install.py 
 ```
+
+
+### CoC
+
+[Install CoC](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim)
+[CoC extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
+
+for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html coc-css`
+
+for the list of extensions : `:CocList extensions`
+
+
