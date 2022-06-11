@@ -133,17 +133,11 @@ endif
 " List of plugins installed
 call plug#begin('~/.vim/plugged')
 
-    Plug 'altercation/vim-colors-solarized'
-    "Plug 'bling/vim-airline'
-    Plug 'flazz/vim-colorschemes'
     Plug 'honza/vim-snippets'
     Plug 'janko-m/vim-test'
-    Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
-    Plug 'terryma/vim-multiple-cursors'
+    "lug 'terryma/vim-multiple-cursors'
+	Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'tpope/vim-dispatch'
-    Plug 'valloric/youcompleteme'
-    Plug 'w0rp/ale'
 
 	" Statusbar
 	Plug 'vim-airline/vim-airline'
@@ -160,20 +154,17 @@ call plug#begin('~/.vim/plugged')
 	Plug 'xolox/vim-misc'
 
 	" Tools
-	"Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
-	"Plug 'preservim/nerdtree'
+    "Plug 'tpope/vim-commentary'
+    "Plug 'suy/vim-context-commentstring'
+	Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
+	Plug 'preservim/nerdtree'
 	"Plug 'valloric/listtoggle'
 	Plug 'majutsushi/tagbar'
-	Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'kien/ctrlp.vim'
 	Plug 'mbbill/undotree'
 	Plug 'dense-analysis/ale'
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
-
-    " Commenting
-    "Plug 'scrooloose/nerdcommenter'
-    Plug 'tpope/vim-commentary'
-    Plug 'suy/vim-context-commentstring'
 
 	" Deoplete, specific for Vim8
 	if !has("nvim")
@@ -182,6 +173,7 @@ call plug#begin('~/.vim/plugged')
 	endif
 
 	" Autocomplete
+    Plug 'valloric/youcompleteme'
 	Plug 'Shougo/deoplete.nvim', { 'commit': '17ffeb9' }
 	Plug 'Shougo/neosnippet.vim', { 'commit': '037b7a7' }
 	Plug 'Shougo/neosnippet-snippets'
@@ -255,6 +247,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'jparise/vim-graphql'
 
 	" Additional syntax files
+    Plug 'w0rp/ale'
+    Plug 'vim-syntastic/syntastic'
 	Plug 'vim-language-dept/css-syntax.vim'
 	Plug 'Shougo/neco-syntax', { 'commit': '98cba4a' }
 	Plug 'mboughaba/i3config.vim'
@@ -288,6 +282,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vimwiki/vimwiki', { 'branch': 'master' }
 
 	" Color schemes
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'flazz/vim-colorschemes'
 	Plug 'gerardbm/vim-atomic'
     Plug 'NLKNguyen/papercolor-theme'
     Plug 'ghifarit53/tokyonight-vim'
@@ -1257,6 +1253,22 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-v> <C-r>"
 cnoremap <C-q> <S-Right><C-w>
+
+
+" Allow moving one or multiple lines ===============
+
+function! MoveLines(offset) range
+    let l:col = virtcol('.')
+    let l:offset = str2nr(a:offset)
+    exe 'silent! :' . a:firstline . ',' . a:lastline . 'm'
+        \ . (l:offset > 0 ? a:lastline + l:offset : a:firstline + l:offset)
+    exe 'normal ' . l:col . '|'
+endf
+nmap <silent> <S-up> :call MoveLines('-2')<CR>
+nmap <silent> <S-down> :call MoveLines('+1')<CR>
+vmap <silent> <S-up> :call MoveLines('-2')<CR>gv
+vmap <silent> <S-down> :call MoveLines('+1')<CR>gv
+
 
 "----------------------------------------------------------------
 " 12. Paste mode

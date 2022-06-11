@@ -3,9 +3,7 @@
 
 call plug#begin('~/.vim/plugged')
 
-    Plug 'airblade/vim-gitgutter'
     Plug 'altercation/vim-colors-solarized'
-    Plug 'bling/vim-airline'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'honza/vim-snippets'
@@ -15,13 +13,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'kien/ctrlp.vim'
     Plug 'mattn/emmet-vim'
     Plug 'majutsushi/tagbar'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
-    Plug 'terryma/vim-multiple-cursors'
+    Plug 'preservim/nerdtree'
+    Plug 'vim-syntastic/syntastic'
+    "Plug 'terryma/vim-multiple-cursors'
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-dispatch'
@@ -71,7 +68,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rust-lang/rust.vim'
 
     " Commenting
-    "Plug 'scrooloose/nerdcommenter'
+    Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
     Plug 'tpope/vim-commentary'
     Plug 'suy/vim-context-commentstring'
  
@@ -88,12 +85,12 @@ set background=dark
 "colorscheme dracula
 
 "=====colorscheme tokyonight=======
-set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:lightline = {'colorscheme' : 'tokyonight'}
-let g:airline_theme = 'tokyonight'
-colorscheme tokyonight
+"set termguicolors
+"let g:tokyonight_style = 'night' " available: night, storm
+"let g:tokyonight_enable_italic = 1
+"let g:lightline = {'colorscheme' : 'tokyonight'}
+"let g:airline_theme = 'tokyonight'
+"colorscheme tokyonight
 "=====colorscheme tokyonight=======
 
 "=====colorscheme papercolor======
@@ -101,7 +98,7 @@ let g:airline_theme='papercolor'
 let g:lightline = { 'colorscheme': 'PaperColor' }
 let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
 let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
-"colorscheme papercolor
+colorscheme papercolor
 "=====colorscheme papercolor=======
 
 " ======rainbow===================
@@ -450,7 +447,7 @@ let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 let g:ale_linters = {
     \ 'javascript': ['eslint'],
-    \ 'typescript': ['eslint']
+    \ 'typescript': ['eslint'],
     \ }
 let g:ale_javascript_eslint_executable='npx eslint'
 
