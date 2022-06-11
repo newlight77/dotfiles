@@ -240,7 +240,7 @@ set autoread                                                        " Set auto r
 set matchtime=1                                                     " The shortly time
 set softtabstop=2                                                   " Width for backspace
 set smartindent
-set smarttab						                                            " smarttab: the width of <Tab> in first line would refer to 'Shiftwidth' parameter
+set smarttab                                                        " smarttab: the width of <Tab> in first line would refer to 'Shiftwidth' parameter
 set linebreak
 set tw=0
 set modifiable
