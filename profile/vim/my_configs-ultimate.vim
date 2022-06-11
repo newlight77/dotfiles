@@ -75,6 +75,58 @@ endif
 " Set inc/dec
 set nrformats-=octal
 
+" Do not save backup files.
+set nobackup
+set noswapfile
+set nowritebackup
+
+" Do not let cursor scroll below or above N number of lines when scrolling.
+set scrolloff=10
+set sidescroll=1
+set sidescrolloff=5
+
+" Highlight cursor line underneath the cursor horizontally.
+"set cursorline 
+
+" Show the mode you are on the last line.
+set showmode
+" Show matching words during a search.
+set showmatch
+
+" Use highlighting when doing a search.
+set hlsearch
+
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+" Completion mode that is used for the character
+set wildmode=longest,list,full
+
+" Wrap lines
+set wrap                         
+
+set fileformat=unix
+set fileencodings=utf-8,ucs-bom,gbk,cp936,gb2312,gb18030            " Code Format
+set termencoding=utf-8
+set encoding=utf-8                                                  " Input Chinese (=cp936)
+set fileencoding=utf-8
+let &termencoding=&encoding
+
+" Set auto read when a file is changed by outside
+set autoread
+
+set foldenable                                                      " Enable Fold
+set foldcolumn=1
+set foldexpr=1                                                      " Shown line number after fold
+set foldlevel=100                                                   " Not fold while VIM set up
+
+if has('cmdline_info')
+  set ruler                                                         " ruler: Show Line and colum number
+  set showcmd                                                       " Show (partial) command in status line
+endif
+
 "----------------------------------------------------------------
 " 2. Plugins (Plug)
 "----------------------------------------------------------------
@@ -110,7 +162,7 @@ call plug#begin('~/.vim/plugged')
 	" Tools
 	"Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
 	"Plug 'preservim/nerdtree'
-	Plug 'valloric/listtoggle'
+	"Plug 'valloric/listtoggle'
 	Plug 'majutsushi/tagbar'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'mbbill/undotree'
@@ -344,7 +396,6 @@ let g:session_directory = '~/.vim/sessions/'
 nnoremap <C-b> :OpenSession<CR>
 
 " --- Tools ---
-
 " NERDCommenter settings
 let g:NERDDefaultAlign          = 'left'
 let g:NERDSpaceDelims           = 1
@@ -1079,6 +1130,9 @@ set smarttab
 " Tab size (in spaces)
 set shiftwidth=2
 set tabstop=2
+
+" Highlight cursor line underneath the cursor vertically.
+"set cursorcolumn
 
 " Remap indentation
 nnoremap <TAB> >>
