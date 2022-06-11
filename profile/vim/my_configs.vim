@@ -85,20 +85,20 @@ set background=dark
 "colorscheme dracula
 
 "=====colorscheme tokyonight=======
-"set termguicolors
-"let g:tokyonight_style = 'night' " available: night, storm
-"let g:tokyonight_enable_italic = 1
-"let g:lightline = {'colorscheme' : 'tokyonight'}
-"let g:airline_theme = 'tokyonight'
-"colorscheme tokyonight
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:lightline = {'colorscheme' : 'tokyonight'}
+let g:airline_theme = 'tokyonight'
+colorscheme tokyonight
 "=====colorscheme tokyonight=======
 
 "=====colorscheme papercolor======
-let g:airline_theme='papercolor'
-let g:lightline = { 'colorscheme': 'PaperColor' }
-let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
-let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
-colorscheme papercolor
+"let g:airline_theme='papercolor'
+"let g:lightline = { 'colorscheme': 'PaperColor' }
+"let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
+"let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
+"colorscheme papercolor
 "=====colorscheme papercolor=======
 
 " ======rainbow===================
