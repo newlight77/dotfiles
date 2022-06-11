@@ -81,6 +81,18 @@ set nrformats-=octal
 " List of plugins installed
 call plug#begin('~/.vim/plugged')
 
+    Plug 'altercation/vim-colors-solarized'
+    "Plug 'bling/vim-airline'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'honza/vim-snippets'
+    Plug 'janko-m/vim-test'
+    Plug 'scrooloose/nerdtree'
+    Plug 'scrooloose/syntastic'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'tpope/vim-dispatch'
+    Plug 'valloric/youcompleteme'
+    Plug 'w0rp/ale'
+
 	" Statusbar
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -96,8 +108,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'xolox/vim-misc'
 
 	" Tools
-	Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
-	Plug 'preservim/nerdtree'
+	"Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
+	"Plug 'preservim/nerdtree'
 	Plug 'valloric/listtoggle'
 	Plug 'majutsushi/tagbar'
 	Plug 'ctrlpvim/ctrlp.vim'
@@ -105,6 +117,11 @@ call plug#begin('~/.vim/plugged')
 	Plug 'dense-analysis/ale'
 	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim'
+
+    " Commenting
+    "Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-commentary'
+    Plug 'suy/vim-context-commentstring'
 
 	" Deoplete, specific for Vim8
 	if !has("nvim")
@@ -128,11 +145,18 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 	Plug 'deoplete-plugins/deoplete-go', { 'commit': 'fa73f06'}
 
+    " Kotlin languages
+    Plug 'udalov/kotlin-vim'
+
 	" Perl support
 	Plug 'c9s/perlomni.vim'
 
 	" Python support
 	Plug 'deoplete-plugins/deoplete-jedi', { 'commit': '46121d9' }
+    Plug 'hdima/python-syntax'
+    Plug 'pyflakes/pyflakes'
+    Plug 'tarmack/vim-python-ftplugin'
+    " Plug 'kevinw/pyflakes-vim'
 
 	" Ruby support
 	Plug 'vim-ruby/vim-ruby'
@@ -161,11 +185,25 @@ call plug#begin('~/.vim/plugged')
 	" VimL support
 	Plug 'Shougo/neco-vim', { 'commit' : '4c0203b' }
 
+    " For web design
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-repeat'
+    Plug 'elzr/vim-json'
+    Plug 'othree/html5.vim'
+    Plug 'hail2u/vim-css3-syntax'
+    Plug 'mxw/vim-jsx'
+    Plug 'yuezk/vim-js'
+    Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'skywind3000/asyncrun.vim'
+    Plug 'mattn/emmet-vim'
+    Plug 'pangloss/vim-javascript'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+    Plug 'jparise/vim-graphql'
+
 	" Additional syntax files
-	Plug 'othree/html5.vim'
 	Plug 'vim-language-dept/css-syntax.vim'
-	Plug 'hail2u/vim-css3-syntax'
-	Plug 'pangloss/vim-javascript'
 	Plug 'Shougo/neco-syntax', { 'commit': '98cba4a' }
 	Plug 'mboughaba/i3config.vim'
 	Plug 'aklt/plantuml-syntax'
@@ -179,8 +217,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'godlygeek/tabular'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'alvan/vim-closetag'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-repeat'
 	Plug 'tpope/vim-capslock'
 	Plug 'wellle/targets.vim'
 	Plug 'christoomey/vim-sort-motion'
@@ -197,7 +233,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tyru/open-browser.vim'
 	Plug 'junegunn/goyo.vim'
 	Plug 'mattn/webapi-vim'
-	Plug 'mattn/emmet-vim'
 	Plug 'vimwiki/vimwiki', { 'branch': 'master' }
 
 	" Color schemes
@@ -223,6 +258,53 @@ let g:airline_section_z                   = airline#section#create([
 			\ 'Ξ%l%',
 			\ '\⍿%c'])
 call airline#parts#define_accent('mode', 'black')
+
+
+" COLOR SCHEME ------------------------------------------------------------
+
+set background=dark
+"set background=light
+
+"colorscheme dracula
+
+"=====colorscheme tokyonight=======
+"set termguicolors
+"let g:tokyonight_style = 'night' " available: night, storm
+"let g:tokyonight_enable_italic = 1
+"let g:lightline = {'colorscheme' : 'tokyonight'}
+"let g:airline_theme = 'tokyonight'
+"colorscheme tokyonight
+"=====colorscheme tokyonight=======
+
+"=====colorscheme papercolor======
+let g:airline_theme='papercolor'
+let g:lightline = { 'colorscheme': 'PaperColor' }
+let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
+let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
+colorscheme papercolor
+"=====colorscheme papercolor=======
+
+" ======rainbow===================
+let g:rainbow_active = 1
+let g:rainbow_operators = 1
+let g:rainbow_conf = {
+\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
+\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
+\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\   'separately': {
+\     'css': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'scss': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'html': {
+\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\     },
+\   }
+\}
+" ======rainbow===================
+
 
 " --- Git tools ---
 " Gitgutter settings
@@ -262,6 +344,7 @@ let g:session_directory = '~/.vim/sessions/'
 nnoremap <C-b> :OpenSession<CR>
 
 " --- Tools ---
+
 " NERDCommenter settings
 let g:NERDDefaultAlign          = 'left'
 let g:NERDSpaceDelims           = 1
@@ -274,6 +357,9 @@ let g:NERDCustomDelimiters      = {
 
 nnoremap cc :call NERDComment(0,'toggle')<CR>
 vnoremap cc :call NERDComment(0,'toggle')<CR>
+
+" NERDTree settings
+let g:NERDTreeShowHidden        = 1
 
 " NERDTree-git-plugin settings
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -428,75 +514,6 @@ augroup beautify
 augroup end
 
 " --- Autocomplete ---
-
-
-
-" Conquer of completion ---------------------------------------------
-
-nnoremap <silent> K :call CocAction('doHover')<CR>
-
-
-let g:coc_global_extensions = [
-\ 'coc-tsserver'
-\ ]
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-let g:coc_global_extensions += ['coc-eslint']
-endif
-
-
-function! ShowDocIfNoDiagnostic(timer_id)
-if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
-    silent call CocActionAsync('doHover')
-endif
-endfunction
-
-function! s:show_hover_doc()
-call timer_start(500, 'ShowDocIfNoDiagnostic')
-endfunction
-
-autocmd CursorHoldI * :call <SID>show_hover_doc()
-autocmd CursorHold * :call <SID>show_hover_doc()
-
-nmap <silent>gd <Plug>(coc-definition)
-nmap <silent>gy <Plug>(coc-type-definition)
-nmap <silent>gr <Plug>(coc-references)
-nmap <silent>[g <Plug>(coc-diagnostic-prev)
-nmap <silent>]g <Plug>(coc-diagnostic-next)
-nmap <leader>do <Plug>(coc-codeaction)
-nmap <leader>rn <Plug>(coc-rename)
-
-augroup vimrc
-au BufReadPre * setlocal foldmethod=indent
-au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
-augroup END
-
-
-" Conquer of completion ---------------------------------------------
-
-" emmet-vim ---------------------------------------------
-
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {
-\  'javascript.jsx' : {
-\      'extends' : 'jsx',
-\  },
-\}
-
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
-" emmet-vim ---------------------------------------------
-
-" SuperTab settings
-let g:SuperTabDefaultCompletionType = '<TAB>'
-let SuperTabClosePreviewOnPopupClose = 1
-
-
 
 " Conquer of completion ---------------------------------------------
 
@@ -847,50 +864,7 @@ syntax enable
 " Color scheme
 " colorscheme atomic
 
-" COLOR SCHEME ------------------------------------------------------------
 
-set background=dark
-"set background=light
-
-"colorscheme dracula
-
-"=====colorscheme tokyonight=======
-set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:lightline = {'colorscheme' : 'tokyonight'}
-let g:airline_theme = 'tokyonight'
-colorscheme tokyonight
-"=====colorscheme tokyonight=======
-
-"=====colorscheme papercolor======
-let g:airline_theme='papercolor'
-let g:lightline = { 'colorscheme': 'PaperColor' }
-let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
-let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
-"colorscheme papercolor
-"=====colorscheme papercolor=======
-
-" ======rainbow===================
-let g:rainbow_active = 1
-let g:rainbow_operators = 1
-let g:rainbow_conf = {
-\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
-\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
-\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\   'separately': {
-\     'css': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'scss': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'html': {
-\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\     },
-\   }
-\}
-" ======rainbow===================
 
 " Show syntax highlighting groups
 nnoremap <Leader>B :call <SID>SynStack()<CR>
