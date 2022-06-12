@@ -105,3 +105,13 @@ python3 ./install.py
 for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html coc-css`
 
 for the list of extensions : `:CocList extensions`
+
+
+### Keys Mappings
+
+| Context  | Shortcuts  | Plugin | Action| Description |
+| nmap     | <Leader>j  |  |  | |
+| nmap     | <Leader>k  |  |  | |
+| nnoremap | <Leader>cc |  NERDComment | selection lines of code | Toggle comment |
+| nmap     | ga         | characterize.vim | position on a charater | Unicode character : U+00A9 COPYRIGHT SYMBOL |
+| nnoremap | <F7> | Terminal |  | ToggleTerminal |
