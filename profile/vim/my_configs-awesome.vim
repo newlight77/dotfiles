@@ -376,7 +376,7 @@ nnoremap <silent> <C-n> :call <SID>ToggleNERDTree()<CR>
 
 " NERDTree specific mappings.
 " Map the F3 key to toggle NERDTree open and close.
-nnoremap <F3> :NERDTreeToggle<cr>
+nnoremap <silent> <C-N> :NERDTreeToggle<cr>
 
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
@@ -1001,13 +1001,14 @@ endtry
 "----------------------------------------------------------------
 " 8. Tabs management
 "----------------------------------------------------------------
+" Open a new tab with the current buffer's path
+" Useful when editing files in the same directory
+nnoremap <Leader>tt :tabedit <C-R>=expand("%:p:h")<CR>/
+
 " Create and close tabs
 nnoremap <Leader>td :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
 
-" Open a new tab with the current buffer's path
-" Useful when editing files in the same directory
-nnoremap <Leader>tt :tabedit <C-R>=expand("%:p:h")<CR>/
 
 " Move tabs position
 nnoremap <Leader>tr :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -1028,9 +1029,9 @@ set fillchars+=stlnc:\/,vert:│,fold:―,diff:―
 " Split windows
 map <C-w>- :split<CR>
 map <C-w>. :vsplit<CR>
-map <C-w>j :close<CR>
-map <C-w>x :q!<CR>
-map <C-w>, <C-w>=
+"  map <C-w>j :close<CR>
+"  map <C-w>x :q!<CR>
+"  map <C-w>, <C-w>=
 
 " Resize windows
 if bufwinnr(1)
@@ -1191,15 +1192,15 @@ nnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 vnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 vnoremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 
-nnoremap <Home> g^
-nnoremap <End> g$
+"  nnoremap <Home> g^
+"  nnoremap <End> g$
 
-vnoremap <Home> g^
-vnoremap <End> g$
+"  vnoremap <Home> g^
+"  vnoremap <End> g$
 
-" Toggle the cursor position start/end of the line
-nnoremap <silent> ñ :call <SID>ToggleCPosition('')<CR>
-vnoremap <silent> ñ <Esc>:call <SID>ToggleCPosition('normal! gv')<CR>
+"  " Toggle the cursor position start/end of the line
+"  nnoremap <silent> ñ :call <SID>ToggleCPosition('')<CR>
+"  vnoremap <silent> ñ <Esc>:call <SID>ToggleCPosition('normal! gv')<CR>
 
 " Join / split lines
 nnoremap <C-j> J
@@ -1221,30 +1222,30 @@ autocmd BufReadPost *
 " --- Readline commands ---
 "----------------------------------------------------------------
 " Move the cursor to the line start
-inoremap <C-a> <C-O>0
+"  inoremap <C-a> <C-O>0
 
 " Move the cursor to the line end
-inoremap <C-e> <C-O>$
+"  inoremap <C-e> <C-O>$
 
 " Moves the cursor back one character
-inoremap <expr><C-b> deoplete#smart_close_popup()."\<Left>"
+"  inoremap <expr><C-b> deoplete#smart_close_popup()."\<Left>"
 
 " Moves the cursor forward one character
-inoremap <expr><C-f> deoplete#smart_close_popup()."\<Right>"
+"  inoremap <expr><C-f> deoplete#smart_close_popup()."\<Right>"
 
 " Remove one character
-inoremap <C-d> <DEL>
+"  inoremap <C-d> <DEL>
 
 " Command Mode
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <DEL>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-v> <C-r>"
-cnoremap <C-q> <S-Right><C-w>
+"  cnoremap <C-b> <Left>
+"  cnoremap <C-f> <Right>
+"  cnoremap <C-a> <Home>
+"  cnoremap <C-e> <End>
+"  cnoremap <C-d> <DEL>
+"  cnoremap <C-p> <Up>
+"  cnoremap <C-n> <Down>
+"  cnoremap <C-v> <C-r>"
+"  cnoremap <C-q> <S-Right><C-w>
 
 
 " Allow moving one or multiple lines ===============
@@ -1353,8 +1354,8 @@ nnoremap <Leader>vm :call <SID>GrepWrapper('grepadd!', '', '%')<CR>
 nnoremap <Leader>va :call <SID>GrepWrapper('grep!', '', '##')<CR>
 
 " Navigate between grep and vimgrep results
-nnoremap <Leader>n :cnext<CR>zz
-nnoremap <Leader>N :cprev<CR>zz
+nnoremap <Leader>nn :cnext<CR>zz
+nnoremap <Leader>NN :cprev<CR>zz
 
 " Jump to the results in buffers (first open window), not tabs
 set switchbuf=useopen
@@ -1427,18 +1428,18 @@ vnoremap <Leader>tf :retab!<CR>
 nnoremap <Leader>o m`o<Esc>kO<Esc>``
 
 " Enter a new line Down from 'Normal Mode'
-nnoremap <Leader>f mao<Esc>`a
+nnoremap <Leader>n mao<Esc>`a
 
 " Enter a new line Up from 'Normal Mode'
-nnoremap <Leader>F maO<Esc>`a
+nnoremap <Leader>N maO<Esc>`a
 
 " Insert brackets and backslash faster
-inoremap ñr []<left>
-inoremap ñb ()<left>
-inoremap ñB {}<left>
-inoremap ññ \
-inoremap çç {{  }}<left><left><left>
-autocmd FileType html,markdown,liquid inoremap ñp {%  %}<left><left><left>
+"  inoremap ñr []<left>
+"  inoremap ñb ()<left>
+"  inoremap ñB {}<left>
+"  inoremap ññ \
+"  inoremap çç {{  }}<left><left><left>
+"  autocmd FileType html,markdown,liquid inoremap ñp {%  %}<left><left><left>
 
 "----------------------------------------------------------------
 " 15. Make settings
@@ -1535,15 +1536,15 @@ augroup end
 " SQL (it requires sqlparse)
 augroup sql
   let g:omni_sql_no_default_maps = 1
-  autocmd FileType sql nnoremap <Leader>bf
+  autocmd FileType sql nnoremap <Leader>ff
         \ :%!sqlformat --reindent --keywords upper --identifiers upper -<CR>
-  autocmd FileType sql vnoremap <Leader>bf
+  autocmd FileType sql vnoremap <Leader>ff
         \ :%!sqlformat --reindent --keywords upper --identifiers upper -<CR>
 augroup end
 
 " XML (it requires tidy)
 augroup xml
-  autocmd FileType xml nnoremap <Leader>bf
+  autocmd FileType xml nnoremap <Leader>ff
         \ :%!tidy -q -i -xml --show-errors 0 -wrap 0 --indent-spaces 4<CR>
 augroup end
 
@@ -1551,15 +1552,15 @@ augroup end
 augroup md
   autocmd FileType markdown,liquid,text,yaml set expandtab
   autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> <Leader>cc :call <SID>KeywordDensity()<CR>
-  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>dd g<C-g>
-  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>dd g<C-g>
+        \ nnoremap <silent> <Leader>mkd :call <SID>KeywordDensity()<CR>
+  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>mdd g<C-g>
+  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>mdd g<C-g>
   autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gl :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
+        \ nnoremap <Leader>ms :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
   autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gh :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
+        \ nnoremap <Leader>ms :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
   autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gd :call <sid>RemoveMdLink()<CR>
+        \ nnoremap <Leader>mr :call <sid>RemoveMdLink()<CR>
   autocmd FileType markdown,liquid,text
         \ :command! -range Enes <line1>,<line2>!trans en:es -brief
   autocmd FileType markdown,liquid,text
