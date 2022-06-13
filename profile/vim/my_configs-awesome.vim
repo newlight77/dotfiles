@@ -372,11 +372,12 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 
 " NERDTree ---------------------------------------------
-nnoremap <silent> <C-n> :call <SID>ToggleNERDTree()<CR>
+let g:nerdtreemsg = 'Toggle NERDTree.'
+nnoremap <silent> <leader><F3> :call <SID>ToggleNERDTree()<CR>:echo g:nerdtreemsg<CR>
 
 " NERDTree specific mappings.
 " Map the F3 key to toggle NERDTree open and close.
-nnoremap <silent> <C-N> :NERDTreeToggle<cr>
+nnoremap <F3> :NERDTreeToggle<cr>
 
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
@@ -414,7 +415,8 @@ let g:lt_location_list_toggle_map = '<leader>e'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 " Tagbar toggle (custom function)
-nnoremap <silent> <C-t> :call <SID>ToggleTagbar()<CR>
+let g:ctmsg = 'Toggle Tagbar.'
+nnoremap <silent> <C-t> :call <SID>ToggleTagbar()<CR>:echo g:ctmsg<CR>
 let g:tagbar_autofocus        = 1
 let g:tagbar_show_linenumbers = 2
 let g:tagbar_sort             = 0
@@ -1176,14 +1178,14 @@ nnoremap <silent> <F10> :call <SID>ToggleColorColumn()<CR>:echo g:f10msg<CR>
 set number
 set numberwidth=2
 
-let g:f3msg = 'Toggle line numbers.'
-nnoremap <silent> <F3> :set number!<CR>:echo g:f3msg<CR>
+let g:f4msg = 'Toggle line numbers.'
+nnoremap <silent> <F4> :set number!<CR>:echo g:f4msg<CR>
 
 " Set relative line numbers
 set relativenumber
 
 let g:f4msg = 'Toggle relative line numbers.'
-nnoremap <silent> <F4> :set norelativenumber!<CR>:echo g:f4msg<CR>
+nnoremap <silent> <F4>r :set norelativenumber!<CR>:echo g:f4msg<CR>
 
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -1354,8 +1356,8 @@ nnoremap <Leader>vm :call <SID>GrepWrapper('grepadd!', '', '%')<CR>
 nnoremap <Leader>va :call <SID>GrepWrapper('grep!', '', '##')<CR>
 
 " Navigate between grep and vimgrep results
-nnoremap <Leader>nn :cnext<CR>zz
-nnoremap <Leader>NN :cprev<CR>zz
+nnoremap <Leader>n :cnext<CR>zz
+nnoremap <Leader>nn :cprev<CR>zz
 
 " Jump to the results in buffers (first open window), not tabs
 set switchbuf=useopen
@@ -1428,10 +1430,10 @@ vnoremap <Leader>tf :retab!<CR>
 nnoremap <Leader>o m`o<Esc>kO<Esc>``
 
 " Enter a new line Down from 'Normal Mode'
-nnoremap <Leader>n mao<Esc>`a
+nnoremap <Leader><S-down> mao<Esc>`a
 
 " Enter a new line Up from 'Normal Mode'
-nnoremap <Leader>N maO<Esc>`a
+nnoremap <Leader><S-up> maO<Esc>`a
 
 " Insert brackets and backslash faster
 "  inoremap ñr []<left>
@@ -1536,35 +1538,29 @@ augroup end
 " SQL (it requires sqlparse)
 augroup sql
   let g:omni_sql_no_default_maps = 1
-  autocmd FileType sql nnoremap <Leader>ff
+  autocmd FileType sql nnoremap <Leader>bf
         \ :%!sqlformat --reindent --keywords upper --identifiers upper -<CR>
-  autocmd FileType sql vnoremap <Leader>ff
+  autocmd FileType sql vnoremap <Leader>bf
         \ :%!sqlformat --reindent --keywords upper --identifiers upper -<CR>
 augroup end
 
 " XML (it requires tidy)
 augroup xml
-  autocmd FileType xml nnoremap <Leader>ff
+  autocmd FileType xml nnoremap <Leader>bf
         \ :%!tidy -q -i -xml --show-errors 0 -wrap 0 --indent-spaces 4<CR>
 augroup end
 
 " MD
 augroup md
   autocmd FileType markdown,liquid,text,yaml set expandtab
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> <Leader>mkd :call <SID>KeywordDensity()<CR>
-  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>mdd g<C-g>
-  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>mdd g<C-g>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <Leader>ms :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <Leader>ms :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <Leader>mr :call <sid>RemoveMdLink()<CR>
-  autocmd FileType markdown,liquid,text
-        \ :command! -range Enes <line1>,<line2>!trans en:es -brief
-  autocmd FileType markdown,liquid,text
-        \ :command! -range Esen <line1>,<line2>!trans es:en -brief
+  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>cc :call <SID>KeywordDensity()<CR>
+  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>gg g<C-g>
+  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>gg g<C-g>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gl :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gh :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gd :call <sid>RemoveMdLink()<CR>
+  autocmd FileType markdown,liquid,text :command! -range Enes <line1>,<line2>!trans en:es -brief
+  autocmd FileType markdown,liquid,text :command! -range Esen <line1>,<line2>!trans es:en -brief
 augroup end
 
 " New file headers

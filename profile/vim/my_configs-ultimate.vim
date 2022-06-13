@@ -307,53 +307,6 @@ let g:airline_section_z                   = airline#section#create([
       \ '\⍿%c'])
 call airline#parts#define_accent('mode', 'black')
 
-
-" COLOR SCHEME ------------------------------------------------------------
-
-set background=dark
-"set background=light
-
-"colorscheme dracula
-
-"=====colorscheme tokyonight=======
-set termguicolors
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-let g:lightline = {'colorscheme' : 'tokyonight'}
-let g:airline_theme = 'tokyonight'
-colorscheme tokyonight
-"=====colorscheme tokyonight=======
-
-"=====colorscheme papercolor======
-"let g:airline_theme='papercolor'
-"let g:lightline = { 'colorscheme': 'PaperColor' }
-"let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
-"let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
-"colorscheme papercolor
-"=====colorscheme papercolor=======
-
-" ======rainbow===================
-let g:rainbow_active = 1
-let g:rainbow_operators = 1
-let g:rainbow_conf = {
-\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
-\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
-\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\   'separately': {
-\     'css': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'scss': {
-\       'parentheses': [['(',')'], ['\[','\]']],
-\     },
-\     'html': {
-\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
-\     },
-\   }
-\}
-" ======rainbow===================
-
-
 " --- Git tools ---
 " Gitgutter settings
 let g:gitgutter_max_signs             = 5000
@@ -424,7 +377,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 
 " NERDTree ---------------------------------------------
-nnoremap <silent> <C-n> :call <SID>ToggleNERDTree()<CR>
+let g:nerdtreemsg = 'Toggle NERDTree.'
+nnoremap <silent> <leader><F3> :call <SID>ToggleNERDTree()<CR>:echo g:nerdtreemsg<CR>
 
 " NERDTree specific mappings.
 " Map the F3 key to toggle NERDTree open and close.
@@ -466,7 +420,8 @@ let g:lt_location_list_toggle_map = '<leader>e'
 let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 " Tagbar toggle (custom function)
-nnoremap <silent> <C-t> :call <SID>ToggleTagbar()<CR>
+let g:ctmsg = 'Toggle Tagbar.'
+nnoremap <silent> <C-t> :call <SID>ToggleTagbar()<CR>:echo g:ctmsg<CR>
 let g:tagbar_autofocus        = 1
 let g:tagbar_show_linenumbers = 2
 let g:tagbar_sort             = 0
@@ -912,6 +867,51 @@ syntax enable
 " colorscheme atomic
 
 
+" COLOR SCHEME ------------------------------------------------------------
+
+set background=dark
+"set background=light
+
+"colorscheme dracula
+
+"=====colorscheme tokyonight=======
+set termguicolors
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:lightline = {'colorscheme' : 'tokyonight'}
+let g:airline_theme = 'tokyonight'
+colorscheme tokyonight
+"=====colorscheme tokyonight=======
+
+"=====colorscheme papercolor======
+"let g:airline_theme='papercolor'
+"let g:lightline = { 'colorscheme': 'PaperColor' }
+"let g:PaperColor_Theme_Options = {'theme': {'default': {'transparent_background': 1}}}
+"let g:PaperColor_Theme_Options = {'theme': {'default.dark': {'transparent_background': 1}}}
+"colorscheme papercolor
+"=====colorscheme papercolor=======
+
+" ======rainbow===================
+let g:rainbow_active = 1
+let g:rainbow_operators = 1
+let g:rainbow_conf = {
+\   'guifgs' : ['#6A5ACD', '#B22222', '#C0FF3E', '#EEC900', '#9A32CD', '#EE7600', '#98fb98', '#686868'],
+\   'ctermfgs' : 'xterm-256color' == $TERM ? ['141', '196', '112', '208', '129', '166', '85', '237'] : ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta'],
+\   'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\   'separately': {
+\     'css': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'scss': {
+\       'parentheses': [['(',')'], ['\[','\]']],
+\     },
+\     'html': {
+\       'parentheses': [['(',')'], ['\[','\]'], ['{','}']],
+\     },
+\   }
+\}
+" ======rainbow===================
+
 
 " Show syntax highlighting groups
 nnoremap <Leader>B :call <SID>SynStack()<CR>
@@ -1009,13 +1009,14 @@ endtry
 "----------------------------------------------------------------
 " 8. Tabs management
 "----------------------------------------------------------------
+" Open a new tab with the current buffer's path
+" Useful when editing files in the same directory
+nnoremap <Leader>tt :tabedit <C-R>=expand("%:p:h")<CR>/
+
 " Create and close tabs
 nnoremap <Leader>td :tabclose<CR>
 nnoremap <Leader>to :tabonly<CR>
 
-" Open a new tab with the current buffer's path
-" Useful when editing files in the same directory
-nnoremap <Leader>tt :tabedit <C-R>=expand("%:p:h")<CR>/
 
 " Move tabs position
 nnoremap <Leader>tr :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -1183,14 +1184,14 @@ nnoremap <silent> <F10> :call <SID>ToggleColorColumn()<CR>:echo g:f10msg<CR>
 set number
 set numberwidth=2
 
-let g:f3msg = 'Toggle line numbers.'
-nnoremap <silent> <F3> :set number!<CR>:echo g:f3msg<CR>
+let g:f4msg = 'Toggle line numbers.'
+nnoremap <silent> <F4> :set number!<CR>:echo g:f4msg<CR>
 
 " Set relative line numbers
 set relativenumber
 
 let g:f4msg = 'Toggle relative line numbers.'
-nnoremap <silent> <F4> :set norelativenumber!<CR>:echo g:f4msg<CR>
+nnoremap <silent> <F4>r :set norelativenumber!<CR>:echo g:f4msg<CR>
 
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -1362,7 +1363,7 @@ nnoremap <Leader>va :call <SID>GrepWrapper('grep!', '', '##')<CR>
 
 " Navigate between grep and vimgrep results
 nnoremap <Leader>n :cnext<CR>zz
-nnoremap <Leader>N :cprev<CR>zz
+nnoremap <Leader>nn :cprev<CR>zz
 
 " Jump to the results in buffers (first open window), not tabs
 set switchbuf=useopen
@@ -1435,10 +1436,10 @@ vnoremap <Leader>tf :retab!<CR>
 nnoremap <Leader>o m`o<Esc>kO<Esc>``
 
 " Enter a new line Down from 'Normal Mode'
-nnoremap <Leader>f mao<Esc>`a
+nnoremap <Leader><S-down> mao<Esc>`a
 
 " Enter a new line Up from 'Normal Mode'
-nnoremap <Leader>F maO<Esc>`a
+nnoremap <Leader><S-up> maO<Esc>`a
 
 " Insert brackets and backslash faster
 inoremap ñr []<left>
@@ -1642,20 +1643,14 @@ augroup end
 " MD
 augroup md
   autocmd FileType markdown,liquid,text,yaml set expandtab
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> <Leader>cc :call <SID>KeywordDensity()<CR>
-  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>dd g<C-g>
-  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>dd g<C-g>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gl :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gh :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
-  autocmd FileType markdown,liquid,text
-        \ nnoremap <silent> gd :call <sid>RemoveMdLink()<CR>
-  autocmd FileType markdown,liquid,text
-        \ :command! -range Enes <line1>,<line2>!trans en:es -brief
-  autocmd FileType markdown,liquid,text
-        \ :command! -range Esen <line1>,<line2>!trans es:en -brief
+  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>cc :call <SID>KeywordDensity()<CR>
+  autocmd FileType markdown,liquid,text nnoremap <silent> <Leader>gg g<C-g>
+  autocmd FileType markdown,liquid,text vnoremap <silent> <Leader>gg g<C-g>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gl :call search('\v\[[^]]*]\([^)]*\)', 'W')<CR>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gh :call search('\v\[[^]]*]\([^)]*\)', 'bW')<CR>
+  autocmd FileType markdown,liquid,text nnoremap <Leader>gd :call <sid>RemoveMdLink()<CR>
+  autocmd FileType markdown,liquid,text :command! -range Enes <line1>,<line2>!trans en:es -brief
+  autocmd FileType markdown,liquid,text :command! -range Esen <line1>,<line2>!trans es:en -brief
 augroup end
 
 " New file headers
