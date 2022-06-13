@@ -1,3 +1,7 @@
+### Custom Mappings
+
+In progress...
+
 
 " Reload .vimrc
 nnoremap <F12> :so $MYVIMRC<CR>
