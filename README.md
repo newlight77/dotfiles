@@ -137,3 +137,13 @@ nvim
 :q!
 :q!
 ```
+
+### Github
+
+```bash
+echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
+```
+
+```bash
+let g:github_enterprise_urls = ['https://example.com']
+```

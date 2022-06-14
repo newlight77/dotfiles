@@ -136,7 +136,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'honza/vim-snippets'
   Plug 'janko-m/vim-test'
-  "Plug 'terryma/vim-multiple-cursors'
+  Plug 'terryma/vim-multiple-cursors'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'tpope/vim-dispatch'
 
@@ -150,6 +150,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/gv.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'mbbill/undotree'
+  Plug 'tpope/vim-rhubarb'
 
   " Sessions
   Plug 'xolox/vim-session'
@@ -159,10 +160,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree'
   "Plug 'valloric/listtoggle'
   Plug 'majutsushi/tagbar'
-  Plug 'kien/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'dense-analysis/ale'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  Plug 'vim-scripts/mru.vim'
+
+  " Search
+  Plugin 'mileszs/ack.vim'
 
   " Commenting
   Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
@@ -183,6 +188,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/context_filetype.vim'
   Plug 'ervandew/supertab'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'MarcWeber/vim-addon-mw-utils'
+  Plug 'tomtom/tlib_vim'
+  Plug 'honza/vim-snippets'
 
   " C/C++ support
   Plug 'deoplete-plugins/deoplete-clang', { 'commit': '30f17cb' }
@@ -248,6 +256,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'peitalin/vim-jsx-typescript'
   Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
   Plug 'jparise/vim-graphql'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'groenewege/vim-less'
 
   " Additional syntax files
   Plug 'w0rp/ale'
@@ -275,6 +285,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'gerardbm/vim-md-headings'
   Plug 'matze/vim-move'
   Plug 'Yggdroot/indentLine'
+  Plug 'editorconfig/editorconfig-vim'
 
   " Misc
   Plug 'christoomey/vim-tmux-navigator'
@@ -283,8 +294,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/goyo.vim'
   Plug 'mattn/webapi-vim'
   Plug 'vimwiki/vimwiki', { 'branch': 'master' }
+  Plug 'chr4/nginx.vim'
 
   " Color schemes
+  Plug 'maximbaz/lightline-ale'
+  Plug 'itchyny/lightline.vim'
   Plug 'altercation/vim-colors-solarized'
   Plug 'flazz/vim-colorschemes'
   Plug 'gerardbm/vim-atomic'
