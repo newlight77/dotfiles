@@ -156,9 +156,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'xolox/vim-misc'
 
   " Tools
-  "Plug 'tpope/vim-commentary'
-  "Plug 'suy/vim-context-commentstring'
-  Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
   Plug 'preservim/nerdtree'
   "Plug 'valloric/listtoggle'
   Plug 'majutsushi/tagbar'
@@ -166,6 +163,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+
+  " Commenting
+  Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
+  Plug 'tpope/vim-commentary'
+  Plug 'suy/vim-context-commentstring'
 
   " Deoplete, specific for Vim8
   if !has("nvim")
@@ -1032,9 +1034,9 @@ set fillchars+=stlnc:\/,vert:│,fold:―,diff:―
 " Split windows
 map <C-w>- :split<CR>
 map <C-w>. :vsplit<CR>
-"  map <C-w>j :close<CR>
-"  map <C-w>x :q!<CR>
-"  map <C-w>, <C-w>=
+map <C-w>j :close<CR>
+map <C-w>x :q!<CR>
+map <C-w>, <C-w>=
 
 " Resize windows
 if bufwinnr(1)

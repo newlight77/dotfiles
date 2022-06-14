@@ -136,7 +136,7 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'honza/vim-snippets'
   Plug 'janko-m/vim-test'
-  "lug 'terryma/vim-multiple-cursors'
+  "Plug 'terryma/vim-multiple-cursors'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'tpope/vim-dispatch'
 
@@ -156,9 +156,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'xolox/vim-misc'
 
   " Tools
-  "Plug 'tpope/vim-commentary'
-  "Plug 'suy/vim-context-commentstring'
-  Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
   Plug 'preservim/nerdtree'
   "Plug 'valloric/listtoggle'
   Plug 'majutsushi/tagbar'
@@ -167,10 +164,15 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
+  " Commenting
+  Plug 'preservim/nerdcommenter', { 'commit': 'a5d1663' }
+  Plug 'tpope/vim-commentary'
+  Plug 'suy/vim-context-commentstring'
+
   " Deoplete, specific for Vim8
   if !has("nvim")
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
   " Autocomplete
