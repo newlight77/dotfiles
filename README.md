@@ -54,7 +54,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ```
-
 ### vim-runtime
 
 ```bash
@@ -87,8 +86,8 @@ Put the custom configuration in `~/.vim_runtime/my_configs.vim`
 
 ```bash
 cp profile/vim/my_configs.vim ~/.vim_runtime/my_configs.vim
-#cp profile/vim/my_configs.vim ~/.vim_runtime/my_configs-awesome.vim
-#cp profile/vim/my_configs.vim ~/.vim_runtime/my_configs-ultimate.vim
+#cp profile/vim/my_configs-awesome.vim ~/.vim_runtime/my_configs-awesome.vim
+#cp profile/vim/my_configs-ultimate.vim ~/.vim_runtime/my_configs-ultimate.vim
 ```
 
 For YouCompleteMe, you need to compile the package:
@@ -107,3 +106,34 @@ python3 ./install.py
 for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html coc-css`
 
 for the list of extensions : `:CocList extensions`
+
+### Vim Cheat Sheet
+
+[Vim Cheat Sheet](https://vim.rtorr.com/)
+
+### NeoVim
+
+```bash
+brew install nvim
+pip3 install --user neovim
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mkdir -p .config/nvim
+```
+
+Put the custom configuration in `~/.config/nvim/init.vim`
+
+```bash
+cp profile/vim/my_configs.vim ~/.config/nvim/init.vim
+#cp profile/vim/my_configs-awesome.vim ~/.config/nvim/init.vim
+#cp profile/vim/my_configs-ultimate.vim ~/.config/nvim/init.vim
+```
+
+
+```bash
+nvim
+:PlugInstall
+:UpdateRemotePlugins
+:q!
+:q!
+```

@@ -1,6 +1,29 @@
 ### Vim Cheat Sheet
 
 In progress...
+gt : next tab
+gT : previous tab
+1gt : goto tab number 1
+2gt : goto tab number 2
+ngt : goto tab number n
+F3 : open NERD Tree
+F7 : toggle Terminal
+
+yy : copy line
+2yy : copy 2lines
+ga : show Unicode character
+,z : toggle case
+,j : GitGutterNextHunk
+,k : GitGutterPrevHunk
+,ga : GitGutterStageHunk
+,gu : GitGutterUndoHunk
+cc : toggle nerd comment
+gcc : toggle nerd comment
+ctrl+s : ToggleGstatus
+ctrl+b : OpenSession
+ctrl+t : ToggleTagbar
+,h : next error
+,l : previous error
 
 ### Custom Mappings
 

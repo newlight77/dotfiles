@@ -67,7 +67,8 @@ cnoreabbrev help vert help
 
 " Terminal (nvim)
 if has("terminal") && has("nvim")
-  nnoremap <silent> <F7> :call <SID>ToggleTerminal()<CR>
+  set g:toggleterminalmsg = 'toggle terminal'
+  nnoremap <silent> <F7> :call <SID>ToggleTerminal()<CR>:echo g:toggleterminalmsg<CR>
   tnoremap <silent> <F7> <C-\><C-n><Bar>:wincmd p<CR>
   tnoremap <Esc> <C-\><C-n>
 endif
@@ -148,6 +149,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'junegunn/gv.vim'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'mbbill/undotree'
 
   " Sessions
   Plug 'xolox/vim-session'
@@ -161,9 +163,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'valloric/listtoggle'
   Plug 'majutsushi/tagbar'
   Plug 'kien/ctrlp.vim'
-  Plug 'mbbill/undotree'
   Plug 'dense-analysis/ale'
-  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
 
   " Deoplete, specific for Vim8
@@ -1430,10 +1431,10 @@ vnoremap <Leader>tf :retab!<CR>
 nnoremap <Leader>o m`o<Esc>kO<Esc>``
 
 " Enter a new line Down from 'Normal Mode'
-nnoremap <Leader><S-down> mao<Esc>`a
+nnoremap <Leader><down> mao<Esc>`a
 
 " Enter a new line Up from 'Normal Mode'
-nnoremap <Leader><S-up> maO<Esc>`a
+nnoremap <Leader><up> maO<Esc>`a
 
 " Insert brackets and backslash faster
 "  inoremap ñr []<left>
