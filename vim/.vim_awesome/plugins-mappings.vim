@@ -18,7 +18,7 @@ map <leader>f :MRU<CR>
 """"""""""""""""""""""""""""""
 let g:yankstack_yank_keys = ['y', 'd']
 nmap <C-p> <Plug>yankstack_substitute_older_paste
-nmap <C-n> <Plug>yankstack_substitute_newer_paste
+nmap <C-S-p> <Plug>yankstack_substitute_newer_paste
 
 
 """"""""""""""""""""""""""""""
@@ -44,7 +44,7 @@ snor <C-j> <esc>i<right><C-r>=snipMate#TriggerSnippet()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map the F3 key to toggle NERDTree open and close.
+"nnoremap <C-n> :NERDTree<CR>
 nnoremap <F3> :NERDTreeToggle<cr>
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
@@ -186,12 +186,12 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 "   <leader>n
 "
 " To go to the previous search results do:
-"   <leader>p
+"   <leader>cp
 "
 map <leader>cc :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+map <leader>cn :cn<cr>
+map <leader>cp :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

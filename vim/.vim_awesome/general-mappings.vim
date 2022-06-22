@@ -636,3 +636,6 @@ augroup end
 map <F5> :call CompileRun()<CR>
 imap <F5> <Esc>:call CompileRun()<CR>
 vmap <F5> <Esc>:call CompileRun()<CR>
+
+
+command! -nargs=1 Commander call <SID>Commander(<f-args>)

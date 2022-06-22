@@ -4,6 +4,7 @@
 " List of plugins installed
 call plug#begin('~/.vim/plugged')
 
+  Plug 'neovim/nvim-lspconfig'
   Plug 'janko-m/vim-test'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -27,7 +28,7 @@ call plug#begin('~/.vim/plugged')
 
   " Tools
   Plug 'preservim/nerdtree'
-  "Plug 'valloric/listtoggle'
+  Plug 'valloric/listtoggle'
   Plug 'majutsushi/tagbar'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'dense-analysis/ale'
@@ -80,7 +81,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'hdima/python-syntax'
   Plug 'pyflakes/pyflakes'
   Plug 'tarmack/vim-python-ftplugin'
-  " Plug 'kevinw/pyflakes-vim'
+  Plug 'kevinw/pyflakes-vim'
 
   " Ruby support
   Plug 'vim-ruby/vim-ruby'
@@ -265,9 +266,35 @@ set grepprg=/bin/grep\ -nH
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize=35
 let g:NERDTreeShowHidden        = 1
-"  let NERDTreeShowHidden=0
+let g:NERDTreeDirArrows         = 1
+let g:NERDTreeShowIcons         = 1
+let g:NERDTreeShowLineNumbers   = 1
+let g:NERDTreeSortDirectories   = 1
+let g:NERDTreeSmartOpen         = 1
+let g:NERDTreeIgnoreVCS         = 1
+
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.pyc$', '__pycache__', '\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
+
+"close NERDtree if that is the last window left
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" don't quit NERDTree after opening a buffer
+let NERDTreeQuitOnOpen = 1
+
+"Open NERDtree automatically on vim startup
+autocmd vimenter * NERDTree
+autocmd VimEnter * wincmd p
+
+" Refresh the current folder if any changes
+autocmd BufEnter NERD_tree_* | execute 'normal R'
+au CursorHold * if exists("t:NerdTreeBufName") | call <SNR>15_refreshRoot() | endif
+
+"Reload the window if directory is changed
+augroup DIRCHANGE
+  au!
+  autocmd DirChanged global :NERDTreeCWD
+augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -736,4 +763,70 @@ function! s:Tmuxy() abort
   else
     echo 'Tmux is not running.'
   endif
+endfunction
+
+
+" Configure a sqlite database
+function! s:SqliteDatabase() abort
+  let t:path = input('Database: ')
+endfunction
+
+" Execute SQL queries
+function! s:SQLExec(opt) abort
+  if a:opt ==# 'n'
+    silent norm! yy
+  elseif a:opt ==# 'v'
+    silent norm! gvy
+  endif
+  if !exists('t:path')
+    call <SID>SqliteDatabase()
+  endif
+  if filereadable(t:path)
+    let t:sql = @
+    let t:sql = substitute(t:sql, '\n', ' ', 'g')
+    let t:format = " | column -t -s '|'"
+    if t:sql =~? '^select'
+      let t:cmd = t:path . ' "' . escape(t:sql, '"') . '"' . t:format
+    else
+      let t:cmd = t:path . ' "' . escape(t:sql, '"') . '"'
+    endif
+    let s:cmd = "sqlite3 -list -batch " . t:cmd
+    call <SID>Commander(s:cmd)
+  else
+    echo "\nThis database does not exist!"
+  endif
+endfunction
+
+" Execute Maxima instructions
+function! s:MaximaExec(opt) abort
+  if a:opt ==# 'n'
+    silent norm! yy
+  elseif a:opt ==# 'v'
+    silent norm! gvy
+  endif
+  let b:equ = @
+  let b:equ = substitute(b:equ, '\n', ' ', 'g')
+  let b:equ = substitute(b:equ, '\s$', '', 'g')
+  let b:equ = substitute(b:equ, '%', '\\%', 'g')
+  if b:equ !~# ';$'
+    let b:equ = substitute(b:equ, '$', ';', 'g')
+  endif
+  let s:cmd = 'maxima --very-quiet --batch-string "' . b:equ . '"'
+  call <SID>Commander(s:cmd)
+endfunction
+
+
+" Toggle jekyll server in the background
+function! s:ToggleJekyll() abort
+  call system('lsof -i :4000 | grep -i listen')
+  if v:shell_error
+    silent exec "!(bundle exec jekyll serve &) > /dev/null"
+    call system("touch /tmp/jekyll.ps")
+    call system("notify-send -t 2 'Executing Jekyll server...'")
+  else
+    silent exec "!(pkill -f jekyll &) > /dev/null"
+    call system("rm -f /tmp/jekyll.ps")
+    call system("notify-send -t 2 'Jekyll server was stoped!'")
+  endif
+  redraw!
 endfunction
