@@ -15,6 +15,9 @@ else
   cd $DIR && git pull origin main
 fi
 
+echo "creating folder $HOME/.ndotfiles/git" 1>&2
+mkdir -p $HOME/.ndotfiles/git
+
 for file in git/.git* ; do
   echo "copying $file to $HOME/.ndotfiles/git/" 1>&2
   cp $file $HOME/.ndotfiles/git/
