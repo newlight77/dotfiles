@@ -40,6 +40,17 @@ curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-ut
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vim.sh | bash
 ```
 
+### Undo
+
+```bash
+rm -rf $HOME/.ndotfiles/bash
+rm -rf $HOME/.ndotfiles/git
+rm -rf $HOME/.ndotfiles/util
+rm -rf $HOME/.ndotfiles/vim_config
+```
+
+Then update the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly to remove ndotfiles related source.
+
 ## Zsh
 
 ```bash

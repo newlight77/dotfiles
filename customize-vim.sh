@@ -15,7 +15,7 @@ else
   cd $DIR && git pull origin main
 fi
 
-echo "creating folder $HOME/.vim_awesome" 1>&2
+echo "creating folder $HOME/.ndotfiles/vim_awesome" 1>&2
 mkdir -p $HOME/.ndotfiles/vim_awesome
 echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
 mkdir -p .config/nvim
