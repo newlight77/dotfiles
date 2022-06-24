@@ -15,12 +15,14 @@ else
   cd $DIR && git pull origin main
 fi
 
+echo "creating folder $HOME/.bash_custom/util" 1>&2
 mkdir -p $HOME/.bash_custom/util
 
-cp  ${DIR}/util/convert2iso.sh                     $HOME/.bash_custom/util/convert2iso.sh
-cp  ${DIR}/util/docker_cleanup.sh                  $HOME/.bash_custom/util/docker_cleanup.sh
-cp  ${DIR}/util/prepare-workspace.sh               $HOME/.bash_custom/util/prepare-workspace.sh
-cp  ${DIR}/util/ssh-agent.sh                       $HOME/.bash_custom/util/ssh-agent.sh
-cp  ${DIR}/util/ssh-copy-id.sh                     $HOME/.bash_custom/util/ssh-copy-id.sh
+for (
+  file in util/*.sh
+) do
+  echo "copying $file to $HOME/.bash_custom/util/" 1>&2
+  cp $file $HOME/.bash_custom/util/
+done
 
 echo "*** ------  Customize Util Done ------ ***" 1>&2

@@ -15,7 +15,14 @@ else
   cd $DIR && git pull origin main
 fi
 
-cp  ${DIR}/git/.gitconfig_alias            $HOME/.bash_custom/git/.gitconfig_alias
+for (
+  file in git/.git*
+) do
+  echo "copying $file to $HOME/.bash_custom/git/" 1>&2
+  cp $file $HOME/.bash_custom/git/
+done
+
+echo "writing contents of git/.gitconfig to $HOME/.gitconfig" 1>&2
 cat ${DIR}/git/.gitconfig               >> $HOME/.gitconfig
 
 echo "*** ------  Customize git Done ------ ***" 1>&2
