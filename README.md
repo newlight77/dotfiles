@@ -1,25 +1,91 @@
 # bash_custom
 
-Compatible with :
+Use this repository to customize your envrioment:
 
-- Windows Git-Bash
-- Linux
-- Mac OS
+- Vim / NeoVim with Vim-Plug
+- Zsh with Oh my zsh
+- Fish with fisher
 
-Use this to customize your bash profile. This will add :
+Use this to customize your bash profile, it comes with :
 
+- set of useful functions and aliases
 - set colorfull shell
-- a set of shell alias
-- ssh config
-- git config
-- git alias
+- git config and aliases
+
+Please feel free to install zsh with oh my zsh.
+
+Alternatively, you may want to setp fish instead of zsh and oh my zsh.
+
+For Vim/NeoVim users, you may customize you vimrc with :
+
+- set of plugins
+- set of functions
+- keys mappings
+- colorscheme
 
 You can also add environment specific variables in $HOME/.bash_custom/.bashrc_vars
+
+## Compatibility
+
+- Windows Git-Bash
+- Mac OS
+- Linux
 
 ## Setup
 
 ```bash
-curl https://raw.githubusercontent.com/newlight77/bash_custom/master/customize.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-bash.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-git.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-util.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-vim.sh | bash
+```
+
+## Zsh
+
+```bash
+brew install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+### iterm2 with Shell Integration
+
+```bash
+curl -L <https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh> | bash
+curl -L <https://iterm2.com/shell_integration/zsh> -o ~/.iterm2_shell_integration.zsh
+```
+
+### Theme
+
+brew install romkatv/powerlevel10k/powerlevel10k
+echo 'source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
+
+### Plugins
+
+```bash
+brew install zsh-completions
+
+echo "
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+  fi
+" >> ~/.zprofile
+
+brew install zsh-syntax-highlighting
+echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zprofile
+
+brew install zsh-autosuggestions
+echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zprofile
+
+brew install zsh-history-substring-search
+echo 'source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh' >> ~/.zprofile
+
+brew install zsh-syntax-highlighting
+echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zprofile
+
+sed -i -e "/plugins=(git)/plugins=(alias-finder brew common-aliases copydir copyfile docker docker-compose dotenv encode64 extract git jira jsontools node npm npx osx urltools vi-mode vscode web-search z)/g" ~/.zshrc
 ```
 
 ## VIM
