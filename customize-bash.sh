@@ -8,33 +8,22 @@ if [ ! -d "$DIR" ]; then DIR="$PWD"; fi
 echo "*** ------  Customize ------ ***" 1>&2
 
 DIR=/tmp/bash_custom
+cd $DIR
 
-rm -r $DIR
-git clone https://github.com/newlight77/bash_custom.git /tmp/bash_custom && cd $DIR
+mkdir -p $HOME/.bash_custom/bash
 
-mkdir -p $HOME/.bash_custom/profile/util
+cp  ${DIR}/bash/.bashrc                     $HOME/.bash_custom/bash/.bashrc
+cp  ${DIR}/bash/.bashrc_alias               $HOME/.bash_custom/bash/.bashrc_alias
+cp  ${DIR}/bash/.bashrc_docker              $HOME/.bash_custom/bash/.bashrc_docker
+cp  ${DIR}/bash/.bashrc_fs                  $HOME/.bash_custom/bash/.bashrc_fs
+cp  ${DIR}/bash/.bashrc_general             $HOME/.bash_custom/bash/.bashrc_general
+cp  ${DIR}/bash/.bashrc_macos               $HOME/.bash_custom/bash/.bashrc_macos
+cp  ${DIR}/bash/.bashrc_network             $HOME/.bash_custom/bash/.bashrc_network
+cp  ${DIR}/bash/.bashrc_ps12                $HOME/.bash_custom/bash/.bashrc_ps12
+cp  ${DIR}/bash/.bashrc_search              $HOME/.bash_custom/bash/.bashrc_search
+cp  ${DIR}/bash/.bashrc_vars                $HOME/.bash_custom/bash/.bashrc_vars
 
-cp  ${DIR}/profile/.bashrc                     $HOME/.bash_custom/profile/.bashrc
-cp  ${DIR}/profile/.bashrc_alias               $HOME/.bash_custom/profile/.bashrc_alias
-cp  ${DIR}/profile/.bashrc_docker_cleanup      $HOME/.bash_custom/profile/.bashrc_docker_cleanup
-cp  ${DIR}/profile/.bashrc_natelandau          $HOME/.bash_custom/profile/.bashrc_natelandau
-cp  ${DIR}/profile/.bashrc_profile             $HOME/.bash_custom/profile/.bashrc_profile
-cat ${DIR}/profile/.bashrc_profile          >> $HOME/.bashrc
-cat ${DIR}/profile/.bashrc_profile          >> $HOME/.zprofile
-cp  ${DIR}/profile/.bashrc_ps12                $HOME/.bash_custom/profile/.bashrc_ps12
-cp  ${DIR}/profile/.bashrc_vars                $HOME/.bash_custom/profile/.bashrc_vars
+cat ${DIR}/bash/.bashrc                  >> $HOME/.bashrc
+cat ${DIR}/bash/.bashrc                  >> $HOME/.zprofile
 
-cat ${DIR}/profile/.gitconfig               >> $HOME/.gitconfig
-cp  ${DIR}/profile/.gitconfig_alias            $HOME/.bash_custom/profile/.gitconfig_alias
-
-cp  ${DIR}/profile/.poetry.env                 $HOME/.bash_custom/profile/.poetry.env
-
-if [ -f ${DIR}/profile/.ssh-config ]; then
-  user=$(echo $HOME | cut -d"/"  -f4)
-  cat ${DIR}/profile/.ssh-config | sed -e "s/kong/$user/g"  >> $HOME/.ssh/config
-fi
-
-cp  ${DIR}/profile/util/docker_cleanup.sh      $HOME/.bash_custom/profile/util/docker_cleanup.sh
-cp  ${DIR}/profile/util/prepare-workspace.sh   $HOME/.bash_custom/profile/util/prepare-workspace.sh
-cp  ${DIR}/profile/util/ssh-agent.sh           $HOME/.bash_custom/profile/util/ssh-agent.sh
-cp  ${DIR}/profile/util/ssh-copy-id.sh         $HOME/.bash_custom/profile/util/ssh-copy-id.sh
+echo "*** ------  Customize Bash Done ------ ***" 1>&2

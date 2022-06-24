@@ -1,9 +1,8 @@
 #############################################
 # github.com/newlight77/bash_custom
 
-if [ -f $HOME/.bash_custom/profile/.bashrc ]; then
-    source $HOME/.bash_custom/profile/.bashrc
-fi
+[include]
+    path = $HOME/.bash_custom/git/.gitconfig_alias
 
 # github.com/newlight77/bash_custom
 #############################################

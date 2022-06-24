@@ -1,8 +1,7 @@
 #############################################
 # github.com/newlight77/bash_custom
 
-[include]
-    path = $HOME/.bash_custom/.gitconfig_alias
+
 
 # github.com/newlight77/bash_custom
 #############################################
