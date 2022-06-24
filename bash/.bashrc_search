@@ -1,5 +1,5 @@
 #   ---------------------------
-#   4.  SEARCHING
+#   SEARCHING
 #   ---------------------------
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string

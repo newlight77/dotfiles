@@ -1,5 +1,5 @@
 #   ---------------------------
-#   6.  NETWORKING
+#   NETWORKING
 #   ---------------------------
 
 alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address

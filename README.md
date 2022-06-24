@@ -1,4 +1,4 @@
-# bash_custom
+# ndotfiles
 
 Use this repository to customize your envrioment:
 
@@ -23,7 +23,7 @@ For Vim/NeoVim users, you may customize you vimrc with :
 - keys mappings
 - colorscheme
 
-You can also add environment specific variables in $HOME/.bash_custom/.bashrc_vars
+You can also add environment specific variables in $HOME/.ndotfiles/bash/.bashrc_vars
 
 ## Compatibility
 
@@ -34,10 +34,10 @@ You can also add environment specific variables in $HOME/.bash_custom/.bashrc_va
 ## Setup
 
 ```bash
-curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-bash.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-util.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/bash_custom/main/customize-vim.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-bash.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-git.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-util.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vim.sh | bash
 ```
 
 ## Zsh

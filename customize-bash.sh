@@ -7,22 +7,20 @@ if [ ! -d "$DIR" ]; then DIR="$PWD"; fi
 
 echo "*** ------  Customize ------ ***" 1>&2
 
-DIR=/tmp/bash_custom
+DIR=/tmp/ndotfiles
 
 if [ ! -d "$DIR" ]; then
-  git clone https://github.com/newlight77/bash_custom.git /tmp/bash_custom && cd $DIR
+  git clone https://github.com/newlight77/ndotfiles.git /tmp/ndotfiles && cd $DIR
 else
   cd $DIR && git pull origin main
 fi
 
-echo "creating folder $HOME/.bash_custom/bash" 1>&2
-mkdir -p $HOME/.bash_custom/bash
+echo "creating folder $HOME/.ndotfiles/bash" 1>&2
+mkdir -p $HOME/.ndotfiles/bash
 
-for (
-  file in bash/.bashrc*
-) do
-  echo "copying $file to $HOME/.bash_custom/bash/" 1>&2
-  cp $file $HOME/.bash_custom/bash/
+for file in bash/.bashrc* ; do
+  echo "copying $file to $HOME/.ndotfiles/bash/" 1>&2
+  cp $file $HOME/.ndotfiles/bash/
 done
 
 echo "writing contents of bash/.bashrc to $HOME/.bashrc" 1>&2

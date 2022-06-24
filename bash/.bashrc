@@ -1,45 +1,45 @@
 #############################################
-# github.com/newlight77/bash_custom
+# github.com/newlight77/ndotfiles
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_alias ]; then
-    source $HOME/.bash_custom/bash/.bashrc_alias
+if [ -f $HOME/.ndotfiles/bash/.bashrc_alias ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_alias
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_docker ]; then
-    source $HOME/.bash_custom/bash/.bashrc_docker
+if [ -f $HOME/.ndotfiles/bash/.bashrc_docker ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_docker
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_fs ]; then
-    source $HOME/.bash_custom/bash/.bashrc_fs
+if [ -f $HOME/.ndotfiles/bash/.bashrc_fs ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_fs
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_general ]; then
-    source $HOME/.bash_custom/bash/.bashrc_general
+if [ -f $HOME/.ndotfiles/bash/.bashrc_general ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_general
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_macos ]; then
-    source $HOME/.bash_custom/bash/.bashrc_macos
+if [ -f $HOME/.ndotfiles/bash/.bashrc_macos ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_macos
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_network ]; then
-    source $HOME/.bash_custom/bash/.bashrc_network
+if [ -f $HOME/.ndotfiles/bash/.bashrc_network ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_network
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_ps12 ]; then
-    source $HOME/.bash_custom/bash/.bashrc_ps12
+if [ -f $HOME/.ndotfiles/bash/.bashrc_ps12 ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_ps12
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_search ]; then
-    source $HOME/.bash_custom/bash/.bashrc_search
+if [ -f $HOME/.ndotfiles/bash/.bashrc_search ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_search
 fi
 
-if [ -f $HOME/.bash_custom/bash/.bashrc_vars ]; then
-    source $HOME/.bash_custom/bash/.bashrc_vars
+if [ -f $HOME/.ndotfiles/bash/.bashrc_vars ]; then
+    source $HOME/.ndotfiles/bash/.bashrc_vars
 fi
 
-if [ -f $HOME/.bash_custom/bash/.poetry.env ]; then
-    source $HOME/.bash_custom/bash/.poetry.env
+if [ -f $HOME/.ndotfiles/bash/.poetry.env ]; then
+    source $HOME/.ndotfiles/bash/.poetry.env
 fi
 
-# github.com/newlight77/bash_custom
+# github.com/newlight77/ndotfiles
 #############################################

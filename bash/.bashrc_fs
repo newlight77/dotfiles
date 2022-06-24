@@ -1,5 +1,5 @@
 #   -------------------------------
-#   3.  FILE AND FOLDER MANAGEMENT
+#   FILE AND FOLDER MANAGEMENT
 #   -------------------------------
 alias mountReadWrite='/sbin/mount -uw /'    # mountReadWrite:   For use when booted into single-user
 

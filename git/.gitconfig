@@ -1,8 +1,8 @@
 #############################################
-# github.com/newlight77/bash_custom
+# github.com/newlight77/ndotfiles
 
 [include]
-    path = $HOME/.bash_custom/git/.gitconfig_alias
+    path = $HOME/.ndotfiles/git/.gitconfig_alias
 
-# github.com/newlight77/bash_custom
+# github.com/newlight77/ndotfiles
 #############################################
