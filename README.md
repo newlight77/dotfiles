@@ -33,11 +33,18 @@ You can also add environment specific variables in $HOME/.ndotfiles/bash/.bashrc
 
 ## Setup
 
+To start with, this ndotfiles repository provides 4 parts :
+
+- bash setup
+- git setup
+- vim/neovim Setup
+- utils files (few scripts not so useful for now)
+
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-bash.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-util.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vim.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-util.sh | bash
 ```
 
 ### Undo
@@ -45,11 +52,11 @@ curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vi
 ```bash
 rm -rf $HOME/.ndotfiles/bash
 rm -rf $HOME/.ndotfiles/git
-rm -rf $HOME/.ndotfiles/util
 rm -rf $HOME/.ndotfiles/vim_config
+rm -rf $HOME/.ndotfiles/util
 ```
 
-Then update the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly to remove ndotfiles related source.
+Then update (by removing ndotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
 
 ## Zsh
 
@@ -106,7 +113,6 @@ brew remove vim
 brew cleanup
 brew install vim
 brew install fzf
-brew install cmake
 ```
 
 create folders:
@@ -131,7 +137,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-### vim-runtime
+### vim-runtime (not required for neovim)
 
 ```bash
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
@@ -166,31 +172,19 @@ cp profile/vim/my_configs.vim ~/.vim_runtime/my_configs.vim
 #cp profile/vim/my_configs-ultimate.vim ~/.vim_runtime/my_configs-ultimate.vim
 ```
 
-For YouCompleteMe, you need to compile the package:
-
 ```bash
-brew install cmake
-cd .vim/plugged/youcompleteme
-python3 ./install.py 
+nvim
+:PlugInstall
+:UpdateRemotePlugins
+:q!
+:q!
 ```
-
-### CoC
-
-[Install CoC](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim)
-[CoC extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
-
-for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html coc-css`
-
-for the list of extensions : `:CocList extensions`
-
-### Vim Cheat Sheet
-
-[Vim Cheat Sheet](https://vim.rtorr.com/)
 
 ### NeoVim
 
 ```bash
 brew install nvim
+brew install fzf 
 pip3 install --user neovim
 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -212,7 +206,41 @@ nvim
 :q!
 ```
 
-### Github
+### vim-autoload
+
+Vim autoload is required as for vim and neovim.
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+
+### You Complete Me (a vim plugin)
+
+For YouCompleteMe, you need to compile the package:
+
+```bash
+brew install cmake
+cd .vim/plugged/youcompleteme
+python3 ./install.py 
+```
+
+### CoC (a vim plugin)
+
+[Install CoC](https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim)
+[CoC extensions](https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
+
+for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html coc-css`
+
+for the list of extensions : `:CocList extensions`
+
+### Vim Cheat Sheet
+
+[Vim Cheat Sheet](https://vim.rtorr.com/)
+
+## SSH
+
+## Github
 
 ```bash
 echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
