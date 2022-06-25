@@ -15,20 +15,20 @@ else
   cd $DIR && git pull origin main
 fi
 
-echo "creating folder $HOME/.ndotfiles/vim_awesome" 1>&2
-mkdir -p $HOME/.ndotfiles/vim_awesome
+echo "creating folder $HOME/.ndotfiles/vim_config" 1>&2
+mkdir -p $HOME/.ndotfiles/vim_config
 echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
 mkdir -p .config/nvim
 
-for file in bash/.bashrc* ; do
-  echo "copying $file to $HOME/.ndotfiles/vim_awesome/" 1>&2
-  cp $file $HOME/.ndotfiles/vim_awesome/
+for file in vim/vim_config/*.vim ; do
+  echo "copying $file to $HOME/.ndotfiles/vim_config/" 1>&2
+  cp $file $HOME/.ndotfiles/vim_config/
 done
 
 echo "writing contents of vim/.vimrc-awesome.vim to $HOME/.vimrc" 1>&2
-cat vim/.vimrc-awesome.vim                           >> $HOME/.vimrc
+cat vim/.vimrc                           >> $HOME/.vimrc
 echo "writing contents of vim/.vimrc-awesome.vim to $HOME/.config/nvim/init.vim for NeoVim" 1>&2
-cat vim/.vimrc-awesome.vim                           >> $HOME/.config/nvim/init.vim
+cat vim/.vimrc                           >> $HOME/.config/nvim/init.vim
 
 echo "*** ------  Customize Vim/NeoVim Done ------ ***" 1>&2
 

@@ -25,10 +25,6 @@ if [ -f $HOME/.ndotfiles/bash/.bashrc_network ]; then
     source $HOME/.ndotfiles/bash/.bashrc_network
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_ps12 ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_ps12
-fi
-
 if [ -f $HOME/.ndotfiles/bash/.bashrc_search ]; then
     source $HOME/.ndotfiles/bash/.bashrc_search
 fi
