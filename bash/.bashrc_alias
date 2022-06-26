@@ -2,30 +2,15 @@
 #   ------------------------------------------------------------
 showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias cd..='cd ..'
 
-alias pull='git pull'
-alias push='git push'
-alias commit='git commit -a'
-alias add='git add'
-alias publish='git publish'
-alias status='git status'
+alias src='cd ~/wks/src'
+alias github='cd ~/wks/src/github'
+alias gitlab='cd ~/wks/src/gitlab'
 
-alias gstatus='git status'
-alias gchekout='git checkout'
-alias gbranch='git branch'
-alias gcherrypick='git cherry-pick'
-alias grebase='git rebase'
-alias gmerge='git merge'
-alias gcommit='git commit'
-alias glog='git log'
-alias greset='git reset'
-alias gpush='git push'
-alias gpull='git pull'
+alias oneprofile='cd ~/wks/src/oneprofile'
+alias tricefal='cd ~/wks/src/tricefal'
+alias newlight='cd ~/wks/src/github/newlight77'
+
 
 if [ -x /usr/bin/dircolors ]; then
     test -r $HOME/.dircolors && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
@@ -37,6 +22,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cd..='cd ..'
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
@@ -69,3 +60,76 @@ alias qfind="find . -name "                 # qfind:    Quickly search for file
 
 #   lr:  Full Recursive Directory Listing
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
+
+
+
+# ==============================================================================
+# Git shortcuts
+
+# Git Shortcuts for the super lazy
+
+alias g="git"
+alias ga='git add'
+alias gb='git branch'
+alias gc='git checkout'
+alias gd='git diff'
+alias gf='git fetch --all --prune'
+alias gg='git log --graph --pretty=format:'\''%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset'\'' --abbrev-commit --date=relative'
+alias gm='git merge'
+alias gp='git push'
+alias gr='git remote'
+alias gs="git status"
+alias gt='git tag'
+alias gu='git ls-files . --exclude-standard --others' # Show untracked files
+
+alias gbr='git branch'
+alias gck='git checkout'
+alias gcl='git clone'
+alias gcm="git commit -m"
+alias gcp='git cherry-pick'
+alias gdv='git_diff_ignore_spaces'
+alias ggf='git log --graph --date=short --pretty=format:'\''%C(auto)%h %Cgreen%an%Creset %Cblue%cd%Creset %C(auto)%d %s'\'''
+alias ghm='cd "$(git rev-parse --show-toplevel)"' # Git home
+alias glg='git log'
+alias gmg='git merge'
+alias gmv='git mv'
+alias gpl='git pull'
+alias gps='git push'
+alias gpl='git pull'
+alias gpr='git pull --rebase'
+alias gpu='git push --set-upstream'
+alias grb='git rebase'
+alias grs='git reset'
+alias grv='git remote -v'
+alias gsh='git show'
+alias gss='git status -s'
+alias gst='git status'
+alias gsu='git submodule update --init --recursive'
+alias gsw='git switch'
+alias gtl='git tag -l | sort -V'
+alias gup='git fetch && git rebase'
+alias gwc='git whatchanged'
+
+
+alias gclean='git clean -fd'
+alias gcount='git shortlog -sn'
+alias gdefault='git checkout $(get_default_branch)'
+alias gexport='git archive --format zip --output'
+alias gnew='git log HEAD@{1}..HEAD@{0}' # Show commits since last pull, see http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+alias gpristine='git reset --hard && git clean -dfx'
+alias gstash='git stash'
+alias gsubmodules='git submodule update --init --recursive'
+
+function git_diff_ignore_spaces() {
+	git diff --ignore-all-space "$@" | vim -R -
+}
+
+function get_default_branch() {
+	if git branch | grep -q '^. main\s*$'; then
+		echo main
+	else
+		echo master
+	fi
+}
+#================================================================================

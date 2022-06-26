@@ -23,4 +23,9 @@ for file in util/*.sh ; do
   cp $file $HOME/.ndotfiles/util/
 done
 
+echo '
+export PATH=$HOME/.ndotfiles/util/:$PATH
+export GPG_TTY=$(tty)
+' >> $HOME/.zshrc
+
 echo "*** ------  Customize Util Done ------ ***" 1>&2

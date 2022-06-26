@@ -31,6 +31,36 @@ You can also add environment specific variables in $HOME/.ndotfiles/bash/.bashrc
 - Mac OS
 - Linux
 
+## Prerequisites
+
+- Homebrew
+
+Homebrew is very handy for MacOS and Linux, to installs the stuff you need in a simple way. It is a package manager for which makes installing lots of different software like Git, Ruby, and Node simpler. Homebrew lets you avoid possible security problems associated with using the sudo command to install software like Node.
+
+Installing Homebrew is straightforward as long as you understand the Mac Terminal.
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+
+eval "$(/usr/local/bin/brew shellenv)"
+brew update
+```
+
+- Git
+
+You also gonna need git to clone or pull public repositories from github.
+
+```bash
+brew install \
+    git \
+    tig
+
+git config --global core.editor nano
+git config --global user.name 'fullname'
+git config --global user.email 'example@mail.com'
+```
+
 ## Setup
 
 To start with, this ndotfiles repository provides 4 parts :
@@ -50,6 +80,7 @@ curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-ut
 ### Undo
 
 ```bash
+rm -fr /tmp/ndotfiles
 rm -rf $HOME/.ndotfiles/bash
 rm -rf $HOME/.ndotfiles/git
 rm -rf $HOME/.ndotfiles/vim_config
@@ -64,6 +95,7 @@ Then update (by removing ndotfiles related changes source) the .zprofile, .bashr
 brew install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
+
 
 ### iterm2 with Shell Integration
 
@@ -240,12 +272,80 @@ for the list of extensions : `:CocList extensions`
 
 ## SSH
 
+## Git
+
+```bash
+Git
+brew install \
+    git \
+    tig
+
+git config --global core.editor nano
+git config --global user.name 'fullname'
+git config --global user.email 'example@mail.com'
+```
+
 ## Github
 
 ```bash
-echo 'machine api.github.com login <user> password <token>' >> ~/.netrc
+echo '
+machine api.github.com
+login <user>
+password <token>
+' >> ~/.netrc
 ```
+
+Github requires a personal access token, a gpg key, and a ssh key.
+
+Generate GPG Key:
+
+```bash
+gpg --gen-key
+#which will prompt you for name, email and secret.
+```
+
+Now encrypt it using the gpg key, where <EMAIL> is the address you used when creating the key
+
+```bash
+gpg -e -r <EMAIL> ~/.netrc
+```
+
+### Github enterprise
+
+If you want to access github entreprise on premiss, set this in vimrc :
 
 ```bash
 let g:github_enterprise_urls = ['https://example.com']
+```
+
+### git credentials using git-credential-netrc (optional)
+
+Note : This step is already covered by customize-git.sh.
+
+You gonna need a credential helper to decrypt the .netrc file automatically by git:
+
+```bash
+echo "creating folder $HOME/.ndotfiles/util" 1>&2
+mkdir $HOME/.ndotfiles/util/
+
+echo "retrieve the git-credential-netrc from github"
+curl -o $HOME/.ndotfiles/util/git-credential-netrc https://raw.githubusercontent.com/git/git/master/contrib/credential/netrc/git-credential-netrc.perl
+chmod +x $HOME/.ndotfiles/util/git-credential-netrc
+
+echo "adding export GPG_TTY and add git-credential-netrc to PATH in $HOME/.zshrc" 1>&2
+echo '
+# ===================================================================
+# added by https://github.com/newlight77/ndotfiles
+export PATH=$HOME/.ndotfiles/util/:$PATH
+export GPG_TTY=$(tty)
+# ===================================================================
+' >> $HOME/.zshrc
+```
+
+At last, configure git to use credential helper
+
+```bash
+git config --global credential.helper "netrc -f ~/.netrc.gpg -v"
+# automatically sign commits
+git config --global commit.gpgsign true
 ```

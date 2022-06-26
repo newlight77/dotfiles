@@ -1,5 +1,20 @@
 #############################################
 # github.com/newlight77/ndotfiles
+[core]
+        autocrlf = input
+        pager = less -iXFR
+        editor = vim
+[color]
+        ui = always
+[apply]
+        whitespace = fix
+[merge]
+        log = true
+
+[credential]
+        helper = netrc -f ~/.netrc.gpg -v
+[commit]
+        gpgsign = true
 
 [include]
     path = $HOME/.ndotfiles/git/.gitconfig_alias
