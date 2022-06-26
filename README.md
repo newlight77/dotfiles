@@ -68,12 +68,14 @@ To start with, this ndotfiles repository provides 4 parts :
 - bash setup
 - git setup
 - vim/neovim Setup
+- hyper configuration
 - utils files (few scripts not so useful for now)
 
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-bash.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-git.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vim.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-hyper.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-util.sh | bash
 ```
 
@@ -84,10 +86,20 @@ rm -fr /tmp/ndotfiles
 rm -rf $HOME/.ndotfiles/bash
 rm -rf $HOME/.ndotfiles/git
 rm -rf $HOME/.ndotfiles/vim_config
+rm -rf $HOME/.ndotfiles/hyper
 rm -rf $HOME/.ndotfiles/util
 ```
 
 Then update (by removing ndotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
+
+## Hyper
+
+Use Homebrew to download install hyper:
+
+```bash
+brew update
+brew install hyper
+```
 
 ## Zsh
 
@@ -349,3 +361,19 @@ git config --global credential.helper "netrc -f ~/.netrc.gpg -v"
 # automatically sign commits
 git config --global commit.gpgsign true
 ```
+
+## Reference
+
+- [iterm2 shell-integration](https://iterm2.com/documentation-shell-integration.html)
+- [oh my zsh](https://ohmyz.sh/)
+- [bash-it](https://github.com/Bash-it/bash-it)
+- [How to Configure your macOs Terminal with Zsh like a Pro](https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/)
+
+- [neovim](https://neovim.io/)
+- [vimrc](https://github.com/amix/vimrc)
+- [vim awesome](https://vimawesome.com/)
+- [vimrc example](https://github.com/gerardbm/vimrc)
+- [How to set up Neovim 0.5 + Modern plugins (LSP, Treesitter, Fuzzy finder, etc)](https://blog.inkdrop.app/how-to-set-up-neovim-0-5-modern-plugins-lsp-treesitter-etc-542c3d9c9887)
+
+- [Hyper](https://hyper.is/#installation)
+- [Hyper awesome](https://github.com/bnb/awesome-hyper)
