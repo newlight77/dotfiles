@@ -40,6 +40,7 @@ export GPG_TTY=$(tty)
 ' >> $HOME/.zshrc
 
 echo "writing contents of git/.gitconfig to $HOME/.gitconfig" 1>&2
+mv $HOME/.gitconfig                        $HOME/.gitconfig.$(date +"%Y%m%d%H%M%S")
 cat ${DIR}/git/.gitconfig               >> $HOME/.gitconfig
 
 echo "*** ------  Customize git Done ------ ***" 1>&2

@@ -24,6 +24,7 @@ for file in hyper/.* ; do
 done
 
 echo "writing contents of hyper/.hyper.js to $HOME/.hyper.js" 1>&2
+mv $HOME/.hyper.js                          $HOME/.hyper.js.$(date +"%Y%m%d%H%M%S")
 cat ${DIR}/hyper/.hyper.js               >> $HOME/.hyper.js
 
 echo "*** ------  Customize Hyper Done ------ ***" 1>&2

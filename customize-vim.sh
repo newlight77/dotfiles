@@ -26,9 +26,11 @@ for file in vim/vim_config/*.vim ; do
 done
 
 echo "writing contents of vim/.vimrc-awesome.vim to $HOME/.vimrc" 1>&2
-cat vim/.vimrc                           >> $HOME/.vimrc
+mv $HOME/.vimrc                            $HOME/.vimrc.$(date +"%Y%m%d%H%M%S")
+cat vim/.vimrc                           > $HOME/.vimrc
 echo "writing contents of vim/.vimrc-awesome.vim to $HOME/.config/nvim/init.vim for NeoVim" 1>&2
-cat vim/.vimrc                           >> $HOME/.config/nvim/init.vim
+mv $HOME/.config/nvim/init.vim             $HOME/.config/nvim/init.vim.$(date +"%Y%m%d%H%M%S")
+cat vim/.vimrc                           > $HOME/.config/nvim/init.vim
 
 echo "*** ------  Customize Vim/NeoVim Done ------ ***" 1>&2
 

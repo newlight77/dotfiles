@@ -24,8 +24,10 @@ for file in bash/.bashrc* ; do
 done
 
 echo "writing contents of bash/.bashrc to $HOME/.bashrc" 1>&2
+mv $HOME/.bashrc                            $HOME/.bashrc.$(date +"%Y%m%d%H%M%S")
 cat ${DIR}/bash/.bashrc                  >> $HOME/.bashrc
 echo "writing contents of bash/.bashrc to $HOME/.zprofile" 1>&2
+mv $HOME/.zprofile                          $HOME/.zprofile.$(date +"%Y%m%d%H%M%S")
 cat ${DIR}/bash/.bashrc                  >> $HOME/.zprofile
 
 echo "*** ------  Customize Bash Done ------ ***" 1>&2
