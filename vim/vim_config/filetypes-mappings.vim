@@ -44,9 +44,3 @@ augroup md
     autocmd FileType markdown,liquid,text :command! -range Enes <line1>,<line2>!trans en:es -brief
     autocmd FileType markdown,liquid,text :command! -range Esen <line1>,<line2>!trans es:en -brief
 augroup end
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Delete Trailing
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Leader>dt :call <SID>DeleteTrailing()<CR>
