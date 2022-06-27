@@ -4,7 +4,6 @@
 " List of plugins installed
 call plug#begin('~/.vim/plugged')
 
-  Plug 'neovim/nvim-lspconfig'
   Plug 'janko-m/vim-test'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -35,6 +34,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'vim-scripts/mru.vim'
+  Plug 'nvim-telescope/telescope.nvim'
 
   " Search
   Plug 'mileszs/ack.vim'
@@ -50,6 +50,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
+  " lsp
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'tami5/lspsaga.nvim'
+  Plug 'folke/lsp-colors.nvim'
+  Plug 'onsails/lspkind-nvim'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'hoob3rt/lualine.nvim'
+  
   " Autocomplete
   Plug 'valloric/youcompleteme'
   Plug 'Shougo/deoplete.nvim', { 'commit': '17ffeb9' }
@@ -128,6 +141,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jparise/vim-graphql'
   Plug 'kchmck/vim-coffee-script'
   Plug 'groenewege/vim-less'
+  Plug 'kyazdani42/nvim-web-devicons'
 
   " Additional syntax files
   Plug 'w0rp/ale'
@@ -140,6 +154,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'gerardbm/eukleides.vim'
   Plug 'zaid/vim-rec'
   Plug 'sirtaj/vim-openscad'
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
   " Edition
   Plug 'junegunn/vim-easy-align'
@@ -830,3 +845,196 @@ function! s:ToggleJekyll() abort
   endif
   redraw!
 endfunction
+
+
+
+
+" lsp colors
+if !exists('#LspColors') | finish | endif
+
+lua << EOF
+require("lsp-colors").setup({
+    Error = "#db4b4b",
+    Warning = "#e0af68",
+    Information = "#0db9d7",
+    Hint = "#10B981"
+})
+EOF
+  
+
+
+" lsp config
+if !exists('g:lspconfig')
+  finish
+endif
+
+lua << EOF
+--vim.lsp.set_log_level("debug")
+EOF
+
+lua << EOF
+  local nvim_lsp = require('lspconfig')
+  local protocol = require'vim.lsp.protocol'
+
+  -- Use an on_attach function to only map the following keys 
+  -- after the language server attaches to the current buffer
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    --Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    -- buf_set_keymap('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+
+    -- formatting
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_command [[augroup Format]]
+      vim.api.nvim_command [[autocmd! * <buffer>]]
+      vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+      vim.api.nvim_command [[augroup END]]
+    end
+
+    --protocol.SymbolKind = { }
+    protocol.CompletionItemKind = {
+      '', -- Text
+      '', -- Method
+      '', -- Function
+      '', -- Constructor
+      '', -- Field
+      '', -- Variable
+      '', -- Class
+      'ﰮ', -- Interface
+      '', -- Module
+      '', -- Property
+      '', -- Unit
+      '', -- Value
+      '', -- Enum
+      '', -- Keyword
+      '﬌', -- Snippet
+      '', -- Color
+      '', -- File
+      '', -- Reference
+      '', -- Folder
+      '', -- EnumMember
+      '', -- Constant
+      '', -- Struct
+      '', -- Event
+      'ﬦ', -- Operator
+      '', -- TypeParameter
+    }
+  end
+
+  -- Set up completion using nvim_cmp with LSP source
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(
+    vim.lsp.protocol.make_client_capabilities()
+  )
+
+  nvim_lsp.flow.setup {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+
+  nvim_lsp.tsserver.setup {
+    on_attach = on_attach,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+    capabilities = capabilities
+  }
+
+  nvim_lsp.diagnosticls.setup {
+    on_attach = on_attach,
+    filetypes = { 'javascript', 'javascriptreact', 'json', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'pandoc' },
+    init_options = {
+      linters = {
+        eslint = {
+          command = 'eslint_d',
+          rootPatterns = { '.git' },
+          debounce = 100,
+          args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+          sourceName = 'eslint_d',
+          parseJson = {
+            errorsRoot = '[0].messages',
+            line = 'line',
+            column = 'column',
+            endLine = 'endLine',
+            endColumn = 'endColumn',
+            message = '[eslint] ${message} [${ruleId}]',
+            security = 'severity'
+          },
+          securities = {
+            [2] = 'error',
+            [1] = 'warning'
+          }
+        },
+      },
+      filetypes = {
+        javascript = 'eslint',
+        javascriptreact = 'eslint',
+        typescript = 'eslint',
+        typescriptreact = 'eslint',
+      },
+      formatters = {
+        eslint_d = {
+          command = 'eslint_d',
+          rootPatterns = { '.git' },
+          args = { '--stdin', '--stdin-filename', '%filename', '--fix-to-stdout' },
+          rootPatterns = { '.git' },
+        },
+        prettier = {
+          command = 'prettier_d_slim',
+          rootPatterns = { '.git' },
+          -- requiredFiles: { 'prettier.config.js' },
+          args = { '--stdin', '--stdin-filepath', '%filename' }
+        }
+      },
+      formatFiletypes = {
+        css = 'prettier',
+        javascript = 'prettier',
+        javascriptreact = 'prettier',
+        json = 'prettier',
+        scss = 'prettier',
+        less = 'prettier',
+        typescript = 'prettier',
+        typescriptreact = 'prettier',
+        json = 'prettier',
+      }
+    }
+  }
+
+  -- icon
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+      underline = true,
+      -- This sets the spacing and the prefix, obviously.
+      virtual_text = {
+        spacing = 4,
+        prefix = ''
+      }
+    }
+  )
+
+EOF
+
+
+" lsp saga
+if !exists('g:loaded_lspsaga') | finish | endif
+  
+lua << EOF
+  local saga = require 'lspsaga'
+  
+  saga.init_lsp_saga {
+      error_sign = '',
+      warn_sign = '',
+      hint_sign = '',
+      infor_sign = '',
+      border_style = "round",
+  }
+  
+EOF

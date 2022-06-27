@@ -278,6 +278,12 @@ for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html
 
 for the list of extensions : `:CocList extensions`
 
+### lsp-config
+
+nvim-lsp-installer allows you to manage LSP servers (servers are installed inside :echo stdpath("data") by default). It works in tandem with lspconfig1 by registering a hook that enhances the PATH environment variable, allowing neovim's LSP client to locate the server executable installed by nvim-lsp-installer.
+
+nvim-lsp-installer will only make sure that Neovim can find your installed servers, it does not set up any servers for you automatically. You will have to set up your servers yourself (for example via lspconfig).
+
 ### Vim Cheat Sheet
 
 [Vim Cheat Sheet](https://vim.rtorr.com/)
