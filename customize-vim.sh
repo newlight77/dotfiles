@@ -20,8 +20,8 @@ mkdir -p .config/nvim
 
 echo "creating folder $HOME/.ndotfiles/vim_config" 1>&2
 mkdir -p $HOME/.ndotfiles/vim_config
-echo "creating folder $HOME/.ndotfiles/vim_config/after/plugin for NeoVim" 1>&2
-mkdir -p $HOME/.ndotfiles/vim_config/after/plugin
+echo "creating folder $HOME/.config/nvim/after/plugin for NeoVim" 1>&2
+mkdir -p $HOME/.config/nvim/after/plugin
 
 for file in vim/vim_config/*.vim ; do
   echo "copying $file to $HOME/.ndotfiles/vim_config/" 1>&2
@@ -29,8 +29,8 @@ for file in vim/vim_config/*.vim ; do
 done
 
 for file2 in vim/vim_config/after/plugin/* ; do
-  echo "copying $file2 to $HOME/.ndotfiles/vim_config/after/plugin/" 1>&2
-  cp $file2 $HOME/.ndotfiles/vim_config/after/plugin/
+  echo "copying $file2 to $HOME/.config/nvim/after/plugin/" 1>&2
+  cp $file2 $HOME/.config/nvim/after/plugin/
 done
 
 
