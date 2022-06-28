@@ -44,28 +44,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'suy/vim-context-commentstring'
 
-  " Deoplete, specific for Vim8
-  if !has("nvim")
-    Plug 'roxma/nvim-yarp'
+  " Autocomplete
+  Plug 'valloric/youcompleteme'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp', { 'do': 'pip install -r requirements.txt' }
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
-  " lsp
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'williamboman/nvim-lsp-installer'
-  Plug 'tami5/lspsaga.nvim'
-  Plug 'folke/lsp-colors.nvim'
-  Plug 'onsails/lspkind-nvim'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'hoob3rt/lualine.nvim'
-  
-  " Autocomplete
-  Plug 'valloric/youcompleteme'
-  Plug 'Shougo/deoplete.nvim', { 'commit': '17ffeb9' }
+  Plug 'deoplete-plugins/deoplete-zsh', { 'commit': '12141ad' }
   Plug 'Shougo/neosnippet.vim', { 'commit': '037b7a7' }
   Plug 'Shougo/neosnippet-snippets'
   Plug 'Shougo/context_filetype.vim'
@@ -73,7 +62,26 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'MarcWeber/vim-addon-mw-utils'
   Plug 'tomtom/tlib_vim'
-  "  Plug 'honza/vim-snippets'
+  Plug 'honza/vim-snippets'
+  
+  " lsp
+  if has("nvim")
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
+    Plug 'tami5/lspsaga.nvim'
+    Plug 'folke/lsp-colors.nvim'
+    Plug 'onsails/lspkind-nvim'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'hoob3rt/lualine.nvim'
+
+    "  Plug 'prabirshrestha/vim-lsp'
+    "  Plug 'Shougo/deoplete.nvim'
+    "  Plug 'lighttiger2505/deoplete-vim-lsp'  
+  endif
 
   " C/C++ support
   Plug 'deoplete-plugins/deoplete-clang', { 'commit': '30f17cb' }
@@ -110,9 +118,6 @@ call plug#begin('~/.vim/plugged')
 
   " Rust support
   Plug 'racer-rust/vim-racer'
-
-  " Zsh support
-  Plug 'deoplete-plugins/deoplete-zsh', { 'commit': '12141ad' }
 
   " JavaScript support
   Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
@@ -154,7 +159,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'gerardbm/eukleides.vim'
   Plug 'zaid/vim-rec'
   Plug 'sirtaj/vim-openscad'
-  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+  Plug 'nvim-treesitter/nvim-treesitter'
 
   " Edition
   Plug 'junegunn/vim-easy-align'

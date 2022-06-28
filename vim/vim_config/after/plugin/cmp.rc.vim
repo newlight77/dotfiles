@@ -1,3 +1,4 @@
+if !has("nvim") | finish | endif
 if !exists('g:loaded_cmp') | finish | endif
 
 set completeopt=menuone,noinsert,noselect

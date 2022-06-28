@@ -1,3 +1,4 @@
+if !has("nvim") | finish | endif
 if !exists('#LspColors') | finish | endif
 
 lua << EOF

@@ -278,11 +278,41 @@ for generic web-development consider `:CocInstall coc-tsserver coc-json coc-html
 
 for the list of extensions : `:CocList extensions`
 
-### lsp-config
+### deoplete
 
-nvim-lsp-installer allows you to manage LSP servers (servers are installed inside :echo stdpath("data") by default). It works in tandem with lspconfig1 by registering a hook that enhances the PATH environment variable, allowing neovim's LSP client to locate the server executable installed by nvim-lsp-installer.
+deoplete requires Neovim or Vim8 with if_python3. You can enable Python3 interface with pip:
 
-nvim-lsp-installer will only make sure that Neovim can find your installed servers, it does not set up any servers for you automatically. You will have to set up your servers yourself (for example via lspconfig).
+```bash
+pip3 install --user pynvim
+
+# deoplete needs pynvim ver.0.3.0+.
+pip3 install --user --upgrade pynvim
+```
+
+### Language Server Protocol (lsp)
+
+To use LSP, there are two parts involved. First, we need to install a language server for the language we use. Second, we need to use a plugin that acts as an LSP client that communicates with this server.
+
+There are quite a few LSP clients out there. Some of the most popular ones are:
+
+- coc.nvim
+- vim-lsp
+- LanguageClient-neovim
+- vim-lsc
+
+Neovim built-in LSP client (you need to install nvim-lspconfig for easier configuration)
+
+First, we need to install a language server for Python. pyls is good choice. First, install pyls:
+
+```bash
+pip install "python-language-server[all]"
+```
+
+#### lsp-config & nvim-lsp-installer
+
+`nvim-lsp-installer` allows you to manage LSP servers (servers are installed inside `:echo stdpath("data")` by default). It works in tandem with `lsp-config` by registering a hook that enhances the PATH environment variable, allowing neovim's LSP client to locate the server executable installed by `nvim-lsp-installer`.
+
+`nvim-lsp-installer` will only make sure that Neovim can find your installed servers, it does not set up any servers for you automatically. You will have to set up your servers yourself (for example via lspconfig).
 
 ### Vim Cheat Sheet
 

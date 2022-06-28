@@ -1,6 +1,5 @@
-if !exists('g:lspconfig')
-  finish
-endif
+if !has("nvim") | finish | endif
+if !exists('g:lspconfig') | finish | endif
 
 lua << EOF
 --vim.lsp.set_log_level("debug")

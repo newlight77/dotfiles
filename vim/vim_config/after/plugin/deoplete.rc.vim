@@ -1,7 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Deoplete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" - «Deoplete requires Neovim with Python3 enabled»
+"  if !exists('g:loaded_deoplete')
+"    echom "Not loaded deoplete"
+"    finish
+"  endif
+
+" Deoplete requires Neovim with Python3 enabled»
 let g:python3_host_prog       = '/usr/bin/python3'
 let g:python3_host_skip_check = 1
 
