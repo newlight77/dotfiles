@@ -5,7 +5,7 @@
 ```bash
 brew install neovim
 ```
-## Managing plugins by Packer
+## Packer
 
 Neovim supports plugins (called extensions in VS Code). There are quite a few plugin managers : `vim-plug`, `pathogen` and `packer`. Well, so we will use `packer`. 
 
@@ -31,6 +31,19 @@ For TypeScript, let’s install `npm install -g typescript-language-server types
 | leader ca    | Open a code aaction menu. Quick fixes, refactors, etc. It's the same menu that would be opened by pressing the "lightbulb" in VS Code. |
 
 ## Plugins 
+
+### nvimtree
+
+`nvimtree` is a File Explorer For Neovim. 
+
+Features:
+- Automatic updates
+- File type icons
+- Git integration
+- Diagnostics integration: LSP and COC
+- (Live) filtering
+- Cut, copy, paste, rename, delete, create
+- Highly customisable
 
 ### Treesitter
 
@@ -66,3 +79,5 @@ The last plugin we’ll configure is the gitsigns plugin. This will add great-lo
 ## Reference
 
 - [install neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-package)
+- [Guide to modern Neovim setup, 2021](https://tkg.codes/guide-to-modern-neovim-setup-2021/)
+- [Neovim setting up snippets with luasnip](https://sbulav.github.io/vim/neovim-setting-up-luasnip/)

@@ -5,11 +5,14 @@ require("keybindings")
 require("lsp")
 
 -- Plugin specific configs.
-require("plugs.gitsigns")
-require("plugs.telescope")
-require("plugs.luasnip")
 require("plugs.cmp")
-require("plugs.nvimtree")
+require("plugs.gitsigns")
+require("plugs.luasnip")
+require("plugs.nvim-tree")
+require("plugs.snippets")
+require("plugs.telescope")
+require("plugs.treesitter")
+require("plugs.treesitter-textobjects")
 
 -- Incremental live completion (note: this is now a default on master).
 vim.o.inccommand = 'nosplit'

@@ -16,7 +16,7 @@ else
 fi
 
 echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
-mkdir -p $HOME.config/nvim
+mkdir -p $HOME/.config/nvim
 
 configDir=$HOME/.ndotfiles/vim_config/
 echo "creating folder $HOME/.ndotfiles/vim_config" 1>&2
