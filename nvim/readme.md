@@ -12,12 +12,26 @@ Next we need to install python support:
 pip install pynvim
 ```
 
+alpha live-grep finder will not function without `riggrep`.
+
+```bash
+brew install ripgrep
+```
+
+`fd` is a program to find entries in your filesystem:
+Alpha requires `fd` to function:
+
+```bash
+brew install fd
+```
+
 ## Get healthy
 
 Open nvim and enter the following:
 
 ```bash
-:checkhealth
+:checkhealth 
+:checkhealth telescope
 ```
 
 ## Packer

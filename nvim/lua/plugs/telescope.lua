@@ -7,6 +7,14 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    layout_config = {
+      vertical = { width = 0.5 }
+    },
+  },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    }
   },
 }
 -- Add leader shortcuts
