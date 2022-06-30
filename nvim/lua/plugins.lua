@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Speed up loading Lua modules in Neovim to improve startup time.
-  use "lewis6991/impatient.nvim"
+  use {"lewis6991/impatient.nvim", config = requre('plugs.impatient')}
 
   -- displays a popup with possible key bindings of the command you started typing
   use {
