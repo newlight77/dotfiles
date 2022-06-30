@@ -3,6 +3,7 @@
 require("plugins")
 require("keybindings")
 require("lsp")
+require("autocmds")
 
 -- Plugin specific configs.
 require("plugs.cmp")
