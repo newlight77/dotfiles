@@ -94,7 +94,11 @@ return packer.startup(function(use)
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
   
   -- Fancier statusline
-  use 'itchyny/lightline.vim'
+  -- use 'itchyny/lightline.vim'
+  use { 'hoob3rt/lualine.nvim', 
+    requires = {'kyazdani42/nvim-web-devicons', 
+    opt = true }, 
+    config = function() require('plugs.lualine') end }
 
   -- persist and toggle multiple terminals during an editing session
   use "akinsho/toggleterm.nvim"
@@ -125,7 +129,7 @@ return packer.startup(function(use)
 
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate" }
+  use { 'nvim-treesitter/nvim-treesitter' }
   -- Additional textobjects for treesitter : Syntax aware text-objects, select, move, swap, and peek support.
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
 

@@ -77,7 +77,7 @@ require('telescope').setup {
       },
     },
     layout_config = {
-      vertical = { width = 0.5 }
+      vertical = { width = 0.7 }
     },
   },
 
