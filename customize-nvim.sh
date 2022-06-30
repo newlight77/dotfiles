@@ -15,8 +15,16 @@ echo "*** ------  Customize ------ ***" 1>&2
 #   cd $DIR && git pull origin main
 # fi
 
+# for file in $HOME/.config/nvim/pack/packer/start/packer.nvim/* ; then
+#   echo "plugins installed : $file"
+# done
+
+rm -fr $HOME/.local/share/nvim/*
+rm -fr $HOME/.config/nvim/site/pack/packer/opt/*
+rm -fr $HOME/.config/nvim/site/pack/packer/start/*
+
 echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
-mkdir -p $HOME.config/nvim
+mkdir -p $HOME/.config/nvim
 
 configDir=$HOME/.config/nvim/lua
 echo "creating folder $HOME/.config/nvim/lua" 1>&2
@@ -26,7 +34,6 @@ for file in nvim/lua/*.lua ; do
   cp $file $configDir
 done
 
-# pluginsDir=$HOME/.config/nvim/after/plugin/
 pluginsDir=$HOME/.config/nvim/lua/plugs/
 echo "creating folder $pluginsDir for NeoVim" 1>&2
 mkdir -p $pluginsDir
@@ -37,11 +44,13 @@ done
 
 if [ -f $HOME/.config/nvim/init.vim  ]; then
   echo "making backup of .config/nvim/init.vim" 1>&2
-  mv $HOME/.config/nvim/init.vim             $HOME/.config/nvim/init.vim.$(date +"%Y%m%d%H%M%S")
+  mv $HOME/.config/nvim/init.vim           $HOME/.config/nvim/init.vim.$(date +"%Y%m%d%H%M%S")
 fi
 
 echo "writing contents of nvim/init.lua to $HOME/.config/nvim/init.lua for NeoVim" 1>&2
-mv $HOME/.config/nvim/init.lua             $HOME/.config/nvim/init.lua.$(date +"%Y%m%d%H%M%S")
+if [ -f $HOME/.config/nvim/init.lua  ]; then
+  mv $HOME/.config/nvim/init.lua           $HOME/.config/nvim/init.lua.$(date +"%Y%m%d%H%M%S")
+fi
 cat nvim/init.lua                        > $HOME/.config/nvim/init.lua
 
 echo "*** ------  Customize NeoVim Done ------ ***" 1>&2

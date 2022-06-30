@@ -7,12 +7,12 @@ require("lsp")
 -- Plugin specific configs.
 require("plugs.cmp")
 require("plugs.gitsigns")
-require("plugs.luasnip")
 require("plugs.nvim-tree")
 require("plugs.snippets")
 require("plugs.telescope")
 require("plugs.treesitter")
 require("plugs.treesitter-textobjects")
+
 
 -- Incremental live completion (note: this is now a default on master).
 vim.o.inccommand = 'nosplit'
@@ -48,18 +48,6 @@ vim.o.smartcase = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
--- Set colorscheme (order is important here).
-vim.o.termguicolors = true
-vim.g.onedark_terminal_italics = 2
-vim.cmd [[colorscheme moonfly]]
-
---Set statusbar.
-vim.g.lightline = {
-  colorscheme = 'moonfly',
-  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-  component_function = { gitbranch = 'fugitive#head' },
-}
-
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
@@ -74,12 +62,5 @@ vim.api.nvim_exec(
 -- Y yank until the end of line  (note: this is now a default on master)
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
--- Set dark theme if macOS theme is dark, light otherwise.
-local theme = vim.fn.system("defaults read -g AppleInterfaceStyle")
-if (string.find(theme, 'Dark')) then
-	vim.o.background = 'dark'
-	vim.cmd [[colorscheme moonfly]]
-else
-	vim.o.background = 'light'
-	vim.cmd [[colorscheme morning]]
-end
+
+require("colorscheme")

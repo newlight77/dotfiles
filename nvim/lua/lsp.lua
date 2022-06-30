@@ -1,5 +1,7 @@
 -- LSP settings
 local nvim_lsp = require 'lspconfig'
+-- if (not lspconfig) then return end
+
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 

@@ -1,3 +1,8 @@
+local present, ls = pcall(require, "luasnip")
+if not present then
+    return
+end
+
 local ls = require("luasnip")
 -- some shorthands...
 local snip = ls.snippet

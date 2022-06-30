@@ -5,6 +5,21 @@
 ```bash
 brew install neovim
 ```
+
+Next we need to install python support:
+
+```bash
+pip install pynvim
+```
+
+## Get healthy
+
+Open nvim and enter the following:
+
+```bash
+:checkhealth
+```
+
 ## Packer
 
 Neovim supports plugins (called extensions in VS Code). There are quite a few plugin managers : `vim-plug`, `pathogen` and `packer`. Well, so we will use `packer`. 
@@ -81,3 +96,4 @@ The last plugin we’ll configure is the gitsigns plugin. This will add great-lo
 - [install neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-package)
 - [Guide to modern Neovim setup, 2021](https://tkg.codes/guide-to-modern-neovim-setup-2021/)
 - [Neovim setting up snippets with luasnip](https://sbulav.github.io/vim/neovim-setting-up-luasnip/)
+- [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch)
