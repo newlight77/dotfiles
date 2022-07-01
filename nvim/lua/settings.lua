@@ -20,7 +20,7 @@ vim.o.updatetime = 300
 -- the encoding written to a file
 vim.o.fileencoding = "utf-8"
 
-vim.wo.sessionoptions = "folds"
+vim.o.sessionoptions = "folds"
 
 
 
