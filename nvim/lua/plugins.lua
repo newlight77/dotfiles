@@ -40,6 +40,26 @@ packer.init {
   },
 }
 
+-- Have packer use a popup window
+packer.init {
+  display = {
+    auto_clean = true,
+    compile_on_sync = true,
+    disable_commands = true,
+    git = { clone_timeout = 6000 },
+    -- display = {
+    working_sym = "ﲊ",
+    error_sym = "✗",
+    done_sym = "﫟",
+    removed_sym = "",
+    moved_sym = "",
+    open_fn = function()
+      return require('packer.util').float({ border = 'rounded' })
+    end,
+    -- }
+  },
+}
+
 -- vim.api.nvim_exec(
 --   [[
 --   augroup Packer
@@ -75,15 +95,23 @@ return packer.startup(function(use)
     end
   }
 
-  -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  
+
+  -- QuickFix
+  use { 'folke/trouble.nvim' }
+
   -- An implementation of the Popup API from vim in Neovim
   use { "nvim-lua/popup.nvim", requires = { 'nvim-lua/plenary.nvim' } }
 
+  -- Navigation and fuzzy search
   -- File Explorer
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
-  
+  -- UI to select things (files, grep results, open buffers...)
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope-media-files.nvim', after = telescope }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- type 's' to search instead of '/'
+  use { 'ggandor/lightspeed.nvim' }
+
   -- Fancier statusline
   -- use 'itchyny/lightline.vim'
   use { 'hoob3rt/lualine.nvim', 
@@ -98,26 +126,29 @@ return packer.startup(function(use)
   use "ahmedkhalf/project.nvim"
 
   -- Autopairs, integrates with both cmp and treesitter
-  use "windwp/nvim-autopairs"
-  use "akinsho/bufferline.nvim"
+  use { "windwp/nvim-autopairs", config = function() require('plugs.autopairs') end }
+  use { "akinsho/bufferline.nvim", requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.bufferline') end }
 
 
   -- Easily comment stuff
-  use "numToStr/Comment.nvim"
+  use { 'numToStr/Comment.nvim', config = function() require('plugs.comment') end }
   -- "gc" to comment visual regions/lines
   -- use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   -- adds indentation guides to all lines (including empty lines).
-  use "lukas-reineke/indent-blankline.nvim"
+  use { 'lukas-reineke/indent-blankline.nvim', config = function() require('plugs.indent-blankline') end }
+
 
 
   -- Git commands in nvim
   use 'tpope/vim-fugitive'
   -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.gitsigns') end }
 
   use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} }
-
+  use { 'kyazdani42/nvim-web-devicons', after = "plenary.nvim", config = function() require('plugs.devicons') end }
+  use { 'norcalli/nvim-colorizer.lua', config = function() require('plugs.colorizer') end}
+  use { 'simrat39/symbols-outline.nvim', config =  function() require('plugs.symbols-outline') end }
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use { 'nvim-treesitter/nvim-treesitter' }
@@ -128,20 +159,21 @@ return packer.startup(function(use)
   -- completion
   use { 'hrsh7th/nvim-cmp', config = function() require('plugs.cmp') end }
   -- buffer completions
-  use "hrsh7th/cmp-buffer" 
+  use { "hrsh7th/cmp-buffer", after = 'nvim-cmp' }
   -- path completions
-  use "hrsh7th/cmp-path"
+  use { "hrsh7th/cmp-path", after = 'nvim-cmp' }
   -- cmdline completions
-  use "hrsh7th/cmp-cmdline"
-  use { 'saadparwaiz1/cmp_luasnip' }
+  use { "hrsh7th/cmp-cmdline", after = 'nvim-cmp' }
+  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
   -- completion for lsp 
   use 'hrsh7th/cmp-nvim-lsp'
+  use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
 
 
   -- Snippets
   use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = function() require('plugs.snippets') end }
   -- a bunch of snippets to use
-  use "rafamadriz/friendly-snippets"
+  use { "rafamadriz/friendly-snippets", after = 'nvim-cmp' }
 
   -- LSP
   -- Collection of configurations for built-in LSP client
@@ -158,7 +190,8 @@ return packer.startup(function(use)
   -- Theme inspired by Atom
   use 'joshdick/onedark.vim'
   use 'bluz71/vim-moonfly-colors'
-  use 'tanvirtin/monokai.nvim'
+  --use 'tanvirtin/monokai.nvim'
+  -- use 'folke/tokyonight.nvim'
   -- use "lunarvim/darkplus.nvim"
 
 

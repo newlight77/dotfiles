@@ -112,4 +112,4 @@ The last plugin we’ll configure is the gitsigns plugin. This will add great-lo
 - [Neovim setting up snippets with luasnip](https://sbulav.github.io/vim/neovim-setting-up-luasnip/)
 - [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch)
 - [dotfiles from shubmehetre](https://github.com/shubmehetre/dotfiles)
-- [neovim-lua-config](https://www.notonlycode.org/neovim-lua-config/)
+- [From init.vim to init.lua](https://www.notonlycode.org/neovim-lua-config/)

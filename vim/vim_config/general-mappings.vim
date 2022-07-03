@@ -176,11 +176,11 @@ map <Leader>, <C-w>
 
 
 " Split windows
-map <C-w>- :split<CR>
-map <C-w>. :vsplit<CR>
-map <C-w>j :close<CR>
-map <C-w>x :q!<CR>
-map <C-w>, <C-w>=
+map <C-w>b :split<CR>
+map <C-w>v :vsplit<CR>
+"  map <C-w>j :close<CR>
+"  map <C-w>x :q!<CR>
+"  map <C-w>, <C-w>=
 
 " Resize windows
 if bufwinnr(1)
@@ -290,10 +290,10 @@ cnoremap <C-f> <Right>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 cnoremap <C-d> <DEL>
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-cnoremap <C-v> <C-r>"
-cnoremap <C-q> <S-Right><C-w>
+"  cnoremap <C-p> <Up>
+"  cnoremap <C-n> <Down>
+"  cnoremap <C-v> <C-r>"
+"  cnoremap <C-q> <S-Right><C-w>
 
 
 " Allow moving one or multiple lines ===============
@@ -368,8 +368,8 @@ cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
 cnoremap <C-K>		<C-U>
 
-cnoremap <C-P> <Up>
-cnoremap <C-N> <Down>
+"  cnoremap <C-P> <Up>
+"  cnoremap <C-N> <Down>
 
 " Map ½ to something useful
 map ½ $

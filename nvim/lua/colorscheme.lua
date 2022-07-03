@@ -5,11 +5,11 @@ vim.g.onedark_terminal_italics = 2
 vim.cmd [[colorscheme moonfly]]
 
 --Set statusbar.
-vim.g.lightline = {
-    colorscheme = 'moonfly',
-    active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-    component_function = { gitbranch = 'fugitive#head' },
-}
+-- vim.g.lightline = {
+--     colorscheme = 'moonfly',
+--     active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
+--     component_function = { gitbranch = 'fugitive#head' },
+-- }
 
 -- Set dark theme if macOS theme is dark, light otherwise.
 local theme = vim.fn.system("defaults read -g AppleInterfaceStyle")
