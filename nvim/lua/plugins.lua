@@ -104,9 +104,9 @@ return packer.startup(function(use)
 
   -- Navigation and fuzzy search
   -- File Explorer
-  use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.nvim-tree') end }
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.telescope') end }
   use { 'nvim-telescope/telescope-media-files.nvim', after = telescope }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- type 's' to search instead of '/'
@@ -151,9 +151,9 @@ return packer.startup(function(use)
   use { 'simrat39/symbols-outline.nvim', config =  function() require('plugs.symbols-outline') end }
 
   -- Highlight, edit, and navigate code using a fast incremental parsing library
-  use { 'nvim-treesitter/nvim-treesitter' }
+  use { 'nvim-treesitter/nvim-treesitter', config = function() require('plugs.treesitter') end }
   -- Additional textobjects for treesitter : Syntax aware text-objects, select, move, swap, and peek support.
-  use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+  use { 'nvim-treesitter/nvim-treesitter-textobjects', config = function() require('plugs.treesitter-textobjects') end }
 
 
   -- completion
@@ -175,7 +175,7 @@ return packer.startup(function(use)
   -- a bunch of snippets to use
   use { "rafamadriz/friendly-snippets", after = 'nvim-cmp' }
 
-  
+
   -- LSP
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'

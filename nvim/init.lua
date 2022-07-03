@@ -13,12 +13,12 @@ require("plugins")
 require("plugs.cmp")
 require("plugs.lsp")
 
-require("plugs.gitsigns") -- maybe no need here
-require("plugs.nvim-tree") -- maybe no need here
-require("plugs.snippets") -- maybe no need here
-require("plugs.telescope") -- maybe no need here
-require("plugs.treesitter") -- maybe no need here
-require("plugs.treesitter-textobjects") -- maybe no need here
+-- require("plugs.gitsigns") -- maybe no need here
+-- require("plugs.nvim-tree") -- maybe no need here
+-- require("plugs.snippets") -- maybe no need here
+-- require("plugs.telescope") -- maybe no need here
+-- require("plugs.treesitter") -- maybe no need here
+-- require("plugs.treesitter-textobjects") -- maybe no need here
 
 
 -- UI and Colorscheme
