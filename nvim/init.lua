@@ -8,16 +8,17 @@ require("autocmds")
 
 -- Dependencies
 require("plugins")
-require("lsp")
 
 -- Plugin Configs
 require("plugs.cmp")
-require("plugs.gitsigns")
-require("plugs.nvim-tree")
-require("plugs.snippets")
-require("plugs.telescope")
-require("plugs.treesitter")
-require("plugs.treesitter-textobjects")
+require("plugs.lsp")
+
+require("plugs.gitsigns") -- maybe no need here
+require("plugs.nvim-tree") -- maybe no need here
+require("plugs.snippets") -- maybe no need here
+require("plugs.telescope") -- maybe no need here
+require("plugs.treesitter") -- maybe no need here
+require("plugs.treesitter-textobjects") -- maybe no need here
 
 
 -- UI and Colorscheme

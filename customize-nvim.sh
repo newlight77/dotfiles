@@ -20,6 +20,7 @@ echo "*** ------  Customize ------ ***" 1>&2
 # done
 
 rm -fr $HOME/.local/share/nvim/*
+rm -fr $HOME/.local/share/nvim/lsp_servers
 rm -fr $HOME/.config/nvim/site/pack/packer/opt/*
 rm -fr $HOME/.config/nvim/site/pack/packer/start/*
 
@@ -39,7 +40,7 @@ echo "creating folder $pluginsDir for NeoVim" 1>&2
 mkdir -p $pluginsDir
 for file2 in nvim/lua/plugs/* ; do
   echo "copying $file2 to $pluginsDir" 1>&2
-  cp $file2 $pluginsDir
+  cp -R $file2 $pluginsDir
 done
 
 if [ -f $HOME/.config/nvim/init.vim  ]; then

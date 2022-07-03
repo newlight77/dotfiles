@@ -1,3 +1,8 @@
+local status_ok, alpha = pcall(require, "vim-moonfly-colors")
+if not status_ok then
+	return
+end
+
 
 -- Set colorscheme (order is important here).
 vim.o.termguicolors = true

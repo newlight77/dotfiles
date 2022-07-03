@@ -23,6 +23,17 @@ vim.o.fileencoding = "utf-8"
 vim.o.sessionoptions = "folds"
 
 
+-- Term GUI colors
+----------------------------------------------------
+vim.o.termguicolors = true
+-- Set dark theme if macOS theme is dark, light otherwise.
+local theme = vim.fn.system("defaults read -g AppleInterfaceStyle")
+if (string.find(theme, 'Dark')) then
+	vim.o.background = 'dark'
+else
+	vim.o.background = 'light'
+end
+
 
 -- lines display
 ----------------------------------------------------

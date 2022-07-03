@@ -1,3 +1,8 @@
+local status_ok, alpha = pcall(require, "nvim-treesitter")
+if not status_ok then
+	return
+end
+
 -- Treesitter
 -- Parsers must be installed manually via :TSInstall
 require('nvim-treesitter.configs').setup {

@@ -175,15 +175,18 @@ return packer.startup(function(use)
   -- a bunch of snippets to use
   use { "rafamadriz/friendly-snippets", after = 'nvim-cmp' }
 
+  
   -- LSP
   -- Collection of configurations for built-in LSP client
   use 'neovim/nvim-lspconfig'
   -- simple to use language server installer
-  use "williamboman/nvim-lsp-installer"
+  use { "williamboman/nvim-lsp-installer", config = function() require('plugs.lsp.init') end }
+  -- hover highlights similar words
+  use 'RRethy/vim-illuminate'
+  -- hook external sourcers into inbuilt lsp( for formatters, linters, etc)
+  use { "jose-elias-alvarez/null-ls.nvim", config = function() require('plugs.lsp.null-ls') end }
   -- language server settings defined in json for
   use "tamago324/nlsp-settings.nvim"
-  -- for formatters and linters
-  use "jose-elias-alvarez/null-ls.nvim"
 
 
   -- Colorschemes
