@@ -85,16 +85,13 @@ return packer.startup(function(use)
   -- displays a popup with possible key bindings of the command you started typing
   use { "folke/which-key.nvim", config = function() require("plugs.whichkey") end }
 
-  --  fast and fully customizable greeter for neovim.
-  use {
-    'goolord/alpha-nvim',
-    requires = { 'kyazdani42/nvim-web-devicons' },
-    config = function ()
-        require('alpha').setup(require'alpha.themes.startify'.config)
-        require('plugs.alpha')
-    end
-  }
+  -- Useful lua functions used by lots of plugins
+  use "nvim-lua/plenary.nvim"
 
+  use { 'kyazdani42/nvim-web-devicons', requires = "plenary.nvim", config = function() require('plugs.devicons') end }
+
+  --  fast and fully customizable greeter for neovim.
+  use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' }, config = function () require('plugs.alpha') end }
 
   -- QuickFix
   use { 'folke/trouble.nvim' }
@@ -146,7 +143,7 @@ return packer.startup(function(use)
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.gitsigns') end }
 
   use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} }
-  use { 'kyazdani42/nvim-web-devicons', after = "plenary.nvim", config = function() require('plugs.devicons') end }
+  -- use { 'kyazdani42/nvim-web-devicons', after = "plenary.nvim", config = function() require('plugs.devicons') end }
   use { 'norcalli/nvim-colorizer.lua', config = function() require('plugs.colorizer') end}
   use { 'simrat39/symbols-outline.nvim', config =  function() require('plugs.symbols-outline') end }
 
@@ -159,11 +156,11 @@ return packer.startup(function(use)
   -- completion
   use { 'hrsh7th/nvim-cmp', config = function() require('plugs.cmp') end }
   -- buffer completions
-  use { "hrsh7th/cmp-buffer", after = 'nvim-cmp' }
+  use { "hrsh7th/cmp-buffer", requires = 'nvim-cmp' }
   -- path completions
-  use { "hrsh7th/cmp-path", after = 'nvim-cmp' }
+  use { "hrsh7th/cmp-path", requires = 'nvim-cmp' }
   -- cmdline completions
-  use { "hrsh7th/cmp-cmdline", after = 'nvim-cmp' }
+  use { "hrsh7th/cmp-cmdline", requires = 'nvim-cmp' }
   use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
   -- completion for lsp 
   use 'hrsh7th/cmp-nvim-lsp'
@@ -173,7 +170,7 @@ return packer.startup(function(use)
   -- Snippets
   use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = function() require('plugs.snippets') end }
   -- a bunch of snippets to use
-  use { "rafamadriz/friendly-snippets", after = 'nvim-cmp' }
+  use { "rafamadriz/friendly-snippets", requires = 'nvim-cmp' }
 
 
   -- LSP
