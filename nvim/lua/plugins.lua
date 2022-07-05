@@ -93,8 +93,8 @@ return packer.startup(function(use)
   --  fast and fully customizable greeter for neovim.
   use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' }, config = function () require('plugs.alpha') end }
 
-  -- QuickFix
-  use { 'folke/trouble.nvim' }
+  -- diagnostics, references, telescope results, quickfix and location lists to help you solve all the trouble your code is causing
+  use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons", config = function() require("plugs.trouble") end }
 
   -- An implementation of the Popup API from vim in Neovim
   use { "nvim-lua/popup.nvim", requires = { 'nvim-lua/plenary.nvim' } }
@@ -112,7 +112,7 @@ return packer.startup(function(use)
   -- File Explorer
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.nvim-tree') end }
   -- UI to select things (files, grep results, open buffers...)
-  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.telescope') end }
+  use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim', 'folke/trouble.nvim' }, config = function() require('plugs.telescope') end }
   use { 'nvim-telescope/telescope-media-files.nvim', after = telescope }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   -- search emoji and other symbols
@@ -141,25 +141,27 @@ return packer.startup(function(use)
   use "ahmedkhalf/project.nvim"
 
   -- notification plugin
-  use({
+  use {
     "rcarriga/nvim-notify",
     event = "BufEnter",
     config = function()
       vim.defer_fn(function() require('plugs.nvim-notify') end, 2000)
     end
-  })
+  }
 
   -- distraction free with zen mode
-  use({'folke/zen-mode.nvim', cmd = 'ZenMode', config = [[require('plugs.zen-mode')]]})
+  use {'folke/zen-mode.nvim', cmd = 'ZenMode', config = [[require('plugs.zen-mode')]]}
 
   -- Smoothie motions
-  use({
+  use {
     "karb94/neoscroll.nvim",
     event = "VimEnter",
     config = function()
       vim.defer_fn(function() require('plugs.neoscroll') end, 2000)
     end
-  })
+  }
+
+  -- use { 'mvllow/modes.nvim', config = function() require('plugs.modes').setup() end })
 
   -- Debugger plugin
   -- if vim.g.is_win or vim.g.is_linux then
@@ -168,7 +170,7 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-dap.nvim'
   use { 'mfussenegger/nvim-dap', config = function() require('plugs.nvim-dap') end }
   use { 'mfussenegger/nvim-dap-python', config = function() require('plugs.nvim-dap-python') end }
-  
+
   -- The missing auto-completion for cmdline!
   use({"gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]]})
 
@@ -189,6 +191,7 @@ return packer.startup(function(use)
 
 
   -- Git commands in nvim
+  use { 'TimUntersberger/neogit', requires = {'plenary.nvim'}, config = function() require('plugs.neogit') end }
   use 'tpope/vim-fugitive'
   -- Add git related info in the signs columns and popups
   use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.gitsigns') end }
@@ -235,15 +238,20 @@ return packer.startup(function(use)
   use { "jose-elias-alvarez/null-ls.nvim", config = function() require('plugs.lsp.null-ls') end }
   -- language server settings defined in json for
   use "tamago324/nlsp-settings.nvim"
+  use { "glepnir/lspsaga.nvim", config = function() require("plugs.lspsaga") end }
 
+
+  use { 'iamcco/markdown-preview.nvim' }
 
   -- Colorschemes
   -- Theme inspired by Atom
   use 'joshdick/onedark.vim'
   use 'bluz71/vim-moonfly-colors'
-  --use 'tanvirtin/monokai.nvim'
-  -- use 'folke/tokyonight.nvim'
-  -- use "lunarvim/darkplus.nvim"
+  use 'tanvirtin/monokai.nvim'
+  use 'folke/tokyonight.nvim'
+  use "lunarvim/darkplus.nvim"
+  use "EdenEast/nightfox.nvim"
+  use 'rose-pine/neovim'
 
 
 

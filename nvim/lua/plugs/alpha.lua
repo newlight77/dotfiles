@@ -54,7 +54,7 @@ local function footer()
     local fortune = require "alpha.fortune"
     local quote = table.concat(fortune(), "\n")
 
-    return plugins_text .. "\n" .. quote .. "\n" .. "\n newlight77"
+    return plugins_text .. "\n" .. quote .. "\n" .. "\n\n newlight77"
 end
 
 dashboard.section.footer.val = footer()
