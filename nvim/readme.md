@@ -114,3 +114,5 @@ The last plugin we’ll configure is the gitsigns plugin. This will add great-lo
 - [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch)
 - [dotfiles from shubmehetre](https://github.com/shubmehetre/dotfiles)
 - [From init.vim to init.lua](https://www.notonlycode.org/neovim-lua-config/)
+- [neovim-startup-screen](https://alpha2phi.medium.com/neovim-startup-screen-edd933ec8261)
+- [Nvim configuration by jdhao](https://github.com/jdhao/nvim-config)

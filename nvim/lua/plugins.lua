@@ -99,6 +99,15 @@ return packer.startup(function(use)
   -- An implementation of the Popup API from vim in Neovim
   use { "nvim-lua/popup.nvim", requires = { 'nvim-lua/plenary.nvim' } }
 
+  -- Super fast buffer jump
+  use {
+    'phaazon/hop.nvim',
+    event = "VimEnter",
+    config = function()
+      vim.defer_fn(function() require('plugs.nvim-hop') end, 2000)
+    end
+  }
+
   -- Navigation and fuzzy search
   -- File Explorer
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.nvim-tree') end }
@@ -106,8 +115,17 @@ return packer.startup(function(use)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' }, config = function() require('plugs.telescope') end }
   use { 'nvim-telescope/telescope-media-files.nvim', after = telescope }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  -- search emoji and other symbols
+  use {'nvim-telescope/telescope-symbols.nvim', after = 'telescope.nvim'}
   -- type 's' to search instead of '/'
   use { 'ggandor/lightspeed.nvim' }
+  -- Show match number and index for searching
+  use {
+    'kevinhwang91/nvim-hlslens',
+    branch = 'main',
+    keys = {{'n', '*'}, {'n', '#'}, {'n', 'n'}, {'n', 'N'}},
+    config = [[require('plugs.hlslens')]]
+  }
 
   -- Fancier statusline
   -- use 'itchyny/lightline.vim'
@@ -122,6 +140,35 @@ return packer.startup(function(use)
   -- project management
   use "ahmedkhalf/project.nvim"
 
+  -- notification plugin
+  use({
+    "rcarriga/nvim-notify",
+    event = "BufEnter",
+    config = function()
+      vim.defer_fn(function() require('plugs.nvim-notify') end, 2000)
+    end
+  })
+
+  -- distraction free with zen mode
+  use({'folke/zen-mode.nvim', cmd = 'ZenMode', config = [[require('plugs.zen-mode')]]})
+
+  -- Smoothie motions
+  use({
+    "karb94/neoscroll.nvim",
+    event = "VimEnter",
+    config = function()
+      vim.defer_fn(function() require('plugs.neoscroll') end, 2000)
+    end
+  })
+
+  -- Debugger plugin
+  if vim.g.is_win or vim.g.is_linux then
+    use({ "sakhnik/nvim-gdb", run = { "bash install.sh" }, opt = true, setup = [[vim.cmd('packadd nvim-gdb')]] })
+  end
+
+  -- The missing auto-completion for cmdline!
+  use({"gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]]})
+
   -- Autopairs, integrates with both cmp and treesitter
   use { "windwp/nvim-autopairs", config = function() require('plugs.autopairs') end }
   use { "akinsho/bufferline.nvim", requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.bufferline') end }
@@ -134,7 +181,8 @@ return packer.startup(function(use)
   use 'tpope/vim-surround'
   -- adds indentation guides to all lines (including empty lines).
   use { 'lukas-reineke/indent-blankline.nvim', config = function() require('plugs.indent-blankline') end }
-
+  -- show and trim trailing whitespaces
+  use {'jdhao/whitespace.nvim', event = 'VimEnter'}
 
 
   -- Git commands in nvim
@@ -161,14 +209,14 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-path", requires = 'nvim-cmp' }
   -- cmdline completions
   use { "hrsh7th/cmp-cmdline", requires = 'nvim-cmp' }
-  use { 'saadparwaiz1/cmp_luasnip', after = 'nvim-cmp' }
+  use { 'saadparwaiz1/cmp_luasnip', requires = 'nvim-cmp' }
   -- completion for lsp 
   use 'hrsh7th/cmp-nvim-lsp'
-  use { 'hrsh7th/cmp-nvim-lua', after = 'nvim-cmp' }
+  use { 'hrsh7th/cmp-nvim-lua', requires = 'nvim-cmp' }
 
 
   -- Snippets
-  use { 'L3MON4D3/LuaSnip', after = 'nvim-cmp', config = function() require('plugs.snippets') end }
+  use { 'L3MON4D3/LuaSnip', requires = 'nvim-cmp', config = function() require('plugs.snippets') end }
   -- a bunch of snippets to use
   use { "rafamadriz/friendly-snippets", requires = 'nvim-cmp' }
 
