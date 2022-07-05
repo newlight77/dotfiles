@@ -162,10 +162,13 @@ return packer.startup(function(use)
   })
 
   -- Debugger plugin
-  if vim.g.is_win or vim.g.is_linux then
-    use({ "sakhnik/nvim-gdb", run = { "bash install.sh" }, opt = true, setup = [[vim.cmd('packadd nvim-gdb')]] })
-  end
-
+  -- if vim.g.is_win or vim.g.is_linux then
+  --   use({ "sakhnik/nvim-gdb", run = { "bash install.sh" }, opt = true, setup = [[vim.cmd('packadd nvim-gdb')]] })
+  -- end
+  use 'nvim-telescope/telescope-dap.nvim'
+  use { 'mfussenegger/nvim-dap', config = function() require('plugs.nvim-dap') end }
+  use { 'mfussenegger/nvim-dap-python', config = function() require('plugs.nvim-dap-python') end }
+  
   -- The missing auto-completion for cmdline!
   use({"gelguy/wilder.nvim", opt = true, setup = [[vim.cmd('packadd wilder.nvim')]]})
 

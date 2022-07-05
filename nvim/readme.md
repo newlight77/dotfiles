@@ -44,7 +44,26 @@ To get started, clone this repository to somewhere on your packpath:
 git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-## Installing Language Servers
+## Installing Language Servers for LSP
+
+To use LSP, there are two parts involved. First, we need to install a language server for the language we use. Second, we need to use a plugin that acts as an LSP client that communicates with this server. 
+
+There are quite a few LSP clients out there. Some of the most popular ones are:
+
+- coc.nvim
+- vim-lsp
+- LanguageClient-neovim
+- vim-lsc
+
+LSP and auto-completion support is already configured with required plugins. Neovim built-in LSP client is installed using `nvim-lspconfig`.
+
+Examples of languages support :
+
+```bash
+npm install -g pyright
+pip install "python-language-server[all]"
+go get golang.org/x/tools/gopls@latest
+```
 
 For TypeScript, let’s install `npm install -g typescript-language-server typescript`. You might not need to install typescript globally.
 
@@ -104,6 +123,14 @@ However, some of them will require ripgrep to be installed on your system. On ma
 ### Git
 
 The last plugin we’ll configure is the gitsigns plugin. This will add great-looking git information in near the line numbers about whether a line was added, changed or modified. I find that particularly useful.
+
+## Debug
+
+`nvim-dap-python` uses `debugpy` so let’s install it:
+
+```bash
+pip install debugpy
+```
 
 ## Reference
 
