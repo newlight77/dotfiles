@@ -136,6 +136,7 @@ return packer.startup(function(use)
 
   -- persist and toggle multiple terminals during an editing session
   use "akinsho/toggleterm.nvim"
+  use { "NvChad/nvterm", module = "nvterm", config = function() require "plugs.nvterm" end }
 
   -- project management
   use "ahmedkhalf/project.nvim"
@@ -245,14 +246,23 @@ return packer.startup(function(use)
 
   -- Colorschemes
   -- Theme inspired by Atom
-  use 'joshdick/onedark.vim'
+  -- use 'joshdick/onedark.vim'
   use 'bluz71/vim-moonfly-colors'
-  use 'tanvirtin/monokai.nvim'
-  use 'folke/tokyonight.nvim'
-  use "lunarvim/darkplus.nvim"
-  use "EdenEast/nightfox.nvim"
-  use 'rose-pine/neovim'
+  -- use 'tanvirtin/monokai.nvim'
+  -- use 'folke/tokyonight.nvim'
+  -- use "lunarvim/darkplus.nvim"
+  -- use "EdenEast/nightfox.nvim"
+  -- use 'rose-pine/neovim'
+  -- use 'Mofiqul/dracula.nvim'
+  -- use 'catppuccin/nvim'
+  -- use { 'NvChad/base46', config = function()
+  --         local ok, base46 = pcall(require, "base46")
 
+  --         if ok then
+  --           base46.override_theme('tomorrow_night')
+  --         end
+  --       end
+  --     }
 
 
   -- Automatically set up your configuration after cloning packer.nvim

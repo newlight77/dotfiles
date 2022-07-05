@@ -28,7 +28,8 @@ dashboard.section.buttons.val = {
 	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
 	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
 	-- dashboard.button("f", "  Find file", ":cd $HOME/wks/src/github/newlight77 | Telescope find_files<CR>"),
-	dashboard.button("p", "  Find project", ":Telescope projects <CR>"),
+	dashboard.button("p", "  Find project", ":Telescope.extensions.projects.projects() <CR>"),
+
 	-- dashboard.button("c", "  Settings", ":e ~/.config/nvim/init.lua <CR>"),
 	dashboard.button("s", "  Settings" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
 	dashboard.button("q", "  Quit Neovim", ":qa<CR>"),

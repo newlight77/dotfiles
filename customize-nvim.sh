@@ -19,10 +19,9 @@ echo "*** ------  Customize ------ ***" 1>&2
 #   echo "plugins installed : $file"
 # done
 
-rm -fr $HOME/.local/share/nvim/*
-rm -fr $HOME/.local/share/nvim/lsp_servers
-rm -fr $HOME/.config/nvim/site/pack/packer/opt/*
-rm -fr $HOME/.config/nvim/site/pack/packer/start/*
+rm -rf $HOME/.config/nvim
+rm -rf $HOME/.local/share/nvim
+rm -rf $HOME/.cache/nvim
 
 echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
 mkdir -p $HOME/.config/nvim

@@ -140,9 +140,12 @@ pip install debugpy
 
 - [install neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-package)
 - [packer](https://github.com/wbthomason/packer.nvim)
+- [neovimcraft](http://neovimcraft.com/)
+- [Enhance your neovim workflow](https://nvchad.github.io/)
+- [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch)
+- [Top neovim plugins 2022](https://hannadrehman.com/top-neovim-plugins-for-developers-in-2022)
 - [Guide to modern Neovim setup, 2021](https://tkg.codes/guide-to-modern-neovim-setup-2021/)
 - [Neovim setting up snippets with luasnip](https://sbulav.github.io/vim/neovim-setting-up-luasnip/)
-- [Neovim from scratch](https://github.com/LunarVim/Neovim-from-scratch)
 - [dotfiles from shubmehetre](https://github.com/shubmehetre/dotfiles)
 - [From init.vim to init.lua](https://www.notonlycode.org/neovim-lua-config/)
 - [neovim-startup-screen](https://alpha2phi.medium.com/neovim-startup-screen-edd933ec8261)
