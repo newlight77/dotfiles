@@ -132,6 +132,10 @@ The last plugin we’ll configure is the gitsigns plugin. This will add great-lo
 pip install debugpy
 ```
 
+### Vim Cheat Sheet
+
+[Vim Cheat Sheet](https://vim.rtorr.com/)
+
 ## Reference
 
 - [install neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim#install-from-package)
