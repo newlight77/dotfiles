@@ -6,6 +6,9 @@ require("settings")
 require("keybindings")
 require("autocmds")
 
+-- General UI and Colorscheme
+require("colorscheme")
+
 -- Dependencies
 require("plugins")
 
@@ -21,5 +24,3 @@ require("plugs.lsp")
 -- require("plugs.treesitter-textobjects") -- maybe no need here
 
 
--- UI and Colorscheme
-require("colorscheme")
