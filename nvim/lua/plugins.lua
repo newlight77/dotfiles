@@ -246,15 +246,22 @@ return packer.startup(function(use)
 
   -- Colorschemes
   -- Theme inspired by Atom
-  -- use 'joshdick/onedark.vim'
-  -- use { 'bluz71/vim-moonfly-colors', config = function() require('plugs.moonfly') end }
+  -- use { 'joshdick/onedark.vim', config = function() require('plugs.themes.onedark').load() end }
+  use { 'folke/tokyonight.nvim', config = function() require('plugs.themes.tokyonight') end }
+  -- use { 'bluz71/vim-moonfly-colors', config = function() require('plugs.themes.moonfly') end }
   -- use 'tanvirtin/monokai.nvim'
-  -- use 'folke/tokyonight.nvim'
   -- use "lunarvim/darkplus.nvim"
   -- use "EdenEast/nightfox.nvim"
   -- use 'rose-pine/neovim'
-  use 'Mofiqul/dracula.nvim'
+  -- use 'Mofiqul/dracula.nvim'
   -- use 'catppuccin/nvim'
+  -- use 'getomni/neovim'
+
+  -- vim.o.background = 'dark'
+  
+  -- vim.cmd [[colorscheme tokyonight]]
+  -- vim.cmd [[colorscheme omni]]
+  -- vim.cmd [[colorscheme onedark]]
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

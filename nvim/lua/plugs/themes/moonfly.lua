@@ -3,5 +3,7 @@ if not status_ok then
 	return
 end
 
+vim.o.termguicolors = true
+vim.o.background = 'dark'
 
 vim.cmd [[colorscheme moonfly]]
