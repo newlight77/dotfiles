@@ -135,11 +135,11 @@ return packer.startup(function(use)
     config = function() require('plugs.lualine') end }
 
   -- persist and toggle multiple terminals during an editing session
-  use "akinsho/toggleterm.nvim"
+  -- use "akinsho/toggleterm.nvim"
   use { "NvChad/nvterm", module = "nvterm", config = function() require "plugs.nvterm" end }
 
   -- project management
-  use "ahmedkhalf/project.nvim"
+  -- use "ahmedkhalf/project.nvim"
 
   -- notification plugin
   use {
@@ -177,13 +177,12 @@ return packer.startup(function(use)
 
   -- Autopairs, integrates with both cmp and treesitter
   use { "windwp/nvim-autopairs", config = function() require('plugs.autopairs') end }
-  use { "akinsho/bufferline.nvim", requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.bufferline') end }
+  -- use { "akinsho/bufferline.nvim", requires = 'kyazdani42/nvim-web-devicons', config = function() require('plugs.bufferline') end }
 
 
   -- Easily comment stuff
   use { 'numToStr/Comment.nvim', config = function() require('plugs.comment') end }
   -- "gc" to comment visual regions/lines
-  -- use 'tpope/vim-commentary'
   use 'tpope/vim-surround'
   -- adds indentation guides to all lines (including empty lines).
   use { 'lukas-reineke/indent-blankline.nvim', config = function() require('plugs.indent-blankline') end }
