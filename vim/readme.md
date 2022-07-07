@@ -21,10 +21,16 @@ The following folders are created :
  ├── vim_config/
  ├───── after/
  ├──────── plugin/
- ├─────────── nvim/
- ├───── nvim/
- ├──────── init.vim
 ```
+
+### Undo (cleaning)
+
+```bash
+rm -fr /tmp/ndotfiles
+rm -rf $HOME/.ndotfiles/vim_config
+```
+
+Then update (by removing ndotfiles related changes source) the .zprofile, .bashrc, .vimrc accordingly.
 
 
 ### Vim
@@ -37,49 +43,14 @@ brew install vim
 brew install fzf
 brew install fd
 brew install ripgrep
-pip install pynvim
 ```
 
 ```bash
-nvim
+vim
 :PlugInstall
 :UpdateRemotePlugins
 :q!
 :q!
-```
-
-### NeoVim
-
-```bash
-brew install nvim
-brew install fzf 
-pip3 install --user neovim
-```
-
-```bash
-nvim
-:PlugInstall
-:UpdateRemotePlugins
-:q!
-:q!
-```
-
-### Undo
-
-```bash
-rm -fr /tmp/ndotfiles
-rm -rf $HOME/.ndotfiles/vim_config
-```
-
-Then update (by removing ndotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
-
-## Get healthy
-
-Open nvim and enter the following:
-
-```bash
-:checkhealth 
-:checkhealth telescope
 ```
 
 ### vim-autoload
@@ -88,6 +59,16 @@ Open nvim and enter the following:
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
+
+## Get healthy
+
+Open vim and enter the following:
+
+```bash
+:checkhealth 
+:checkhealth telescope
+```
+
 
 ### You Complete Me (a vim plugin)
 

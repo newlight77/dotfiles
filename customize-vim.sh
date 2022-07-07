@@ -7,6 +7,10 @@ if [ ! -d "$DIR" ]; then DIR="$PWD"; fi
 
 echo "*** ------  Customize ------ ***" 1>&2
 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
 DIR=/tmp/ndotfiles
 
 if [ ! -d "$DIR" ]; then
@@ -15,8 +19,8 @@ else
   cd $DIR && git pull origin main
 fi
 
-echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
-mkdir -p $HOME/.config/nvim
+# echo "creating folder $HOME/.config/nvim for NeoVim" 1>&2
+# mkdir -p $HOME/.config/nvim
 
 configDir=$HOME/.ndotfiles/vim_config/
 echo "creating folder $HOME/.ndotfiles/vim_config" 1>&2
@@ -38,9 +42,14 @@ done
 echo "writing contents of vim/.vimrc to $HOME/.vimrc" 1>&2
 mv $HOME/.vimrc                            $HOME/.vimrc.$(date +"%Y%m%d%H%M%S")
 cat vim/.vimrc                           > $HOME/.vimrc
-echo "writing contents of vim/init.vim to $HOME/.config/nvim/init.vim for NeoVim" 1>&2
-mv $HOME/.config/nvim/init.vim             $HOME/.config/nvim/init.vim.$(date +"%Y%m%d%H%M%S")
-cat vim/.vimrc                           > $HOME/.config/nvim/init.vim
+# echo "writing contents of vim/init.vim to $HOME/.config/nvim/init.vim for NeoVim" 1>&2
+# mv $HOME/.config/nvim/init.vim             $HOME/.config/nvim/init.vim.$(date +"%Y%m%d%H%M%S")
+# cat vim/.vimrc                           > $HOME/.config/nvim/init.vim
+
+
+cd $HOME/.vim/plugged/youcompleteme
+python3 ./install.py
+
 
 echo "*** ------  Customize Vim/NeoVim Done ------ ***" 1>&2
 
