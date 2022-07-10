@@ -10,10 +10,10 @@ echo "*** ------  Customize ------ ***" 1>&2
 DIR=/tmp/dotfiles
 
 if [ ! -d "$DIR" ]; then
-  git clone https://github.com/newlight77/dotfiles.git /tmp/dotfiles && cd $DIR
-else
-  cd $DIR && git pull --rebase origin main
+  rm -fr $DIR
 fi
+
+git clone https://github.com/newlight77/dotfiles.git /tmp/dotfiles && cd $DIR
 
 echo "creating folder $HOME/.config/bash" 1>&2
 mkdir -p $HOME/.config/bash
