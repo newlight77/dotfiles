@@ -85,7 +85,7 @@ curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-uti
 rm -fr /tmp/dotfiles
 rm -rf $HOME/.config/bash
 rm -rf $HOME/.config/git
-rm -rf $HOME/.config/vim_config
+rm -rf $HOME/.config/nvim
 rm -rf $HOME/.config/hyper
 rm -rf $HOME/.onfig/util
 ```
@@ -149,10 +149,6 @@ echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 sed -i -e "/plugins=(git)/plugins=(alias-finder brew common-aliases copydir copyfile docker docker-compose dotenv encode64 extract git jira jsontools node npm npx osx urltools vi-mode vscode web-search z)/g" ~/.zshrc
 ```
-
-### Vim / NeoVim
-
-Please refer to ./vim/readme.md or ./nvim/readme.md.
 
 ### Vim Cheat Sheet
 

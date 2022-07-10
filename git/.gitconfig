@@ -1,5 +1,6 @@
 #############################################
 # github.com/newlight77/dotfiles
+
 [core]
         autocrlf = input
         pager = less -iXFR
@@ -11,6 +12,8 @@
 [merge]
         log = true
 
+[gpg]
+        program = /opt/homebrew/bin/gpg
 [credential]
         helper = netrc -f ~/.netrc.gpg -v
 [commit]
