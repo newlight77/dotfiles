@@ -1,41 +1,40 @@
+#!/bin/bash
+
+
 #############################################
-# github.com/newlight77/ndotfiles
+# github.com/newlight77/dotfiles
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_alias ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_alias
+if [ -f $HOME/.config/bash/.bashrc_alias ]; then
+    source $HOME/.config/bash/.bashrc_alias
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_docker ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_docker
+if [ -f $HOME/.config/bash/.bashrc_docker ]; then
+    source $HOME/.config/bash/.bashrc_docker
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_fs ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_fs
+if [ -f $HOME/.config/bash/.bashrc_fs ]; then
+    source $HOME/.config/bash/.bashrc_fs
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_general ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_general
+if [ -f $HOME/.config/bash/.bashrc_general ]; then
+    source $HOME/.config/bash/.bashrc_general
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_macos ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_macos
+if [ -f $HOME/.config/bash/.bashrc_macos ]; then
+    source $HOME/.config/bash/.bashrc_macos
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_network ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_network
+if [ -f $HOME/.config/bash/.bashrc_network ]; then
+    source $HOME/.config/bash/.bashrc_network
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_search ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_search
+if [ -f $HOME/.config/bash/.bashrc_search ]; then
+    source $HOME/.config/bash/.bashrc_search
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.bashrc_vars ]; then
-    source $HOME/.ndotfiles/bash/.bashrc_vars
+if [ -f $HOME/.config/bash/.bashrc_vars ]; then
+    source $HOME/.config/bash/.bashrc_vars
 fi
 
-if [ -f $HOME/.ndotfiles/bash/.poetry.env ]; then
-    source $HOME/.ndotfiles/bash/.poetry.env
-fi
-
-# github.com/newlight77/ndotfiles
+# github.com/newlight77/ditfiles
 #############################################

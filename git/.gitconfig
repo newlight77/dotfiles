@@ -1,5 +1,5 @@
 #############################################
-# github.com/newlight77/ndotfiles
+# github.com/newlight77/dotfiles
 [core]
         autocrlf = input
         pager = less -iXFR
@@ -17,7 +17,7 @@
         gpgsign = true
 
 [include]
-    path = $HOME/.ndotfiles/git/.gitconfig_alias
+    path = $HOME/.config/git/.gitconfig_alias
 
-# github.com/newlight77/ndotfiles
+# github.com/newlight77/dotfiles
 #############################################

@@ -1,4 +1,4 @@
-# ndotfiles
+# dotfiles
 
 Use this repository to customize your envrioment:
 
@@ -23,7 +23,7 @@ For Vim/NeoVim users, you may customize you vimrc with :
 - keys mappings
 - colorscheme
 
-You can also add environment specific variables in $HOME/.ndotfiles/bash/.bashrc_vars
+You can also add environment specific variables in $HOME/.config/bash/.bashrc_vars
 
 ## Compatibility
 
@@ -63,7 +63,7 @@ git config --global user.email 'example@mail.com'
 
 ## Setup
 
-To start with, this ndotfiles repository provides 4 parts :
+To start with, this dotfiles repository provides 4 parts :
 
 - bash setup
 - git setup
@@ -72,25 +72,25 @@ To start with, this ndotfiles repository provides 4 parts :
 - utils files (few scripts not so useful for now)
 
 ```bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-bash.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-vim.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-hyper.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/ndotfiles/main/customize-util.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-bash.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-git.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-vim.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-hyper.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-util.sh | bash
 ```
 
 ### Undo
 
 ```bash
-rm -fr /tmp/ndotfiles
-rm -rf $HOME/.ndotfiles/bash
-rm -rf $HOME/.ndotfiles/git
-rm -rf $HOME/.ndotfiles/vim_config
-rm -rf $HOME/.ndotfiles/hyper
-rm -rf $HOME/.ndotfiles/util
+rm -fr /tmp/dotfiles
+rm -rf $HOME/.config/bash
+rm -rf $HOME/.config/git
+rm -rf $HOME/.config/vim_config
+rm -rf $HOME/.config/hyper
+rm -rf $HOME/.onfig/util
 ```
 
-Then update (by removing ndotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
+Then update (by removing dotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
 
 ## Hyper
 
@@ -213,18 +213,18 @@ Note : This step is already covered by customize-git.sh.
 You gonna need a credential helper to decrypt the .netrc file automatically by git:
 
 ```bash
-echo "creating folder $HOME/.ndotfiles/util" 1>&2
-mkdir $HOME/.ndotfiles/util/
+echo "creating folder $HOME/.config/util" 1>&2
+mkdir $HOME/.config/util/
 
 echo "retrieve the git-credential-netrc from github"
-curl -o $HOME/.ndotfiles/util/git-credential-netrc https://raw.githubusercontent.com/git/git/master/contrib/credential/netrc/git-credential-netrc.perl
-chmod +x $HOME/.ndotfiles/util/git-credential-netrc
+curl -o $HOME/.config/util/git-credential-netrc https://raw.githubusercontent.com/git/git/master/contrib/credential/netrc/git-credential-netrc.perl
+chmod +x $HOME/.config/util/git-credential-netrc
 
 echo "adding export GPG_TTY and add git-credential-netrc to PATH in $HOME/.zshrc" 1>&2
 echo '
 # ===================================================================
-# added by https://github.com/newlight77/ndotfiles
-export PATH=$HOME/.ndotfiles/util/:$PATH
+# added by https://github.com/newlight77/dotfiles
+export PATH=$HOME/.config/util/:$PATH
 export GPG_TTY=$(tty)
 # ===================================================================
 ' >> $HOME/.zshrc

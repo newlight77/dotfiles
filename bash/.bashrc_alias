@@ -1,15 +1,19 @@
+#!/usr/bin/env bash
+
+
 #   showa: to remind yourself of an alias (given some part of it)
 #   ------------------------------------------------------------
 showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
 
-alias src='cd ~/wks/src'
-alias github='cd ~/wks/src/github'
-alias gitlab='cd ~/wks/src/gitlab'
+alias cdsrc='cd ~/wks/src'
+alias cdgithub='cd ~/wks/src/github'
+alias cdgitlab='cd ~/wks/src/gitlab'
+alias cdgclones='cd ~/wks/src/clones'
 
-alias oneprofile='cd ~/wks/src/oneprofile'
-alias tricefal='cd ~/wks/src/tricefal'
-alias newlight='cd ~/wks/src/github/newlight77'
+alias cdoneprofile='cd ~/wks/src/oneprofile'
+alias cdtricefal='cd ~/wks/src/tricefal'
+alias cdnewlight='cd ~/wks/src/github/newlight77'
 
 
 if [ -x /usr/bin/dircolors ]; then
