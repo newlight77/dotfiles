@@ -242,10 +242,10 @@ git config --global commit.gpgsign true
 - [How to Configure your macOs Terminal with Zsh like a Pro](https://www.freecodecamp.org/news/how-to-configure-your-macos-terminal-with-zsh-like-a-pro-c0ab3f3c1156/)
 
 - [neovim](https://neovim.io/)
-- [vimrc](https://github.com/amix/vimrc)
-- [vim awesome](https://vimawesome.com/)
-- [vimrc example](https://github.com/gerardbm/vimrc)
-- [How to set up Neovim 0.5 + Modern plugins (LSP, Treesitter, Fuzzy finder, etc)](https://blog.inkdrop.app/how-to-set-up-neovim-0-5-modern-plugins-lsp-treesitter-etc-542c3d9c9887)
+- [Neovim Preconfigured by NvChad](https://github.com/newlight77/NvChad)
+- [Neovim Preconfigured by newlight77](https://github.com/newlight77/neovim-preconfigured)
+- [Neovim Setup by Ben Simmonds](https://www.bencode.net/posts/vim/)
 
 - [Hyper](https://hyper.is/#installation)
 - [Hyper awesome](https://github.com/bnb/awesome-hyper)
+
