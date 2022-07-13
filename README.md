@@ -73,6 +73,7 @@ To start with, this dotfiles repository provides 4 parts :
 
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-bash.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-fish.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-git.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-hyper.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-nvim.sh | bash
