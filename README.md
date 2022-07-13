@@ -112,8 +112,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 ### iterm2 with Shell Integration
 
 ```bash
-curl -L <https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh> | bash
-curl -L <https://iterm2.com/shell_integration/zsh> -o ~/.iterm2_shell_integration.zsh
+curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
 ```
 
 ### Theme

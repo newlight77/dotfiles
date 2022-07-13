@@ -30,4 +30,7 @@ echo "writing contents of bash/.bashrc to $HOME/.zprofile" 1>&2
 cp $HOME/.zprofile                          $HOME/.zprofile.$(date +"%Y%m%d%H%M%S")
 cat ${DIR}/bash/.bashrc                  >> $HOME/.zprofile
 
+curl -L https://iterm2.com/shell_integration/zsh -o $HOME/.config/bash/.iterm2_shell_integration.zsh
+curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+
 echo "*** ------  Customize Bash Done ------ ***" 1>&2
