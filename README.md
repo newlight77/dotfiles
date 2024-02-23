@@ -33,39 +33,23 @@ You can also add environment specific variables in $HOME/.config/bash/.bashrc_va
 
 ## Prerequisites
 
-- Homebrew
+Please refer to this page : [pre-requisites](/pre-requisites.md).
 
-Homebrew is very handy for MacOS and Linux, to installs the stuff you need in a simple way. It is a package manager for which makes installing lots of different software like Git, Ruby, and Node simpler. Homebrew lets you avoid possible security problems associated with using the sudo command to install software like Node.
-
-Installing Homebrew is straightforward as long as you understand the Mac Terminal.
+> Shortcuts : run the following scripts to install all pre-requisites
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
-
-eval "$(/usr/local/bin/brew shellenv)"
-brew update
-```
-
-- Git
-
-You also gonna need git to clone or pull public repositories from github.
-
-```bash
-brew install \
-    git \
-    tig
-
-git config --global core.editor nano
-git config --global user.name 'fullname'
-git config --global user.email 'example@mail.com'
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-homebrew.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-git.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-hyper.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-neovim.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-zsh.sh | bash
 ```
 
 ## Setup
 
 To start with, this dotfiles repository provides 4 parts :
 
-- bash setup
+- bash/zsh setup
 - git setup
 - vim/neovim Setup
 - hyper configuration
@@ -78,6 +62,7 @@ curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-git
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-hyper.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-nvim.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-util.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-zsh.sh | bash
 ```
 
 ### Undo
@@ -93,147 +78,19 @@ rm -rf $HOME/.onfig/util
 
 Then update (by removing dotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
 
-## Hyper
+## Additional Customization
 
-Use Homebrew to download install hyper:
-
-```bash
-brew update
-brew install hyper
-```
-
-## Zsh
+### Git
 
 ```bash
-brew install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
-
-
-### iterm2 with Shell Integration
-
-```bash
-curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
-curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
-```
-
-### Theme
-
-brew install romkatv/powerlevel10k/powerlevel10k
-echo 'source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zshrc
-
-### Plugins
-
-```bash
-brew install zsh-completions
-
-echo "
-if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-    autoload -Uz compinit
-    compinit
-  fi
-" >> ~/.zprofile
-
-brew install zsh-syntax-highlighting
-echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zprofile
-
-brew install zsh-autosuggestions
-echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zprofile
-
-brew install zsh-history-substring-search
-echo 'source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh' >> ~/.zprofile
-
-brew install zsh-syntax-highlighting
-echo 'source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zprofile
-
-sed -i -e "/plugins=(git)/plugins=(alias-finder brew common-aliases copydir copyfile docker docker-compose dotenv encode64 extract git jira jsontools node npm npx osx urltools vi-mode vscode web-search z)/g" ~/.zshrc
-```
-
-### Vim Cheat Sheet
-
-[Vim Cheat Sheet](https://vim.rtorr.com/)
-
-## SSH
-
-## Git
-
-```bash
-Git
-brew install \
-    git \
-    tig
-
 git config --global core.editor nano
 git config --global user.name 'fullname'
 git config --global user.email 'example@mail.com'
 ```
 
-## Github
+## Vim Cheat Sheet
 
-```bash
-echo '
-machine api.github.com
-login <user>
-password <token>
-' >> ~/.netrc
-```
-
-Github requires a personal access token, a gpg key, and a ssh key.
-
-Generate GPG Key:
-
-```bash
-gpg --gen-key
-#which will prompt you for name, email and secret.
-```
-
-Now encrypt it using the gpg key, where <EMAIL> is the address you used when creating the key
-
-```bash
-gpg -e -r <EMAIL> ~/.netrc
-```
-
-### Github enterprise
-
-If you want to access github entreprise on premiss, set this in vimrc :
-
-```bash
-let g:github_enterprise_urls = ['https://example.com']
-```
-
-### git credentials using git-credential-netrc (optional)
-
-Note : This step is already covered by customize-git.sh.
-
-You gonna need a credential helper to decrypt the .netrc file automatically by git:
-
-```bash
-echo "creating folder $HOME/.config/util" 1>&2
-mkdir $HOME/.config/util/
-
-echo "retrieve the git-credential-netrc from github"
-curl -o $HOME/.config/util/git-credential-netrc https://raw.githubusercontent.com/git/git/master/contrib/credential/netrc/git-credential-netrc.perl
-chmod +x $HOME/.config/util/git-credential-netrc
-
-echo "adding export GPG_TTY and add git-credential-netrc to PATH in $HOME/.zshrc" 1>&2
-echo '
-# ===================================================================
-# added by https://github.com/newlight77/dotfiles
-export PATH=$HOME/.config/util/:$PATH
-export GPG_TTY=$(tty)
-# ===================================================================
-' >> $HOME/.zshrc
-```
-
-At last, configure git to use credential helper
-
-```bash
-git config --global credential.helper "netrc -f ~/.netrc.gpg -v"
-# automatically sign commits
-git config --global commit.gpgsign true
-```
+[Vim Cheat Sheet](https://vim.rtorr.com/)
 
 ## Reference
 
