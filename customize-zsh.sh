@@ -9,14 +9,16 @@ echo "*** ------  Customize ------ ***" 1>&2
 
 DIR=/tmp/dotfiles
 
-if [ ! -d "$DIR" ]; then
+if [ -d "$DIR" ]; then
   rm -fr $DIR
 fi
+if [ ! -d "$DIR" ]; then
+  git clone https://github.com/newlight77/dotfiles.git $DIR
+fi
 
-git clone https://github.com/newlight77/dotfiles.git /tmp/dotfiles && cd $DIR
+cd $DIR
 
 echo "Configing BASH and ZSH..." 1>&2
-
 
 ## BASH
 echo "creating folder $HOME/.config/bash" 1>&2

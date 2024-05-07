@@ -9,12 +9,14 @@ echo "*** ------  Customize Git ------ ***" 1>&2
 
 DIR=/tmp/dotfiles
 
-if [ ! -d "$DIR" ]; then
+if [ -d "$DIR" ]; then
   rm -fr $DIR
 fi
+if [ ! -d "$DIR" ]; then
+  git clone https://github.com/newlight77/dotfiles.git $DIR
+fi
 
-git clone https://github.com/newlight77/dotfiles.git /tmp/dotfiles && cd $DIR
-
+cd $DIR
 
 echo "creating folder $HOME/.config/git" 1>&2
 mkdir -p $HOME/.config/git
