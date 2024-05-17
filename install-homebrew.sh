@@ -1,11 +1,12 @@
 #!/bin/bash
 
+if [ $(which brew) != 'brew not found'];then 
+    return
+fi
+
+echo '........ installing brew ........'
+
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-# Intel chips
-echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/usr/local/bin/brew shellenv)"
-
-# M chips
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+echo 'eval "$($(brew --prefix)/bin/brew shellenv)"' >> ~/.zprofile
+eval "$($(brew --prefix)/bin/brew shellenv)"

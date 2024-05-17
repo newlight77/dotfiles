@@ -28,7 +28,11 @@ done
 
 cp $HOME/.zshrc                         $HOME/.zshrc.$(date +"%Y%m%d%H%M%S")
 echo '
+# ===================================================================
+# added by https://github.com/newlight77/dotfiles
 export PATH=$HOME/.config/util/:$PATH
+# ===================================================================
+
 ' >> $HOME/.zshrc
 
 echo "*** ------  Customize Util Done ------ ***" 1>&2

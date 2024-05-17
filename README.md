@@ -2,9 +2,10 @@
 
 Use this repository to customize your envrioment:
 
-- Vim / NeoVim with Vim-Plug
+- Bash
 - Zsh with Oh my zsh
-- Fish with fisher
+- Fish with fisher (work in progress)
+- Vim / NeoVim with Vim-Plug (work in progress)
 
 Use this to customize your bash profile, it comes with :
 
@@ -14,9 +15,9 @@ Use this to customize your bash profile, it comes with :
 
 Please feel free to install zsh with oh my zsh.
 
-Alternatively, you may want to setp fish instead of zsh and oh my zsh.
+> Alternatively, you may want to setp fish instead of zsh and oh my zsh.
 
-For Vim/NeoVim users, you may customize you vimrc with :
+> For Vim/NeoVim users, you may customize you vimrc with :
 
 - set of plugins
 - set of functions
@@ -37,11 +38,27 @@ Please refer to this page : [pre-requisites](/pre-requisites.md).
 
 > Shortcuts : run the following scripts to install all pre-requisites
 
+Install Homebrew:
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-homebrew.sh | bash
+```
+
+Install Git:
+
+```bash
+echo '
+GIT_USER_NAME='Your name'
+GIT_USER_EMAIL='Your email'
+GIT_EDITOR=vi
+#GIT_EDITOR=nano
+' > .env
+
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-hyper.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-neovim.sh | bash
+```
+
+Install Zsh:
+
+```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-zsh.sh | bash
 ```
 
@@ -51,16 +68,13 @@ To start with, this dotfiles repository provides 4 parts :
 
 - bash/zsh setup
 - git setup
-- vim/neovim Setup
-- hyper configuration
 - utils files (few scripts not so useful for now)
+- vim/neovim Setup (work in progress)
+- hyper configuration (work in progress)
 
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-bash.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-fish.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-hyper.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-nvim.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-util.sh | bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-zsh.sh | bash
 ```
@@ -71,9 +85,9 @@ curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-zsh
 rm -fr /tmp/dotfiles
 rm -rf $HOME/.config/bash
 rm -rf $HOME/.config/git
-rm -rf $HOME/.config/nvim
-rm -rf $HOME/.config/hyper
 rm -rf $HOME/.onfig/util
+#rm -rf $HOME/.config/nvim
+#rm -rf $HOME/.config/hyper
 ```
 
 Then update (by removing dotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
@@ -81,6 +95,8 @@ Then update (by removing dotfiles related changes source) the .zprofile, .bashrc
 ## Additional Customization
 
 ### Git
+
+Git configuration (already covered wihtin install script).
 
 ```bash
 git config --global core.editor nano
@@ -106,4 +122,3 @@ git config --global user.email 'example@mail.com'
 
 - [Hyper](https://hyper.is/#installation)
 - [Hyper awesome](https://github.com/bnb/awesome-hyper)
-

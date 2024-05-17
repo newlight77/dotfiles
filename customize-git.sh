@@ -36,7 +36,6 @@ echo "adding export GPG_TTY and add git-credential-netrc to PATH in $HOME/.zshrc
 echo '
 # ===================================================================
 # added by https://github.com/newlight77/dotfiles
-export PATH=$HOME/.config/util/:$PATH
 export GPG_TTY=$(tty)
 # ===================================================================
 ' >> $HOME/.zshrc

@@ -38,15 +38,3 @@ fi
 
 # github.com/newlight77/ditfiles
 #############################################
-
-if type brew &>/dev/null; then
-    FPATH=/usr/local/share/zsh-completions:/Users/kong/.oh-my-zsh/plugins/git:/Users/kong/.oh-my-zsh/functions:/Users/kong/.oh-my-zsh/completions:/Users/kong/.oh-my-zsh/cache/completions:/usr/local/share/zsh/site-functions:/usr/share/zsh/site-functions:/usr/share/zsh/5.8.1/functions
-
-    autoload -Uz compinit
-    compinit
-fi
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
