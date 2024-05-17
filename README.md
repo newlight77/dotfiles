@@ -104,6 +104,16 @@ git config --global user.name 'fullname'
 git config --global user.email 'example@mail.com'
 ```
 
+## FZF Keyboard shortcuts
+
+This will add the following shortcuts:
+
+- `CTRL + r` will search backwards through your zsh history. This is a fuzzy search, e.g. terraform tfstate will bring up all commands in history that have terraform and tfstate anywhere in the command line. Great for finding commands where you don't remember the exact syntax you used.
+
+- `ESC + c` will search all directories below the current working directory then cd to the result. Great for quickly jumping to a deep directory.
+
+- `CTRL + t` will use MacOS' Spotlight to search all files and directories below the current working directory then put that result on the command line, ready for a CTRL + a to add a command before it. Great for when you're not sure where you put that file. Alternatively, type your command then hit CTRL + t to add a file afterwards.
+
 ## Vim Cheat Sheet
 
 [Vim Cheat Sheet](https://vim.rtorr.com/)

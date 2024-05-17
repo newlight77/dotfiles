@@ -33,3 +33,17 @@ fi
 if [ ${GIT_EDITOR}x != 'x']; then
     git config --global core.editor ${GIT_EDITOR}
 fi
+
+
+echo '.......... adding git alias ..........'
+
+git config --global alias.lol = '!git --no-pager log --graph --decorate --abbrev-commit --all --date=local -25 --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\"'
+git config --global alias.fza = '!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add'
+git config --global alias.gone = '!f() { git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f'
+
+
+echo "adding export GPG_TTY  to PATH in $HOME/.zshrc" 1>&2
+
+echo '
+export GPG_TTY=$(tty)
+' >> $HOME/.zshrc

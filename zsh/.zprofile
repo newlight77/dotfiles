@@ -36,5 +36,9 @@ if [ -f $HOME/.config/bash/.bashrc_vars ]; then
     source $HOME/.config/bash/.bashrc_vars
 fi
 
+if [ -f $HOME/.config/bash/.bashrc_web ]; then
+    source $HOME/.config/bash/.bashrc_web
+fi
+
 # github.com/newlight77/ditfiles
 #############################################

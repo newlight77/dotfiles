@@ -43,8 +43,12 @@ installShellIntegration() {
     echo '........ installing shell integration ........'
 
     curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+    mkdir -p ${HOME}/.config/zsh
+    curl -L https://iterm2.com/shell_integration/zsh -o ${HOME}/.config/zsh/.iterm2_shell_integration.zsh
 
-    curl -L https://iterm2.com/shell_integration/zsh -o ~/.iterm2_shell_integration.zsh
+    echo '
+    test -e "${HOME}/.config/zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.config/zsh/.iterm2_shell_integration.zsh"
+    ' >> ~/.zprofile
 }
 
 installZshCompletions() {
@@ -114,6 +118,45 @@ installZshThemePowerlevel10k() {
     brew install romkatv/powerlevel10k/powerlevel10k
 
     echo 'source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zprofile
+}
+
+installFzf() {
+    echo '........ activate fzf ........'
+
+    brew install fzf
+
+    $(brew --prefix)/opt/fzf/install
+
+    echo '
+        #[[ -f $HOME/.fzf.zsh ]] && source $HOME/.fzf.zsh
+        eval "$(fzf --zsh)"
+    ' >> ~/.zprofile
+
+    echo '
+    # Auto-completion
+    [[ $- == *i* ]] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh" 2> /dev/null
+    ' >> ~/.zprofile
+
+    echo '
+    # Key bindings
+    source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+    ' >> ~/.zprofile
+
+    echo '
+    set rtp+=$(brew --prefix)/opt/fzf
+    ' >> .vimrc
+
+    echo '
+    export FZF_DEFAULT_OPTS='--reverse --border --exact --height=50%'
+    export FZF_ALT_C_COMMAND='fd --type directory'
+    [[ $OSTYPE =~ ^darwin.* ]] && export FZF_CTRL_T_COMMAND="mdfind -onlyin . -name ."
+    ' >> ~/.zshenv
+}
+
+installUtil() {
+    echo '
+    export PATH=$HOME/.config/util/:$PATH
+    ' >> ~/.zprofile
 }
 
 
