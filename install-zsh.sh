@@ -83,6 +83,7 @@ installZshSyntaxHighlighting() {
 
     brew install zsh-syntax-highlighting
 
+    echo 'source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zprofile
     echo 'export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters' >> ~/.zprofile
 }
 
@@ -104,9 +105,9 @@ activateZshPlugins() {
 installZshThemePowerlevel10k() {
     echo '........ activate zsh theme powerlevel10k........'
 
-    brew install romkatv/powerlevel10k/powerlevel10k
+    brew install powerlevel10k
 
-    echo 'source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zprofile
+    echo 'source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme' >> ~/.zprofile
 }
 
 installFzf() {

@@ -80,9 +80,7 @@ curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-zsh
 mkdir -p ${HOME}/.config/git/
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/git/.gitconfig_alias -o ${HOME}/.config/git/gitconfig_alias
 
-if [ -f $HOME/.config/git/.gitconfig_alias ]; then
-    git config --global include.path $HOME/.config/git/.gitconfig_alias
-fi
+git config --global include.path $HOME/.config/git/.gitconfig_alias
 ```
 
 5. Add your own shell aliases
