@@ -89,13 +89,13 @@ Examples :
 
 ```bash
 echo '
-alias cdclones='cd ~/workspace/clones'
-alias cdoneprofile='cd ~/workspace/oneprofile'
-alias cdnewlight='cd ~/workspace/newlight77'
+alias cdclones="cd ~/workspace/clones"
+alias cdoneprofile="cd ~/workspace/oneprofile"
+alias cdnewlight="cd ~/workspace/newlight77"
 
-alias clones='cdclones'
-alias oneprofile='cdoneprofile'
-alias newlight='cdnewlight'
+alias clones="cdclones"
+alias oneprofile="cdoneprofile"
+alias newlight="cdnewlight"
 ' >> $HOME/.config/bash/.bashrc_alias_extended
 ```
 
@@ -127,6 +127,17 @@ This will add the following shortcuts:
 - `ESC + c` will search all directories below the current working directory then cd to the result. Great for quickly jumping to a deep directory.
 
 - `CTRL + t` will use MacOS' Spotlight to search all files and directories below the current working directory then put that result on the command line, ready for a CTRL + a to add a command before it. Great for when you're not sure where you put that file. Alternatively, type your command then hit CTRL + t to add a file afterwards.
+
+## FAG
+
+1. How-To ? If I got this error :
+
+```bash
+zsh compinit: insecure directories, run compaudit for list.
+Ignore insecure directories and continue [y] or abort compinit [n]?
+```
+
+Answer : it suggests to run compaudit. So the just run `compaudit | xargs chmod g-w` to remove group-write permissions.
 
 ## Vim Cheat Sheet
 
