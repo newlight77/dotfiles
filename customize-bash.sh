@@ -1,35 +1,69 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-DIR=${0%/*}
-echo "current dir: " $DIR
 
-if [ ! -d "$DIR" ]; then DIR="$PWD"; fi
+#############################################
+## Functions
+#############################################
+
+
+installBashCompletion() {
+    echo '........ installing bash-completion ........'
+
+    brew install bash-completion
+
+    echo '[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"' >> ~/.bashrc
+}
+
+installShellIntegration() {
+    echo '........ installing shell integration ........'
+
+    curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+    mkdir -p ${HOME}/.config/zsh
+    curl -L https://iterm2.com/shell_integration/zsh -o ${HOME}/.config/zsh/.iterm2_shell_integration.zsh
+
+    echo '
+    test -e "${HOME}/.config/zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.config/zsh/.iterm2_shell_integration.zsh"
+    ' >> ~/.zprofile
+}
+
+retrieve_customizations() {
+
+  echo "creating folder $HOME/.config/bash" 1>&2
+  mkdir -p $HOME/.config/bash
+
+  echo "retrieve all bash custom into $HOME/.config/bash" 1>&2
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc         -o ${HOME}/.config/bash/.bashrc
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_alias   -o ${HOME}/.config/bash/.bashrc_alias
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_alias_extended   -o ${HOME}/.config/bash/.bashrc_alias_extended
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_docker  -o ${HOME}/.config/bash/.bashrc_docker
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_fs      -o ${HOME}/.config/bash/.bashrc_fs
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_general -o ${HOME}/.config/bash/.bashrc_general
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_macos   -o ${HOME}/.config/bash/.bashrc_macos
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_network -o ${HOME}/.config/bash/.bashrc_network
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_search  -o ${HOME}/.config/bash/.bashrc_search
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_vars    -o ${HOME}/.config/bash/.bashrc_vars
+  curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/bash/.bashrc_web     -o ${HOME}/.config/bash/.bashrc_web
+
+}
+
+configure_bashrc() {
+    echo '
+if [ -f $HOME/.config/bash/.bashrc ]; then
+  source $HOME/.config/bash/.bashrc
+fi
+' >> .bashrc
+}
+
+
+#############################################
+## Run
+#############################################
 
 echo "*** ------  Customize ------ ***" 1>&2
 
-DIR=/tmp/dotfiles
-
-if [ -d "$DIR" ]; then
-  rm -fr $DIR
-fi
-if [ ! -d "$DIR" ]; then
-  git clone https://github.com/newlight77/dotfiles.git $DIR
-fi
-
-cd $DIR
-
-echo "creating folder $HOME/.config/bash" 1>&2
-mkdir -p $HOME/.config/bash
-
-for file in bash/.bashrc* ; do
-  echo "copying $file to $HOME/.config/bash/" 1>&2
-  cp $file $HOME/.config/bash/
-done
-
-echo "writing contents of bash/.bashrc to $HOME/.bashrc" 1>&2
-cp $HOME/.bashrc                            $HOME/.bashrc.$(date +"%Y%m%d%H%M%S")
-cat ${DIR}/bash/.bashrc                  >> $HOME/.bashrc
-
-curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+installBashCompletion
+installShellIntegration
+retrieve_customizations
+configure_bashrc
 
 echo "*** ------  Customize Bash Done ------ ***" 1>&2

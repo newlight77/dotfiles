@@ -1,6 +1,6 @@
 # dotfiles
 
-Use this repository to customize your envrioment:
+Use this repository to customize your envrionment:
 
 - Bash
 - Zsh with Oh my zsh
@@ -11,11 +11,10 @@ Use this to customize your bash profile, it comes with :
 
 - set of useful functions and aliases
 - set colorfull shell
-- git config and aliases
 
-Please feel free to install zsh with oh my zsh.
+Please feel free to install zsh with oh-my-zsh.
 
-> Alternatively, you may want to setp fish instead of zsh and oh my zsh.
+> Alternatively, you may want to setup fish instead of zsh and oh-my-zsh.
 
 > For Vim/NeoVim users, you may customize you vimrc with :
 
@@ -32,7 +31,7 @@ You can also add environment specific variables in $HOME/.config/bash/.bashrc_va
 - Mac OS
 - Linux
 
-## Prerequisites
+## Pre-requisites
 
 Please refer to this page : [pre-requisites](/pre-requisites.md).
 
@@ -40,26 +39,7 @@ Please refer to this page : [pre-requisites](/pre-requisites.md).
 
 Install Homebrew:
 ```bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-homebrew.sh | bash
-```
-
-Install Git:
-
-```bash
-echo '
-GIT_USER_NAME='Your name'
-GIT_USER_EMAIL='Your email'
-GIT_EDITOR=vi
-#GIT_EDITOR=nano
-' > .env
-
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-git.sh | bash
-```
-
-Install Zsh:
-
-```bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-zsh.sh | bash
+curl -L https://raw.githubusercontent.com/newlight77/macosx/main/install-homebrew.sh | bash
 ```
 
 ## Setup
@@ -67,24 +47,70 @@ curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-zsh.s
 To start with, this dotfiles repository provides 4 parts :
 
 - bash/zsh setup
-- git setup
 - utils files (few scripts not so useful for now)
 - vim/neovim Setup (work in progress)
-- hyper configuration (work in progress)
+
+### Only Bash
+
+1. Customize bash:
 
 ```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-bash.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-git.sh | bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-util.sh | bash
+```
+
+Then jump to step 3.
+
+### Using Zsh & oh-my-zsh
+
+1. Install Zsh:
+
+```bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-zsh.sh | bash
+```
+
+2. Customize zsh:
+
+```bash
 curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/customize-zsh.sh | bash
+```
+
+3. Configure git aliases
+
+```bash
+mkdir -p ${HOME}/.config/git/
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/git/.gitconfig_alias -o ${HOME}/.config/git/gitconfig_alias
+
+if [ -f $HOME/.config/git/.gitconfig_alias ]; then
+    git config --global include.path $HOME/.config/git/.gitconfig_alias
+fi
+```
+
+5. Add your own shell aliases
+
+Examples :
+
+```bash
+echo '
+alias cdclones='cd ~/workspace/clones'
+alias cdoneprofile='cd ~/workspace/oneprofile'
+alias cdnewlight='cd ~/workspace/newlight77'
+
+alias clones='cdclones'
+alias oneprofile='cdoneprofile'
+alias newlight='cdnewlight'
+' >> $HOME/.config/bash/.bashrc_alias_extended
+```
+
+5. Optionally install util scripts
+
+```bash
+curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-util.sh | bash
 ```
 
 ### Undo
 
 ```bash
-rm -fr /tmp/dotfiles
 rm -rf $HOME/.config/bash
-rm -rf $HOME/.config/git
 rm -rf $HOME/.onfig/util
 #rm -rf $HOME/.config/nvim
 #rm -rf $HOME/.config/hyper
@@ -93,16 +119,6 @@ rm -rf $HOME/.onfig/util
 Then update (by removing dotfiles related changes source) the .zprofile, .bashrc, .vimrc, .config/nvim/init.vim accordingly.
 
 ## Additional Customization
-
-### Git
-
-Git configuration (already covered wihtin install script).
-
-```bash
-git config --global core.editor nano
-git config --global user.name 'fullname'
-git config --global user.email 'example@mail.com'
-```
 
 ## FZF Keyboard shortcuts
 
@@ -132,3 +148,8 @@ This will add the following shortcuts:
 
 - [Hyper](https://hyper.is/#installation)
 - [Hyper awesome](https://github.com/bnb/awesome-hyper)
+
+
+# TODO
+
+- move all git install and config to macosx repo

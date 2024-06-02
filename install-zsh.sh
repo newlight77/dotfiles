@@ -1,20 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-installBrew() {
+#############################################
+## Functions
+#############################################
 
-    if [ $(which brew) != 'brew not found'];then
-        return
-    fi
-
-    echo '........ installing brew ........'
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-
-    echo 'eval "$($(brew --prefix)/bin/brew shellenv)"' >> ~/.zprofile
-    eval "$($(brew --prefix)/bin/brew shellenv)"
-
-    brew update
-}
 
 installBashCompletion() {
     echo '........ installing bash-completion ........'
@@ -22,6 +11,18 @@ installBashCompletion() {
     brew install bash-completion
 
     echo '[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"' >> ~/.bashrc
+}
+
+installShellIntegration() {
+    echo '........ installing shell integration ........'
+
+    curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
+    mkdir -p ${HOME}/.config/zsh
+    curl -L https://iterm2.com/shell_integration/zsh -o ${HOME}/.config/zsh/.iterm2_shell_integration.zsh
+
+    echo '
+    test -e "${HOME}/.config/zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.config/zsh/.iterm2_shell_integration.zsh"
+    ' >> ~/.zprofile
 }
 
 installZsh() {
@@ -37,18 +38,6 @@ installOhMyZsh() {
     echo '........ installing oh-my-zsh ........'
 
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-}
-
-installShellIntegration() {
-    echo '........ installing shell integration ........'
-
-    curl -L https://iterm2.com/shell_integration/install_shell_integration_and_utilities.sh | bash
-    mkdir -p ${HOME}/.config/zsh
-    curl -L https://iterm2.com/shell_integration/zsh -o ${HOME}/.config/zsh/.iterm2_shell_integration.zsh
-
-    echo '
-    test -e "${HOME}/.config/zsh/.iterm2_shell_integration.zsh" && source "${HOME}/.config/zsh/.iterm2_shell_integration.zsh"
-    ' >> ~/.zprofile
 }
 
 installZshCompletions() {
@@ -153,14 +142,11 @@ installFzf() {
     ' >> ~/.zshenv
 }
 
-installUtil() {
-    echo '
-    export PATH=$HOME/.config/util/:$PATH
-    ' >> ~/.zprofile
-}
 
+#############################################
+## Run
+#############################################
 
-installBrew
 
 installBashCompletion
 installZsh

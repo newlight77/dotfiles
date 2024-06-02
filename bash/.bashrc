@@ -1,11 +1,15 @@
 #!/bin/bash
-
+echo .config/bash/.bashrc
 
 #############################################
 # github.com/newlight77/dotfiles
 
 if [ -f $HOME/.config/bash/.bashrc_alias ]; then
     source $HOME/.config/bash/.bashrc_alias
+fi
+
+if [ -f $HOME/.config/bash/.bashrc_alias_extended ]; then
+    source $HOME/.config/bash/.bashrc_alias_extended
 fi
 
 if [ -f $HOME/.config/bash/.bashrc_docker ]; then

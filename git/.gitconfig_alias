@@ -15,6 +15,10 @@
     ..master = log master..HEAD
     master.. = log HEAD..master
 
+    lol = '!git --no-pager log --graph --decorate --abbrev-commit --all --date=local -25 --pretty=format:\"%C(auto)%h%d %C(blue)%an %C(green)%cd %C(red)%GG %C(reset)%s\"'
+    fza = '!git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add'
+    gone = '!f() { git fetch --all --prune; git branch -vv | awk "/: gone]/{print $1}" | xargs git branch -D; }; f'
+
     lp  = log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cd)%Creset' --abbrev-commit --date=rfc
     lpu = log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset - %C(magenta)%cn%Creset' --abbrev-commit --date=relative
     lpn = log --pretty=format:'%Cred%h%Creset %C(yellow)%d%Creset %s %Cgreen(%cr)%Creset - %C(magenta)%cn%Creset' --abbrev-commit --date=relative -n
