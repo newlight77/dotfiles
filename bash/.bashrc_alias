@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 echo .config/bash/.bashrc_alias
 
+# depends on 'unalias gcd' and 'brew install git'
+function gcd
+{
+  git clone $1 && cd "$(basename "$_" .git)"
+}
+
+function mcd
+{
+  command mkdir $1 && cd $1
+}
+
 #   showa: to remind yourself of an alias (given some part of it)
 #   ------------------------------------------------------------
 showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }

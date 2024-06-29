@@ -136,11 +136,32 @@ installFzf() {
     set rtp+=$(brew --prefix)/opt/fzf
     ' >> .vimrc
 
+}
+
+setup_keyboard_shortcuts() {
     echo '
     export FZF_DEFAULT_OPTS='--reverse --border --exact --height=50%'
     export FZF_ALT_C_COMMAND='fd --type directory'
     [[ $OSTYPE =~ ^darwin.* ]] && export FZF_CTRL_T_COMMAND="mdfind -onlyin . -name ."
     ' >> ~/.zshenv
+}
+
+install_ranger() {
+    brew install ranger
+    $(brew --prefix)/opt/ranger --copy-config=rc
+}
+
+install_asdf() {
+    brew install asdf
+
+    echo '
+# source the asdf config if it exists
+[[ -f $HOME/.asdf/asdf.sh ]] && source "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH compinit
+autoload -Uz compinit && compinit
+' >> ~/.zprofile
 }
 
 
@@ -163,3 +184,7 @@ installZshNavigationTools
 activateZshPlugins
 
 installZshThemePowerlevel10k
+setup_keyboard_shortcuts
+installFzf
+install_ranger
+install_asdf

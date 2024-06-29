@@ -30,10 +30,26 @@ configure_zshrc() {
 if [ -f $HOME/.config/bash/.bashrc ]; then
   source $HOME/.config/bash/.bashrc
 fi
+
+if [[ -n $SSH_CONNECTION ]]; then
+  ZSH_THEME="afowler"
+else
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+fi
+
+# depends on 'brew install grep'
+[[ $OSTYPE =~ ^darwin.* ]] && alias grep='ggrep --colour=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox}'
 ' >> .zprofile
 }
 
+configure_zshrc_env() {
+  echo '
+[[ -f $HOME/.zshenv-local ]] && source $HOME/.zshenv-local
 
+export TMPDIR="${HOME}/.tmp"
+export EDITOR="vim"
+' >> ~/.zshenv
+}
 
 #############################################
 ## Run
@@ -44,5 +60,6 @@ echo "Configuring BASH and source in ZSH..." 1>&2
 
 retrieve_customizations
 configure_zshrc
+configure_zshrc_env
 
 echo "*** ------  Customize Bash Done ------ ***" 1>&2
