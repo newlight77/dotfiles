@@ -47,7 +47,6 @@ curl -L https://raw.githubusercontent.com/newlight77/macosx/main/install-homebre
 To start with, this dotfiles repository provides 4 parts :
 
 - bash/zsh setup
-- utils files (few scripts not so useful for now)
 - vim/neovim Setup (work in progress)
 
 ### Only Bash
@@ -99,17 +98,10 @@ alias newlight="cdnewlight"
 ' >> $HOME/.config/bash/.bashrc_alias_extended
 ```
 
-5. Optionally install util scripts
-
-```bash
-curl -L https://raw.githubusercontent.com/newlight77/dotfiles/main/install-util.sh | bash
-```
-
 ### Undo
 
 ```bash
 rm -rf $HOME/.config/bash
-rm -rf $HOME/.onfig/util
 #rm -rf $HOME/.config/nvim
 #rm -rf $HOME/.config/hyper
 ```
